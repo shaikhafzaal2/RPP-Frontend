@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useDispatch } from 'react-redux';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import { selectUser } from 'selectors';
 import styled, { ThemeProvider } from 'styled-components';
 import { px } from 'styled-minimal';
@@ -53,7 +53,7 @@ function Root() {
   }, [dispatch, changed]);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ThemeProvider theme={theme}>
         <AppWrapper data-testid="app">
           <Helmet
@@ -95,7 +95,7 @@ function Root() {
           <SystemAlerts />
         </AppWrapper>
       </ThemeProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
