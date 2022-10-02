@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/static/js/main.3fab4ff.js",
-    "static/js/791.3fab4ff.chunk.js": "/static/js/791.3fab4ff.chunk.js",
-    "service-worker.js": "/service-worker.js",
-    "index.html": "/index.html",
-    "static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.3fab4ff.bin": "/static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.3fab4ff.bin",
-    "main.3fab4ff.js.map": "/static/js/main.3fab4ff.js.map",
-    "791.3fab4ff.chunk.js.map": "/static/js/791.3fab4ff.chunk.js.map"
+    "main.js": "./static/js/main.b09542d.js",
+    "static/js/791.b09542d.chunk.js": "./static/js/791.b09542d.chunk.js",
+    "service-worker.js": "./service-worker.js",
+    "index.html": "./index.html",
+    "static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.b09542d.bin": "./static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.b09542d.bin",
+    "main.b09542d.js.map": "./static/js/main.b09542d.js.map",
+    "791.b09542d.chunk.js.map": "./static/js/791.b09542d.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.3fab4ff.js"
+    "static/js/main.b09542d.js"
   ]
 }
