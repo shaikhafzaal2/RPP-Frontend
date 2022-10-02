@@ -1,8 +1,14 @@
 {
+  "homepage": ".",
   "name": "ramaiah-placement-portal",
   "description": "Placement portal for students",
   "version": "2022.3.0",
   "author": "Group 48 <shaikhafzaal2@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shaikhafzaa2/RPP-Frontend"
+  },
+  "bugs": "https://github.com/shaikhafzaa2/RPP-Frontend/issues",
   "license": "MIT",
   "keywords": [
     "React",
