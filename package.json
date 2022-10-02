@@ -1,13 +1,14 @@
 {
-  "name": "react-redux-saga-boilerplate",
-  "description": "Boilerplate with React and Redux with Redux Saga",
+  "name": "ramaiah-placement-portal",
+  "description": "Placement portal for students",
   "version": "2022.3.0",
-  "author": "Gil Barbara <gilbarbara@gmail.com>",
+  "author": "Group 48 <shaikhafzaal2@gmail.com>",
+  "homepage": "https://shaikhafzaa2.github.io/RPP-Frontend",
   "repository": {
     "type": "git",
-    "url": "https://github.com/gilbarbara/react-redux-saga-boilerplate"
+    "url": "https://github.com/shaikhafzaa2/RPP-Frontend"
   },
-  "bugs": "https://github.com/gilbarbara/react-redux-saga-boilerplate/issues",
+  "bugs": "https://github.com/shaikhafzaa2/RPP-Frontend/issues",
   "license": "MIT",
   "keywords": [
     "React",
@@ -20,6 +21,7 @@
   "dependencies": {
     "@gilbarbara/helpers": "^0.5.1",
     "@reduxjs/toolkit": "^1.8.0",
+    "gh-pages": "^4.0.0",
     "immer": "^9.0.12",
     "is-lite": "^0.8.1",
     "react": "^17.0.2",
@@ -201,7 +203,8 @@
     "format": "prettier \"**/*.{ts,tsx}\" --write",
     "validate": "npm run typecheck && npm run lint && npm run lint:styles && npm run test:coverage && npm run build && size-limit",
     "serve": "serve --listen 3000 build",
-    "deploy": "node tools deploy",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",   
     "publish": "node tools publish",
     "size": "npm run build && size-limit",
     "postinstall": "",
