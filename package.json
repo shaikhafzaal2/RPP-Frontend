@@ -207,7 +207,7 @@
     "deploy": "gh-pages -d build",
     "publish": "node tools publish",
     "size": "npm run build && size-limit",
-    "postinstall": "",
+    "postinstall": " ",
     "prepare": "husky install"
   },
   "prettier": "@gilbarbara/prettier-config",
