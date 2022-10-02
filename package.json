@@ -204,7 +204,7 @@
     "validate": "npm run typecheck && npm run lint && npm run lint:styles && npm run test:coverage && npm run build && size-limit",
     "serve": "serve --listen 3000 build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",   
+    "deploy": "gh-pages -d build",
     "publish": "node tools publish",
     "size": "npm run build && size-limit",
     "postinstall": "",
