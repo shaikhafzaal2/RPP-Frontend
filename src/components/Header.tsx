@@ -2,11 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { Container, responsive } from 'styled-minimal';
-
 import { appColor, headerHeight, spacer } from 'modules/theme';
-
 import { logOut } from 'actions';
-
 import Icon from 'components/Icon';
 import Logo from 'components/Logo';
 
