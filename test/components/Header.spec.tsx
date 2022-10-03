@@ -8,6 +8,7 @@ import { fireEvent, render, screen } from 'test-utils';
 
 const mockDispatch = jest.fn();
 
+
 describe('Header', () => {
   it('should render properly', () => {
     render(<Header />);
