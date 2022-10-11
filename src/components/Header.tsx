@@ -5,6 +5,7 @@ import { Container, responsive } from 'styled-minimal';
 import { appColor, headerHeight, spacer } from 'modules/theme';
 import { logOut } from 'actions';
 import Icon from 'components/Icon';
+
 import Logo from 'components/Logo';
 
 const HeaderWrapper = styled.header`
