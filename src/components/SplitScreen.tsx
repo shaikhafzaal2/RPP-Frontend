@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import MsrLogo from '../assets/MsrLogoW.png'
+// import MsrLogo from '../assets/MsrLogoW.png'
 import SignInForm from './SignInForm';
 
 
@@ -19,7 +19,7 @@ const Left = styled.div`
 `;
 const Image = styled.img`
 
-  width: 480px;
+  width: 450px;
   height: 200px;
   margin-bottom: 40px;
   
@@ -34,11 +34,6 @@ const Heading = styled.span`
   text-align: center;
   padding: 0 -20px
  
-`;
-const Heading1 = styled.span`
-  font-size: 40px;
-  color: #C73E27;
-  font-weight:600;
 `;
 
 const Right = styled.div`
@@ -59,9 +54,9 @@ const SplitScreen = () => {
   return (
     <Container>
       <Left>
-      <Image src={MsrLogo} alt="Image" />
+      <Image src="https://cdn.msruas.ac.in/ruas/imager/logos/identity/114151/university-main-logo_96575fd44b35071619e2d5f4abc0b108.png" alt="Image" />
         <Heading>Welcome to </Heading>
-        <Heading1>PLACEMENT PORTAL</Heading1>
+        <Heading>PLACEMENT PORTAL</Heading>
       </Left>
       <Right>
         <SignInForm />
