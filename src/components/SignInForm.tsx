@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  width: 100%;
+  width: 90%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -11,7 +11,7 @@ const Container = styled.div`
 
 const FormContainer = styled.div`
   width: 500px;
-  height: 300px;
+  height: 350px;
   background-color: #FFFFFF;
   border: 2px solid #433270;
   display: flex;
@@ -22,7 +22,7 @@ const FormContainer = styled.div`
 `;
 
 const Label = styled.h1`
-position: absolute
+align-items: left;
   font-size: 24px;
   margin: 0;
   padding: 20px;
