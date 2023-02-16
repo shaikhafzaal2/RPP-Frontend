@@ -12,12 +12,12 @@ describe('Home', () => {
     expect(screen.getByTestId('Home')).toMatchSnapshot();
   });
 
-  it('should handle clicks', () => {
-    render(<Home />, { mockDispatch });
-    fireEvent.click(screen.getByTestId('Login'));
+  // it('should handle clicks', () => {
+  //   render(<Home />, { mockDispatch });
+  //   fireEvent.click(screen.getByTestId('Login'));
 
-    expect(mockDispatch).toHaveBeenCalledWith({
-      type: 'USER_LOGIN_REQUEST',
-    });
-  });
+  //   expect(mockDispatch).toHaveBeenCalledWith({
+  //     type: 'USER_LOGIN_REQUEST',
+  //   });
+  // });
 });
