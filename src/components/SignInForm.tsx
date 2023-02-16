@@ -10,8 +10,8 @@ const Container = styled.div`
 `;
 
 const FormContainer = styled.div`
-  width: 500px;
-  height: 350px;
+  width: 60%;
+  height: 300px;
   background-color: #FFFFFF;
   border: 2px solid #433270;
   display: flex;
@@ -22,12 +22,11 @@ const FormContainer = styled.div`
 `;
 
 const Label = styled.h1`
-align-items: left;
+
   font-size: 24px;
   margin: 0;
-  padding: 20px;
+  padding: 30px;
   background-color: #FFFFFF;
-  
   color:#433270
 `;
 

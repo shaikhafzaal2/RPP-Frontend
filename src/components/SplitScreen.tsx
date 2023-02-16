@@ -19,8 +19,8 @@ const Left = styled.div`
 `;
 const Image = styled.img`
 
-  width: 450px;
-  height: 200px;
+  width: 60%;
+  height: 25%;
   margin-bottom: 40px;
   
 `;
