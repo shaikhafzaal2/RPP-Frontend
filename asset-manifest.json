@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/RPP-Frontend/static/js/main.0bad932.js",
-    "static/js/791.0bad932.chunk.js": "/RPP-Frontend/static/js/791.0bad932.chunk.js",
+    "main.js": "/RPP-Frontend/static/js/main.ff85984.js",
+    "static/js/791.ff85984.chunk.js": "/RPP-Frontend/static/js/791.ff85984.chunk.js",
     "service-worker.js": "/RPP-Frontend/service-worker.js",
     "index.html": "/RPP-Frontend/index.html",
-    "static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.0bad932.bin": "/RPP-Frontend/static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.0bad932.bin",
-    "main.0bad932.js.map": "/RPP-Frontend/static/js/main.0bad932.js.map",
-    "791.0bad932.chunk.js.map": "/RPP-Frontend/static/js/791.0bad932.chunk.js.map"
+    "static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.ff85984.bin": "/RPP-Frontend/static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.ff85984.bin",
+    "main.ff85984.js.map": "/RPP-Frontend/static/js/main.ff85984.js.map",
+    "791.ff85984.chunk.js.map": "/RPP-Frontend/static/js/791.ff85984.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.0bad932.js"
+    "static/js/main.ff85984.js"
   ]
 }
