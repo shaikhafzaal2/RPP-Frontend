@@ -38,15 +38,29 @@ const Form = styled.form`
   flex-direction: column;
   align-items: center;
 `;
-
-const Input = styled.input`
-  width: 100%;
-  height: 40px;
-  margin-bottom: 20px;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 6px;
+const Select = styled.select`
+width: 100%;
+height: 40px;
+margin-bottom: 20px;
+padding: 10px;
+font-size: 16px;
+border-radius: 6px;
+border: 2px solid #433270;
 `;
+
+const Option = styled.option`
+  padding: 10px;
+`;
+
+
+// const Input = styled.input`
+//   width: 100%;
+//   height: 40px;
+//   margin-bottom: 20px;
+//   padding: 10px;
+//   font-size: 16px;
+//   border-radius: 6px;
+// `;
 
 const Button = styled.button`
   width: 100%;
@@ -64,8 +78,12 @@ const SignInForm = () => {
       <FormContainer>
         <Label>Sign In</Label>
         <Form>
-          <Input type="text" placeholder="Enter your college email Id" />
-          <Input type="password" placeholder="Password" />
+        <Select name="role">
+        <Option value="admin">Admin</Option>
+        <Option value="student">Student</Option>
+      </Select>
+          {/* <Input type="text" placeholder="Enter your college email Id" />
+          <Input type="password" placeholder="Password" /> */}
           <Button type="submit">Sign In</Button>
         </Form>
       </FormContainer>
