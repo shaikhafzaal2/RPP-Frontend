@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components'
-// import MsrLogo from '../assets/MsrLogoW.png'
 import SignInForm from './SignInForm';
 
 
