@@ -6,15 +6,10 @@ import { selectUser } from 'selectors';
 import styled, { ThemeProvider } from 'styled-components';
 import { px } from 'styled-minimal';
 import useTreeChanges from 'tree-changes-hook';
-
 import { useAppSelector } from 'modules/hooks';
 import theme, { headerHeight } from 'modules/theme';
-
 import { name } from 'config';
-
 import { showAlert } from 'actions';
-
-import Footer from 'components/Footer';
 import Header from 'components/Header';
 import PrivateRoute from 'components/PrivateRoute';
 import PublicRoute from 'components/PublicRoute';
@@ -22,7 +17,6 @@ import SystemAlerts from 'containers/SystemAlerts';
 import Home from 'routes/Home';
 import NotFound from 'routes/NotFound';
 import Private from 'routes/Private';
-
 import { UserState } from 'types';
 
 const AppWrapper = styled.div`
@@ -91,7 +85,7 @@ function Root() {
               <Route element={<NotFound />} path="*" />
             </Routes>
           </Main>
-          <Footer />
+          {/* <Footer /> */}
           <SystemAlerts />
         </AppWrapper>
       </ThemeProvider>

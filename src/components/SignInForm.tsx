@@ -1,3 +1,5 @@
+import { useMsal } from '@azure/msal-react';
+import { loginRequest } from 'authConfig';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -23,9 +25,10 @@ const FormContainer = styled.div`
 
 const Label = styled.h1`
 
-  font-size: 24px;
+  font-size: 28px;
   margin: 0;
   padding: 30px;
+  padding-top: 0;
   background-color: #FFFFFF;
   color:#433270
 `;
@@ -72,6 +75,23 @@ const Button = styled.button`
 `;
 
 const SignInForm = () => {
+
+  const { instance } = useMsal();
+
+  const handleLogin =(loginType: string) => {
+    if (loginType === "popup") {
+        instance.loginPopup(loginRequest).catch(e => {
+            console.log(e);
+        });
+    } else if (loginType === "redirect") {
+        instance.loginRedirect(loginRequest).catch(e => {
+            console.log(e);
+        });
+    }
+}
+
+
+
   return (
     <Container>
       <FormContainer>
@@ -83,7 +103,7 @@ const SignInForm = () => {
       </Select>
           {/* <Input type="text" placeholder="Enter your college email Id" />
           <Input type="password" placeholder="Password" /> */}
-          <Button type="submit">Sign In</Button>
+          <Button type="submit" onClick={() => handleLogin("redirect")}>Sign In</Button>
         </Form>
       </FormContainer>
     </Container>

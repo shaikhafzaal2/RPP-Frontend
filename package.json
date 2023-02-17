@@ -19,6 +19,8 @@
     "ES6"
   ],
   "dependencies": {
+    "@azure/msal-browser": "^2.15.0",
+    "@azure/msal-react": "^1.0.1",
     "@gilbarbara/helpers": "^0.5.1",
     "@reduxjs/toolkit": "^1.8.0",
     "gh-pages": "^4.0.0",
