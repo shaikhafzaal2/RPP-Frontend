@@ -1,21 +1,22 @@
 import React from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import styled from 'styled-components';
 // import { Button, Container, responsive, Text } from 'styled-minimal';
+import { Button } from 'styled-minimal/lib';
 
 // import { spacer } from 'modules/theme';
 
 // import { name } from 'config';
-// import { STATUS } from 'literals';
+import { STATUS } from 'literals';
 
-// import { login } from 'actions';
+import { login } from 'actions';
  
 import Background from 'components/Background';
 import SplitScreen from 'components/SplitScreen';
-// import Icon from 'components/Icon';
+import Icon from 'components/Icon';
 // import Logo from 'components/Logo';
 
-// import { RootState } from 'types';
+import { RootState } from 'types';
 
 // const Header = styled.div`
 //   margin-bottom: ${spacer(3)};
@@ -53,12 +54,12 @@ import SplitScreen from 'components/SplitScreen';
 // `;
 
 function Home() {
-  // const dispatch = useDispatch();
-  // const status = useSelector<RootState>(({ user }) => user.status);
+  const dispatch = useDispatch();
+  const status = useSelector<RootState>(({ user }) => user.status);
 
-  // const handleClickLogin = () => {
-  //   dispatch(login());
-  // };
+  const handleClickLogin = () => {
+    dispatch(login());
+  };
 
   return (
     <Background key="Home" data-testid="Home">
@@ -80,6 +81,17 @@ function Home() {
           <Text ml={2}>Start</Text>
         </Button>
       </Container> */}
+       <Button
+          busy={status === STATUS.RUNNING}
+          data-testid="Login"
+          onClick={handleClickLogin}
+          size="xl"
+          textTransform="uppercase"
+          variant="white"
+        >
+          <Icon name="sign-in" />
+          {/* <Text ml={2}>Start</Text> */}
+        </Button>
     </Background>
   );
 }

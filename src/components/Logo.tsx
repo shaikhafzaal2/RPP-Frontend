@@ -1,6 +1,7 @@
 import React from 'react';
-import SVG from 'react-inlinesvg';
+// import SVG from 'react-inlinesvg';
 import styled from 'styled-components';
+import msrLogo from '../assets/logos/MsrLogoW.png'
 
 export const Wrapper = styled.div`
   align-items: flex-start;
@@ -13,11 +14,18 @@ export const Wrapper = styled.div`
     width: auto;
   }
 `;
+const Image = styled.img`
+
+  width: 35%;
+  height: 25%;
+  
+  
+`;
 
 function Logo() {
   return (
     <Wrapper>
-      <SVG src={`${process.env.PUBLIC_URL}/media/brand/icon.svg`} />
+      <Image src={msrLogo} />
     </Wrapper>
   );
 }
