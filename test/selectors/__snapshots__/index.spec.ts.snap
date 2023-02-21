@@ -14,7 +14,8 @@ Object {
 
 exports[`selectors selectUser should return the user 1`] = `
 Object {
-  "isAuthenticated": false,
-  "status": "idle",
+  "error": null,
+  "isLoggedIn": false,
+  "user": null,
 }
 `;

@@ -1,6 +1,7 @@
 import React from 'react';
+import Login from 'routes/Login';
 
-import Home from 'routes/Home';
+
 
 import { fireEvent, render, screen } from 'test-utils';
 
@@ -8,7 +9,7 @@ const mockDispatch = jest.fn();
 
 describe('Home', () => {
   it('should render properly', () => {
-    render(<Home />);
+    render(<Login />);
     expect(screen.getByTestId('Home')).toMatchSnapshot();
   });
 

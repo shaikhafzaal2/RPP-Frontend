@@ -18,7 +18,6 @@ const Header = styled.div`
 
 function Dashboard() {
   const userAccount = useAppSelector(selectUser);
-console.log(userAccount.user.account.name)
 
   // const { instance } = useMsal();
   // const dispatch = useDispatch();

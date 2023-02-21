@@ -8,9 +8,11 @@ module.exports = {
     '!src/serviceWorkerRegistration.ts',
     '!src/types/*.*',
   ],
+  globals: {
+    crypto: require('crypto')
+  },
   coverageThreshold: {
-    global: {
-      crypto: require("crypto"),
+    global: {      
       branches: 90,
       functions: 90,
       lines: 90,
