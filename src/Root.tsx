@@ -18,6 +18,7 @@ import Home from 'routes/Home';
 import NotFound from 'routes/NotFound';
 import Private from 'routes/Private';
 import { UserState } from 'types';
+// import { useIsAuthenticated } from '@azure/msal-react';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -28,9 +29,9 @@ const AppWrapper = styled.div`
   transition: opacity 0.5s;
 `;
 
-const Main = styled.main<Pick<UserState, 'isAuthenticated'>>`
+const Main = styled.main<Pick<UserState, 'isLoggedIn'>>`
   min-height: 100vh;
-  padding: ${({ isAuthenticated }) => (isAuthenticated ? `${px(headerHeight)} 0 0` : 0)};
+  padding: ${({ isLoggedIn }) => (isLoggedIn ? `${px(headerHeight)} 0 0` : 0)};
 `;
 
 function Root() {
@@ -38,7 +39,10 @@ function Root() {
   const user = useAppSelector(selectUser);
   const { changed } = useTreeChanges(user);
 
-  const { isAuthenticated } = user;
+  const isAuthenticated = user.isLoggedIn;
+  
+  // const isAuthenticated = useIsAuthenticated();
+  console.log(isAuthenticated)
 
   useEffect(() => {
     if (changed('isAuthenticated', true)) {
@@ -64,7 +68,7 @@ function Root() {
             />
           </Helmet>
           {isAuthenticated && <Header />}
-          <Main isAuthenticated={isAuthenticated}>
+          <Main isLoggedIn={isAuthenticated}>
             <Routes>
               <Route
                 element={

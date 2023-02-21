@@ -1,34 +1,31 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { STATUS } from 'literals';
 
-import { login, loginSuccess, logOut, logOutSuccess } from 'actions';
+import { loginFailure, loginSuccess, logoutSuccess } from 'actions';
 
 import { UserState } from 'types';
 
-export const userState = {
-  isAuthenticated: false,
-  status: STATUS.IDLE,
+export const userState: UserState = {
+  isLoggedIn: false,
+  user: null,
+  error: null,
 };
-
 export default {
-  user: createReducer<UserState>(userState, builder => {
-    builder
-      .addCase(login, draft => {
-        draft.status = STATUS.RUNNING;
-      })
-      .addCase(loginSuccess, draft => {
-        draft.isAuthenticated = true;
-        draft.status = STATUS.READY;
-      });
-
-    builder
-      .addCase(logOut, draft => {
-        draft.status = STATUS.RUNNING;
-      })
-      .addCase(logOutSuccess, draft => {
-        draft.isAuthenticated = false;
-        draft.status = STATUS.IDLE;
-      });
-  }),
-};
+  user: createReducer<UserState>(userState, (builder) => {
+  builder
+    .addCase(loginSuccess, (state, action) => {
+      state.isLoggedIn = true;
+      state.user = action.payload;
+      state.error = null;
+    })
+    .addCase(loginFailure, (state, action) => {
+      state.isLoggedIn = false;
+      state.user = null;
+      state.error = action.payload;
+    })
+    .addCase(logoutSuccess, (state) => {
+      state.isLoggedIn = false;
+      state.user = null;
+      state.error = null;
+    });
+})};
