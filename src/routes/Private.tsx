@@ -16,7 +16,7 @@ const Header = styled.div`
   text-align: center;
 `;
 
-function Private() {
+function Dashboard() {
   const userAccount = useAppSelector(selectUser);
 console.log(userAccount.user.account.name)
 
@@ -58,4 +58,4 @@ console.log(userAccount.user.account.name)
   );
 }
 
-export default Private;
+export default Dashboard;

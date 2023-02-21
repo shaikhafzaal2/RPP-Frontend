@@ -14,9 +14,9 @@ import Header from 'components/Header';
 import PrivateRoute from 'components/PrivateRoute';
 import PublicRoute from 'components/PublicRoute';
 import SystemAlerts from 'containers/SystemAlerts';
-import Home from 'routes/Home';
+import Login from 'routes/Login';
 import NotFound from 'routes/NotFound';
-import Private from 'routes/Private';
+import Dashboard from 'routes/Private';
 import { UserState } from 'types';
 // import { useIsAuthenticated } from '@azure/msal-react';
 
@@ -72,8 +72,8 @@ function Root() {
             <Routes>
               <Route
                 element={
-                  <PublicRoute isAuthenticated={isAuthenticated} to="/private">
-                    <Home />
+                  <PublicRoute isAuthenticated={isAuthenticated} to="/dashboard">
+                    <Login />
                   </PublicRoute>
                 }
                 path="/"
@@ -81,10 +81,10 @@ function Root() {
               <Route
                 element={
                   <PrivateRoute isAuthenticated={isAuthenticated} to="/">
-                    <Private />
+                    <Dashboard />
                   </PrivateRoute>
                 }
-                path="/private"
+                path="/dashboard"
               />
               <Route element={<NotFound />} path="*" />
             </Routes>
