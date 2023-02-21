@@ -10,6 +10,7 @@ module.exports = {
   ],
   coverageThreshold: {
     global: {
+      crypto: require("crypto"),
       branches: 90,
       functions: 90,
       lines: 90,

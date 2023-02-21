@@ -6,9 +6,10 @@ import { ActionTypes } from 'literals';
 import { loginSuccess } from 'actions';
 
 import { act, render, screen } from 'test-utils';
+import { AccountInfo } from '@azure/msal-browser';
 
 const mockDispatch = jest.fn();
-
+let myAccount: AccountInfo;
 describe('Root', () => {
   afterEach(() => {
     jest.clearAllMocks();
@@ -25,7 +26,7 @@ describe('Root', () => {
     });
 
     act(() => {
-      store.dispatch(loginSuccess());
+      store.dispatch(loginSuccess(myAccount));
     });
 
     expect(screen.getByTestId('app')).toMatchSnapshot();
