@@ -3,10 +3,14 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { Container, responsive } from 'styled-minimal';
 import { appColor, headerHeight, spacer } from 'modules/theme';
-import { logOut } from 'actions';
+// import { logOut } from 'actions';
 import Icon from 'components/Icon';
 
 import Logo from 'components/Logo';
+// import { useMsal } from '@azure/msal-react';
+import { logoutRequest } from 'actions';
+// import { useMsal } from '@azure/msal-react';
+// import { useMsal } from '@azure/msal-react';
 
 const HeaderWrapper = styled.header`
   background-color: #113740;
@@ -60,10 +64,41 @@ const Logout = styled.button`
 
 export default function Header() {
   const dispatch = useDispatch();
+  // const { instance } = useMsal();
 
   const handleClickLogout = () => {
-    dispatch(logOut());
-  };
+  //   instance.logoutPopup({
+  //                 postLogoutRedirectUri: "/",
+  //             }).then(()=>{dispatch(logoutRequest())});
+  // };
+
+//   instance.logoutRedirect({
+//     postLogoutRedirectUri: "/",
+// })
+dispatch(logoutRequest())
+};
+
+
+
+  // const handleLogout = () => {
+  //   // localStorage.clear();
+  //   dispatch(logoutRequest);
+  //     // if (logoutType === "popup") {
+  //     //   // dispatch(logoutRequest);
+  //     //     // instance.logoutPopup({
+  //     //     //   mainWindowRedirectUri: "/"
+            
+  //     //     // });
+  //     //     // dispatch(logoutRequest);
+  //     // } else if (logoutType === "redirect") {
+  //     //   // dispatch(logoutRequest);
+  //     //     instance.logoutRedirect({
+  //     //         postLogoutRedirectUri: "/",
+  //     //     }).then(dispatch(logoutRequest));
+          
+  //     // }
+  // }
+
 
   return (
     <HeaderWrapper data-testid="Header">

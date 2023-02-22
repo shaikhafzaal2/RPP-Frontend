@@ -16,8 +16,9 @@ Object {
     "topics": Object {},
   },
   "user": Object {
-    "isAuthenticated": false,
-    "status": "idle",
+    "error": null,
+    "isLoggedIn": false,
+    "user": null,
   },
 }
 `;

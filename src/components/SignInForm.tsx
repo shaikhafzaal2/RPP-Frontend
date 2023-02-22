@@ -1,4 +1,8 @@
+// import { useMsal } from '@azure/msal-react';
+import { loginRequest } from 'actions';
+// import { loginRequest } from 'authConfig';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -23,14 +27,15 @@ const FormContainer = styled.div`
 
 const Label = styled.h1`
 
-  font-size: 24px;
+  font-size: 28px;
   margin: 0;
   padding: 30px;
+  padding-top: 0;
   background-color: #FFFFFF;
   color:#433270
 `;
 
-const Form = styled.form`
+const Form = styled.div`
 
   width: 80%;
   display: flex;
@@ -72,6 +77,27 @@ const Button = styled.button`
 `;
 
 const SignInForm = () => {
+
+  // const { instance } = useMsal();
+  const dispatch = useDispatch();
+
+  const handleLogin =() => {
+    dispatch(loginRequest());
+    // if (loginType === "popup") {
+    //     instance.loginPopup(loginRequest).then((response) => {   
+    //       console.log(response.account);       
+    //       response?.account==null?null:dispatch(loginSuccess(response.account));
+    //     }).catch(e => {
+    //         console.log(e);
+    //         dispatch(loginFailure(e))
+    //     });
+    // } else if (loginType === "redirect") {
+    //     instance.loginRedirect(loginRequest)}
+}
+
+
+
+
   return (
     <Container>
       <FormContainer>
@@ -83,7 +109,7 @@ const SignInForm = () => {
       </Select>
           {/* <Input type="text" placeholder="Enter your college email Id" />
           <Input type="password" placeholder="Password" /> */}
-          <Button type="submit">Sign In</Button>
+          <Button type="submit" onClick={() => handleLogin()}>Sign In</Button>
         </Form>
       </FormContainer>
     </Container>

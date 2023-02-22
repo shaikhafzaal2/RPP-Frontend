@@ -52,7 +52,7 @@ import SplitScreen from 'components/SplitScreen';
 //   };
 // `;
 
-function Home() {
+function Login() {
   // const dispatch = useDispatch();
   // const status = useSelector<RootState>(({ user }) => user.status);
 
@@ -84,4 +84,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Login;

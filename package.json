@@ -19,8 +19,11 @@
     "ES6"
   ],
   "dependencies": {
+    "@azure/msal-browser": "^2.15.0",
+    "@azure/msal-react": "^1.0.1",
     "@gilbarbara/helpers": "^0.5.1",
     "@reduxjs/toolkit": "^1.8.0",
+    "connected-react-router": "^6.9.3",
     "gh-pages": "^4.0.0",
     "immer": "^9.0.12",
     "is-lite": "^0.8.1",
@@ -143,6 +146,7 @@
     "react-refresh": "^0.11.0",
     "redux-immutable-state-invariant": "^2.1.0",
     "redux-logger": "^3.0.6",
+    "redux-mock-store": "^1.5.4",
     "redux-saga-test-plan": "^4.0.4",
     "regenerator-runtime": "^0.13.9",
     "repo-tools": "^0.2.2",
@@ -195,6 +199,7 @@
     "lint:styles": "stylelint 'src/**/*.{ts,tsx}'",
     "typecheck": "tsc --noEmit -p test/tsconfig.json",
     "test": "is-ci \"test:coverage\" \"test:watch\"",
+    "test:update:snapshot": "jest --updateSnapshot",
     "test:coverage": "jest --bail --coverage",
     "test:watch": "jest --watchAll --verbose",
     "test:e2e": "start-server-and-test serve http://localhost:3000 test:e2e:run",

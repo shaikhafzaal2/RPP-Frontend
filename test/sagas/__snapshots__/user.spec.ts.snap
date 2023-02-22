@@ -1,72 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`user login should handle SUCCESS 1`] = `
-Object {
-  "call": Array [
-    Object {
-      "@@redux-saga/IO": true,
-      "combinator": false,
-      "payload": Object {
-        "args": Array [
-          400,
-        ],
-        "context": null,
-        "fn": "@@redux-saga-test-plan/json/function/delayP",
-      },
-      "type": "CALL",
-    },
-  ],
-  "put": Array [
-    Object {
-      "@@redux-saga/IO": true,
-      "combinator": false,
-      "payload": Object {
-        "action": Object {
-          "payload": undefined,
-          "type": "USER_LOGIN_SUCCESS",
-        },
-        "channel": undefined,
-      },
-      "type": "PUT",
-    },
-  ],
-}
-`;
-
-exports[`user logout should handle SUCCESS 1`] = `
-Object {
-  "call": Array [
-    Object {
-      "@@redux-saga/IO": true,
-      "combinator": false,
-      "payload": Object {
-        "args": Array [
-          200,
-        ],
-        "context": null,
-        "fn": "@@redux-saga-test-plan/json/function/delayP",
-      },
-      "type": "CALL",
-    },
-  ],
-  "put": Array [
-    Object {
-      "@@redux-saga/IO": true,
-      "combinator": false,
-      "payload": Object {
-        "action": Object {
-          "payload": undefined,
-          "type": "USER_LOGOUT_SUCCESS",
-        },
-        "channel": undefined,
-      },
-      "type": "PUT",
-    },
-  ],
-}
-`;
-
-exports[`user should have the expected watchers 1`] = `
+exports[`loginSaga should have the expected watchers 1`] = `
 Object {
   "fork": Array [
     Object {
@@ -78,7 +12,7 @@ Object {
           "@@redux-saga-test-plan/json/function/loginSaga",
         ],
         "context": null,
-        "fn": "@@redux-saga-test-plan/json/function/takeLatest",
+        "fn": "@@redux-saga-test-plan/json/function/takeEvery",
       },
       "type": "FORK",
     },
@@ -91,7 +25,7 @@ Object {
           "@@redux-saga-test-plan/json/function/logoutSaga",
         ],
         "context": null,
-        "fn": "@@redux-saga-test-plan/json/function/takeLatest",
+        "fn": "@@redux-saga-test-plan/json/function/takeEvery",
       },
       "type": "FORK",
     },
