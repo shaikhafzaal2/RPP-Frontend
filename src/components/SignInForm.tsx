@@ -104,8 +104,8 @@ const SignInForm = () => {
         <Label>Sign In</Label>
         <Form>
         <Select name="role">
-        <Option value="admin">Admin</Option>
         <Option value="student">Student</Option>
+        <Option value="admin">Admin</Option>        
       </Select>
           {/* <Input type="text" placeholder="Enter your college email Id" />
           <Input type="password" placeholder="Password" /> */}
