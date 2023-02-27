@@ -18,7 +18,7 @@ const Image = styled.img`
 
   width: 35%;
   height: 25%;
-  
+  margin-bottom: 10px;
   
 `;
 
