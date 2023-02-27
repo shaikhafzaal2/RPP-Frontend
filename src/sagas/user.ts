@@ -2,19 +2,43 @@ import { all, call, put, takeEvery  } from 'redux-saga/effects';
 
 import { ActionTypes } from 'literals';
 
-import { loginFailure, loginSuccess, logoutSuccess } from 'actions';
+import { loginFailure,  loginSuccess,  logoutSuccess } from 'actions';
 import { AccountInfo, PublicClientApplication } from "@azure/msal-browser";
 import { msalConfig } from 'authConfig';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+// import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 
 const msalInstance = new PublicClientApplication (msalConfig);
-
+axios.defaults.baseURL = 'http://localhost:3001';
 export function* loginSaga() {
   
   try {
     let myAccount: AccountInfo;
     myAccount = yield call([msalInstance,msalInstance.loginPopup]);
-    yield put(loginSuccess(myAccount));
+    const accessToken = myAccount.idToken;
+  
+    localStorage.setItem('idToken', accessToken?accessToken:'');
+    console.log(myAccount);
+
+    console.log("localStorage token: "+localStorage.getItem('idToken'));
+
+    const config: AxiosRequestConfig  = {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      }
+    }
+    const data = {
+      homeAccountId: (myAccount as any).account.homeAccountId,
+      name:(myAccount as any).account.name,
+      email: (myAccount as any).account.username,
+      admin:false
+    }
+    console.log(data);
+    const response : AxiosResponse = yield call(axios.post, '/users/register', data, config);
+    console.log(response);
+    if (response.status==200) yield put(loginSuccess(myAccount));
     
   } catch (error) {
     console.log(error)
