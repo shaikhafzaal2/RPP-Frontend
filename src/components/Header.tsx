@@ -76,34 +76,58 @@ const Logout = styled.button`
     text-transform: uppercase;
   }
 `;
-const Offer = styled.span`
-
+const Offer = styled.a`
+text-decoration: none;
 color: #433270;
 padding:30px;
 font-family: 'Noto Sans', sans-serif;
 font-style: normal;
 font-weight: 600;
 font-size: 15px;
+margin-right: 20px;
+&:hover {
+    color: #555555;
+  }
 
 
 `;
-const Profile = styled.img`
-height: 20%;
-width:20%;
-padding:10px;
-`;
-const Dropdown = styled.img`
-padding:2px;
-height: 8%;
-width:8%;
-justify-content: center;
-align-items: center;
-`;
-const ButtonContainer = styled.div`
+const ProfileIcon = styled.div`
   display: flex;
   align-items: center;
+  cursor: pointer;
+`;
+const Profile = styled.img`
+ margin-right: 10px;
+`;
+const DropdownIcon = styled.img`
+ margin-right: 10px;
+`;
+const LinksContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+const DropdownMenu = styled.div`
+  position: absolute;
+  top: 70px;
+  right: 10px;
+  background-color: #000000;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
   padding: 10px;
-  
+  display: none;
+
+  ${Profile}:hover & {
+    display: block;
+  }
+`;
+
+const MenuItem = styled.div`
+  margin-bottom: 10px;
+  cursor: pointer;
+
+  &:hover {
+    color: #C73E27;
+  }
 `;
 
 export default function Header() {
@@ -149,17 +173,25 @@ dispatch(logoutRequest())
       <HeaderContainer>
         <Logo />
         
-        <ButtonContainer >
+        <LinksContainer >
         <Offer>MY OFFERS</Offer>
+        <ProfileIcon>
         <Profile src={profile}/>
-        <Dropdown src={dropdown} />
-        <Logout onClick={handleClickLogout}>
+        <DropdownIcon src={dropdown} />
+        <DropdownMenu>
+          <MenuItem>View Profile</MenuItem>
+          <MenuItem>Change Password</MenuItem>
+          <MenuItem>
+          <Logout onClick={handleClickLogout}>
           <span>logout</span>
           <Icon name="sign-out" width={16} />
-        </Logout>
-        </ButtonContainer>
+          </Logout>
+          </MenuItem>
+        </DropdownMenu>
+        </ProfileIcon>
+        </LinksContainer>
        
-      </HeaderContainer>
+</HeaderContainer>
     </HeaderWrapper>
   );
 }
