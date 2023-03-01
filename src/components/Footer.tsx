@@ -1,48 +1,74 @@
 import React from 'react';
-import { Box, Container, Flex } from 'styled-minimal';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-
-const Image = styled.img`
-
-  width: 40%;
-  height: 50%;
-  margin-bottom: 40px;
-  
-`;
-const StyledDiv = styled.div`
+const FooterContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #3D000B;
   padding: 20px;
-  margin-right: 20px;
-`;
-const Heading = styled.span`
- 
-  font-family: 'Noto Sans', sans-serif;
-  font-weight:600;
-  font-size: 30px;
-  color: #EB9D40;
-  text-align: center;
-  
- 
 `;
 
-function Footer() {
+const LogoContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Logo = styled.img`
+  height: 20%;
+  width: 20%;
+  margin-right: 10px;
+`;
+
+const SocialIcons = styled.div`
+  display: flex;
+`;
+
+const SocialIcon = styled.a`
+  margin-right: 10px;
+`;
+
+const SupportText = styled.p`
+  font-size: 14px;
+  color: #666;
+`;
+
+const ContactDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`;
+
+const ContactItem = styled.p`
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+`;
+
+const Footer = () => {
   return (
-    <Box as="footer" borderTop="0.1rem solid #ddd" backgroundColor="#3D000B" height="50%">
-      <Container py={3}>
-        <Flex justifyContent="space-between">
-          <div>
-          <Image src="https://cdn.msruas.ac.in/ruas/imager/logos/identity/114150/university-site-logo_eb6a0f6b016d9a54184863465c76165f.png" alt="Image" />
-          </div>
-          
-          <StyledDiv>
-          <Heading>Support/Help</Heading>
-          </StyledDiv>
-          
-          
-        </Flex>
-      </Container>
-    </Box>
+    <FooterContainer>
+      <LogoContainer>
+        <Logo src="https://cdn.msruas.ac.in/ruas/imager/logos/identity/114150/university-site-logo_eb6a0f6b016d9a54184863465c76165f.png" alt="Logo" />
+        <SocialIcons>
+          <SocialIcon href="https://facebook.com">
+            <i className="fab fa-facebook"></i>
+          </SocialIcon>
+          <SocialIcon href="https://twitter.com">
+            <i className="fab fa-twitter"></i>
+          </SocialIcon>
+          <SocialIcon href="https://instagram.com">
+            <i className="fab fa-instagram"></i>
+          </SocialIcon>
+        </SocialIcons>
+      </LogoContainer>
+      <ContactDetails>
+        <SupportText>Support and Help</SupportText>
+        <ContactItem>Email: support@example.com</ContactItem>
+        <ContactItem>Phone: +1-123-456-7890</ContactItem>
+      </ContactDetails>
+    </FooterContainer>
   );
-}
+};
 
 export default Footer;

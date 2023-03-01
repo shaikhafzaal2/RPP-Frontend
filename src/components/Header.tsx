@@ -95,9 +95,13 @@ margin-right: 10px;
   }
 `;
 const UserName = styled.span`
+font-family: 'Noto Sans', sans-serif;
+font-style: normal;
+font-weight: 600;
 color: #433270;
 font-size: 15px;
 margin-right: 5px;
+
 `;
 
 const ProfileIcon = styled.div`
@@ -207,3 +211,4 @@ dispatch(logoutRequest())
     </HeaderWrapper>
   );
 }
+
