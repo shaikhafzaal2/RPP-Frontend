@@ -23,6 +23,10 @@ import { useDispatch } from 'react-redux';
 // import { useMsal } from '@azure/msal-react';
 // import { useMsal } from '@azure/msal-react';
 
+import { useAppSelector } from 'modules/hooks';
+import { selectUser } from 'selectors';
+// import { fontSize } from 'styled-system';
+
 const HeaderWrapper = styled.header`
   background-color: #ffffff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -61,7 +65,7 @@ const Logout = styled.button`
   align-items: center;
   color: #000000;
   display: flex;
-  font-size: 1.3rem;
+  font-size: 15px;
   padding: ${spacer(2)};
 
   ${responsive({ lg: { fontSize: '1.6rem' } })}; /* stylelint-disable-line */
@@ -74,6 +78,7 @@ const Logout = styled.button`
     display: inline-block;
     margin-right: 0.4rem;
     text-transform: uppercase;
+    font-size: 15px;
   }
 `;
 const Offer = styled.a`
@@ -84,20 +89,24 @@ font-family: 'Noto Sans', sans-serif;
 font-style: normal;
 font-weight: 600;
 font-size: 15px;
-margin-right: 20px;
+margin-right: 10px;
 &:hover {
     color: #555555;
   }
-
-
 `;
+const UserName = styled.span`
+color: #433270;
+font-size: 15px;
+margin-right: 5px;
+`;
+
 const ProfileIcon = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
 `;
 const Profile = styled.img`
- margin-right: 10px;
+ margin-right: 5px;
 `;
 const DropdownIcon = styled.img`
  margin-right: 10px;
@@ -166,6 +175,7 @@ dispatch(logoutRequest())
           
   //     // }
   // }
+  const userAccount = useAppSelector(selectUser);
 
 
   return (
@@ -175,6 +185,7 @@ dispatch(logoutRequest())
         
         <LinksContainer >
         <Offer>MY OFFERS</Offer>
+        <UserName>{userAccount.user.account.name}</UserName>
         <ProfileIcon>
         <Profile src={profile}/>
         <DropdownIcon src={dropdown} />
@@ -182,13 +193,14 @@ dispatch(logoutRequest())
           <MenuItem>View Profile</MenuItem>
           <MenuItem>Change Password</MenuItem>
           <MenuItem>
-          <Logout onClick={handleClickLogout}>
-          <span>logout</span>
-          <Icon name="sign-out" width={16} />
-          </Logout>
+          
           </MenuItem>
         </DropdownMenu>
         </ProfileIcon>
+        <Logout onClick={handleClickLogout}>
+          <span>logout</span>
+          <Icon name="sign-out" width={16} />
+          </Logout>
         </LinksContainer>
        
 </HeaderContainer>
