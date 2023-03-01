@@ -1,6 +1,4 @@
 import React from 'react';
-
- 
 import Background from 'components/Background';
 import SplitScreen from 'components/SplitScreen';
 
