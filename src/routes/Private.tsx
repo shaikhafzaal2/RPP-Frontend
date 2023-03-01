@@ -5,18 +5,38 @@ import { Box, Container, Heading, Link, Paragraph, Text } from 'styled-minimal';
 import { spacer } from 'modules/theme';
 
 import Github from 'containers/GitHub';
+import { useAppSelector } from 'modules/hooks';
+import { selectUser } from 'selectors';
+
+import Footer from 'components/Footer';
+// import { useMsal } from '@azure/msal-react';
+// import { useDispatch } from 'react-redux';
+// import { loginSuccess } from 'actions';
 
 const Header = styled.div`
   margin-bottom: ${spacer(3)};
   text-align: center;
 `;
 
-function Private() {
+function Dashboard() {
+  const userAccount = useAppSelector(selectUser);
+
+  // const { instance } = useMsal();
+  // const dispatch = useDispatch();
+  
+  // useEffect(() => {
+  //   instance.handleRedirectPromise().then((response) => { 
+
+          
+  //     response?.account==null?null: dispatch(loginSuccess(response.account));
+  //   })
+  // }, [])
+  
   return (
     <Box key="Private" data-testid="Private">
       <Container ySpacing>
         <Header>
-          <Heading>Oh hai!</Heading>
+          <Heading>Oh hai! {userAccount.user.account.name}</Heading>
           <Paragraph>
             You can get this boilerplate{' '}
             <Link
@@ -35,8 +55,9 @@ function Private() {
         </Box>
         <Github />
       </Container>
+      <Footer />
     </Box>
   );
 }
 
-export default Private;
+export default Dashboard;

@@ -1,11 +1,11 @@
-import { login, logOut } from 'actions/user';
+import { loginRequest, logoutRequest } from 'actions/user';
 
 describe('actions/user', () => {
   it('login', () => {
-    expect(login()).toMatchSnapshot();
+    expect(loginRequest()).toMatchSnapshot();
   });
 
   it('logOut', () => {
-    expect(logOut()).toMatchSnapshot();
+    expect(logoutRequest()).toMatchSnapshot();
   });
 });

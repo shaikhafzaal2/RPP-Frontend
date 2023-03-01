@@ -6,24 +6,19 @@ import { selectUser } from 'selectors';
 import styled, { ThemeProvider } from 'styled-components';
 import { px } from 'styled-minimal';
 import useTreeChanges from 'tree-changes-hook';
-
 import { useAppSelector } from 'modules/hooks';
 import theme, { headerHeight } from 'modules/theme';
-
 import { name } from 'config';
-
 import { showAlert } from 'actions';
-
-import Footer from 'components/Footer';
 import Header from 'components/Header';
 import PrivateRoute from 'components/PrivateRoute';
 import PublicRoute from 'components/PublicRoute';
 import SystemAlerts from 'containers/SystemAlerts';
-import Home from 'routes/Home';
+import Login from 'routes/Login';
 import NotFound from 'routes/NotFound';
-import Private from 'routes/Private';
-
+import Dashboard from 'routes/Private';
 import { UserState } from 'types';
+// import { useIsAuthenticated } from '@azure/msal-react';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -34,9 +29,9 @@ const AppWrapper = styled.div`
   transition: opacity 0.5s;
 `;
 
-const Main = styled.main<Pick<UserState, 'isAuthenticated'>>`
+const Main = styled.main<Pick<UserState, 'isLoggedIn'>>`
   min-height: 100vh;
-  padding: ${({ isAuthenticated }) => (isAuthenticated ? `${px(headerHeight)} 0 0` : 0)};
+  padding: ${({ isLoggedIn }) => (isLoggedIn ? `${px(headerHeight)} 0 0` : 0)};
 `;
 
 function Root() {
@@ -44,7 +39,10 @@ function Root() {
   const user = useAppSelector(selectUser);
   const { changed } = useTreeChanges(user);
 
-  const { isAuthenticated } = user;
+  const isAuthenticated = user.isLoggedIn;
+  
+  // const isAuthenticated = useIsAuthenticated();
+  console.log(isAuthenticated)
 
   useEffect(() => {
     if (changed('isAuthenticated', true)) {
@@ -70,12 +68,12 @@ function Root() {
             />
           </Helmet>
           {isAuthenticated && <Header />}
-          <Main isAuthenticated={isAuthenticated}>
+          <Main isLoggedIn={isAuthenticated}>
             <Routes>
               <Route
                 element={
-                  <PublicRoute isAuthenticated={isAuthenticated} to="/private">
-                    <Home />
+                  <PublicRoute isAuthenticated={isAuthenticated} to="/dashboard">
+                    <Login />
                   </PublicRoute>
                 }
                 path="/"
@@ -83,15 +81,15 @@ function Root() {
               <Route
                 element={
                   <PrivateRoute isAuthenticated={isAuthenticated} to="/">
-                    <Private />
+                    <Dashboard />
                   </PrivateRoute>
                 }
-                path="/private"
+                path="/dashboard"
               />
               <Route element={<NotFound />} path="*" />
             </Routes>
           </Main>
-          <Footer />
+          {/* <Footer /> */}
           <SystemAlerts />
         </AppWrapper>
       </ThemeProvider>

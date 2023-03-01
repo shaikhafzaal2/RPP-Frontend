@@ -20,6 +20,7 @@ const Image = styled.img`
 
   width: 60%;
   height: 25%;
+  padding: 3%;
   margin-bottom: 40px;
   
 `;

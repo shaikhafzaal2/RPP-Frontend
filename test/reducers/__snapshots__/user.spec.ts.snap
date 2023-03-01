@@ -2,35 +2,40 @@
 
 exports[`User USER_LOGIN should handle REQUEST 1`] = `
 Object {
-  "isAuthenticated": false,
-  "status": "running",
+  "error": null,
+  "isLoggedIn": false,
+  "user": null,
 }
 `;
 
 exports[`User USER_LOGIN should handle SUCCESS 1`] = `
 Object {
-  "isAuthenticated": true,
-  "status": "ready",
+  "error": null,
+  "isLoggedIn": true,
+  "user": undefined,
 }
 `;
 
 exports[`User USER_LOGOUT should handle REQUEST 1`] = `
 Object {
-  "isAuthenticated": false,
-  "status": "running",
+  "error": null,
+  "isLoggedIn": false,
+  "user": null,
 }
 `;
 
 exports[`User USER_LOGOUT should handle SUCCESS 1`] = `
 Object {
-  "isAuthenticated": false,
-  "status": "idle",
+  "error": null,
+  "isLoggedIn": false,
+  "user": null,
 }
 `;
 
 exports[`User should return the initial state 1`] = `
 Object {
-  "isAuthenticated": false,
-  "status": "idle",
+  "error": null,
+  "isLoggedIn": false,
+  "user": null,
 }
 `;

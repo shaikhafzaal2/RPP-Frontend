@@ -2,15 +2,26 @@ import React from 'react';
 // import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 // import { Container, responsive } from 'styled-minimal';
-import { Container } from 'styled-minimal/lib';
-// import { appColor, headerHeight, spacer } from 'modules/theme';
-import { headerHeight,spacer } from 'modules/theme';
-// import { logOut } from 'actions';
-// import Icon from 'components/Icon';
 
-import Logo from 'components/Logo';
+// import { appColor, headerHeight, spacer } from 'modules/theme';
+
+
+// import { logOut } from 'actions';
+import Icon from 'components/Icon';
+
 import profile from '../assets/icons/profile.png'
 import dropdown from '../assets/icons/dropdown.png'
+import { Container, responsive,  } from 'styled-minimal';
+import {  headerHeight, spacer } from 'modules/theme';
+// import { logOut } from 'actions';
+
+
+import Logo from 'components/Logo';
+// import { useMsal } from '@azure/msal-react';
+import { logoutRequest } from 'actions';
+import { useDispatch } from 'react-redux';
+// import { useMsal } from '@azure/msal-react';
+// import { useMsal } from '@azure/msal-react';
 
 const HeaderWrapper = styled.header`
   background-color: #ffffff;
@@ -46,73 +57,106 @@ const HeaderContainer = styled(Container)`
 
 
 
-// const Logout = styled.button`
-  // align-items: center;
-  // color: #fff;
-  // display: flex;
-  // font-size: 1.3rem;
-  // padding: ${spacer(2)};
+const Logout = styled.button`
+  align-items: center;
+  color: #000000;
+  display: flex;
+  font-size: 1.3rem;
+  padding: ${spacer(2)};
 
-//   ${responsive({ lg: { fontSize: '1.6rem' } })}; /* stylelint-disable-line */
+  ${responsive({ lg: { fontSize: '1.6rem' } })}; /* stylelint-disable-line */
 
-//   &.active {
-//     color: #fff;
-//   }
+  &.active {
+    color: #000000;
+  }
 
-//   span {
-//     display: inline-block;
-//     margin-right: 0.4rem;
-//     text-transform: uppercase;
-//   }
-// `;
+  span {
+    display: inline-block;
+    margin-right: 0.4rem;
+    text-transform: uppercase;
+  }
+`;
 const Offer = styled.span`
-align-items: center;
+
 color: #433270;
-padding:35px;
+padding:30px;
 font-family: 'Noto Sans', sans-serif;
 font-style: normal;
 font-weight: 600;
 font-size: 15px;
-line-height: 22px;
+
 
 `;
 const Profile = styled.img`
-height: 20%
-width:20%
-padding:10px
+height: 20%;
+width:20%;
+padding:10px;
 `;
 const Dropdown = styled.img`
-padding:5px;
-height: 20%
-width:20%
+padding:2px;
+height: 8%;
+width:8%;
 justify-content: center;
 align-items: center;
 `;
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
+  padding: 10px;
   
 `;
 
 export default function Header() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  // const { instance } = useMsal();
 
-  // const handleClickLogout = () => {
-  //   dispatch(logOut());
+  const handleClickLogout = () => {
+  //   instance.logoutPopup({
+  //                 postLogoutRedirectUri: "/",
+  //             }).then(()=>{dispatch(logoutRequest())});
   // };
+
+//   instance.logoutRedirect({
+//     postLogoutRedirectUri: "/",
+// })
+dispatch(logoutRequest())
+};
+
+
+
+  // const handleLogout = () => {
+  //   // localStorage.clear();
+  //   dispatch(logoutRequest);
+  //     // if (logoutType === "popup") {
+  //     //   // dispatch(logoutRequest);
+  //     //     // instance.logoutPopup({
+  //     //     //   mainWindowRedirectUri: "/"
+            
+  //     //     // });
+  //     //     // dispatch(logoutRequest);
+  //     // } else if (logoutType === "redirect") {
+  //     //   // dispatch(logoutRequest);
+  //     //     instance.logoutRedirect({
+  //     //         postLogoutRedirectUri: "/",
+  //     //     }).then(dispatch(logoutRequest));
+          
+  //     // }
+  // }
+
 
   return (
     <HeaderWrapper data-testid="Header">
       <HeaderContainer>
         <Logo />
-        {/* <Logout onClick={handleClickLogout}>
-          <span>logout</span>
-          <Icon name="sign-out" width={16} />
-        </Logout> */}
-        <ButtonContainer>
+        
+        <ButtonContainer >
         <Offer>MY OFFERS</Offer>
         <Profile src={profile}/>
         <Dropdown src={dropdown} />
+        <Logout onClick={handleClickLogout}>
+          <span>logout</span>
+          <Icon name="sign-out" width={16} />
+        </Logout>
         </ButtonContainer>
        
       </HeaderContainer>

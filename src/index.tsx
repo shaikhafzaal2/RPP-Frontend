@@ -17,13 +17,22 @@ import GlobalStyles from 'containers/GlobalStyles';
 import reportWebVitals from './reportWebVitals';
 import Root from './Root';
 import { register } from './serviceWorkerRegistration';
+import { msalConfig } from 'authConfig';
+import { PublicClientApplication } from "@azure/msal-browser";
+import { MsalProvider } from "@azure/msal-react";
+
 
 const { persistor, store } = configStore();
 
 window.store = store;
-
+/**
+ * Initialize a PublicClientApplication instance which is provided to the MsalProvider component
+ * We recommend initializing this outside of your root component to ensure it is not re-initialized on re-renders
+ */
+const msalInstance = new PublicClientApplication(msalConfig);
 ReactDOM.render(
   <Provider store={store}>
+     <MsalProvider instance={msalInstance}>
     <PersistGate loading={<Loader block size={100} />} persistor={persistor}>
       <ErrorBoundary FallbackComponent={ErrorHandler}>
         <HelmetProvider>
@@ -32,6 +41,7 @@ ReactDOM.render(
       </ErrorBoundary>
       <GlobalStyles />
     </PersistGate>
+    </MsalProvider>
   </Provider>,
   document.getElementById('root'),
 );

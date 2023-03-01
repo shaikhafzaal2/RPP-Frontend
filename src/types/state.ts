@@ -35,8 +35,9 @@ export interface GitHubState {
 }
 
 export interface UserState {
-  isAuthenticated: boolean;
-  status: ValueOf<Status>;
+  isLoggedIn: boolean;
+  user: any | undefined;
+  error: any | undefined;
 }
 
 export interface RootState {
