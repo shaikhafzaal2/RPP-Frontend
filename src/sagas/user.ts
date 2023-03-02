@@ -10,7 +10,9 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 
 const msalInstance = new PublicClientApplication (msalConfig);
-axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = location.hostname === "localhost"?'http://localhost:3001':'https://rpp-backnd-main.onrender.com';
+
+
 export function* loginSaga() {
   
   try {

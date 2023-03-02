@@ -20,7 +20,7 @@ import {  headerHeight, spacer } from 'modules/theme';
 
 import Logo from 'components/Logo';
 // import { useMsal } from '@azure/msal-react';
-import { logoutRequest } from 'actions';
+import { logoutSuccess } from 'actions';
 
 import { useDispatch } from 'react-redux';
 // import { useMsal } from '@azure/msal-react';
@@ -163,7 +163,7 @@ export default function Header() {
 //   instance.logoutRedirect({
 //     postLogoutRedirectUri: "/",
 // })
-dispatch(logoutRequest())
+dispatch(logoutSuccess())
 };
 
 
