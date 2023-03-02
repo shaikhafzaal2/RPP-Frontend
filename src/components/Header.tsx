@@ -1,9 +1,11 @@
 import React from 'react';
 // import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+
 // import { Container, responsive } from 'styled-minimal';
 
 // import { appColor, headerHeight, spacer } from 'modules/theme';
+
 
 
 // import { logOut } from 'actions';
@@ -19,6 +21,7 @@ import {  headerHeight, spacer } from 'modules/theme';
 import Logo from 'components/Logo';
 // import { useMsal } from '@azure/msal-react';
 import { logoutRequest } from 'actions';
+
 import { useDispatch } from 'react-redux';
 // import { useMsal } from '@azure/msal-react';
 // import { useMsal } from '@azure/msal-react';
@@ -26,6 +29,10 @@ import { useDispatch } from 'react-redux';
 import { useAppSelector } from 'modules/hooks';
 import { selectUser } from 'selectors';
 // import { fontSize } from 'styled-system';
+
+// import { useMsal } from '@azure/msal-react';
+// import { useMsal } from '@azure/msal-react';
+
 
 const HeaderWrapper = styled.header`
   background-color: #ffffff;
@@ -179,7 +186,9 @@ dispatch(logoutRequest())
           
   //     // }
   // }
+
   const userAccount = useAppSelector(selectUser);
+
 
 
   return (
