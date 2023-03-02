@@ -15,8 +15,8 @@ const LogoContainer = styled.div`
 `;
 
 const Logo = styled.img`
-  height: 20%;
-  width: 20%;
+  height: 30%;
+  width: 30%;
   margin-right: 10px;
 `;
 
@@ -29,8 +29,12 @@ const SocialIcon = styled.a`
 `;
 
 const SupportText = styled.p`
-  font-size: 14px;
-  color: #666;
+  
+  color: #EB9D40;
+  font-family: 'Noto Sans', sans-serif;
+font-style: normal;
+font-weight: 600;
+font-size: 26px;
 `;
 
 const ContactDetails = styled.div`
@@ -41,7 +45,7 @@ const ContactDetails = styled.div`
 
 const ContactItem = styled.p`
   font-size: 14px;
-  color: #666;
+  color: #C73E27;
   margin-bottom: 5px;
 `;
 
@@ -63,7 +67,7 @@ const Footer = () => {
         </SocialIcons>
       </LogoContainer>
       <ContactDetails>
-        <SupportText>Support and Help</SupportText>
+        <SupportText>Support/Help</SupportText>
         <ContactItem>Email: support@example.com</ContactItem>
         <ContactItem>Phone: +1-123-456-7890</ContactItem>
       </ContactDetails>
