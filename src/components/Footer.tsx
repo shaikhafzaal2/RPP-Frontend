@@ -1,31 +1,78 @@
 import React from 'react';
-import { Box, Container, Flex } from 'styled-minimal';
+import styled from 'styled-components';
 
-function Footer() {
+const FooterContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #3D000B;
+  padding: 20px;
+`;
+
+const LogoContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Logo = styled.img`
+  height: 30%;
+  width: 30%;
+  margin-right: 10px;
+`;
+
+const SocialIcons = styled.div`
+  display: flex;
+`;
+
+const SocialIcon = styled.a`
+  margin-right: 10px;
+`;
+
+const SupportText = styled.p`
+  
+  color: #EB9D40;
+  font-family: 'Noto Sans', sans-serif;
+font-style: normal;
+font-weight: 600;
+font-size: 26px;
+`;
+
+const ContactDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`;
+
+const ContactItem = styled.p`
+  font-size: 14px;
+  color: #C73E27;
+  margin-bottom: 5px;
+`;
+
+const Footer = () => {
   return (
-    <Box as="footer" borderTop="0.1rem solid #ddd">
-      <Container py={3}>
-        <Flex justifyContent="space-between">
-          <iframe
-            frameBorder="0"
-            height="20px"
-            scrolling="0"
-            src="https://ghbtns.com/github-btn.html?user=gilbarbara&repo=react-redux-saga-boilerplate&type=star&count=true"
-            title="GitHub Stars"
-            width="110px"
-          />
-          <iframe
-            frameBorder="0"
-            height="20px"
-            scrolling="0"
-            src="https://ghbtns.com/github-btn.html?user=gilbarbara&type=follow&count=true"
-            title="GitHub Follow"
-            width="130px"
-          />
-        </Flex>
-      </Container>
-    </Box>
+    <FooterContainer>
+      <LogoContainer>
+        <Logo src="https://cdn.msruas.ac.in/ruas/imager/logos/identity/114150/university-site-logo_eb6a0f6b016d9a54184863465c76165f.png" alt="Logo" />
+        <SocialIcons>
+          <SocialIcon href="https://facebook.com">
+            <i className="fab fa-facebook"></i>
+          </SocialIcon>
+          <SocialIcon href="https://twitter.com">
+            <i className="fab fa-twitter"></i>
+          </SocialIcon>
+          <SocialIcon href="https://instagram.com">
+            <i className="fab fa-instagram"></i>
+          </SocialIcon>
+        </SocialIcons>
+      </LogoContainer>
+      <ContactDetails>
+        <SupportText>Support/Help</SupportText>
+        <ContactItem>Email: support@example.com</ContactItem>
+        <ContactItem>Phone: +1-123-456-7890</ContactItem>
+      </ContactDetails>
+    </FooterContainer>
   );
-}
+};
 
 export default Footer;

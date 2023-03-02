@@ -109,7 +109,9 @@ const SignInForm = () => {
       </Select>
           {/* <Input type="text" placeholder="Enter your college email Id" />
           <Input type="password" placeholder="Password" /> */}
-          <Button type="submit" onClick={() => handleLogin()}>Sign In</Button>
+
+          <Button type="submit" onClick={() => handleLogin()}>Microsoft Sign In</Button>
+
         </Form>
       </FormContainer>
     </Container>

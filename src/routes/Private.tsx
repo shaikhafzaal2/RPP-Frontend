@@ -7,6 +7,10 @@ import { spacer } from 'modules/theme';
 import Github from 'containers/GitHub';
 import { useAppSelector } from 'modules/hooks';
 import { selectUser } from 'selectors';
+
+
+import Footer from 'components/Footer';
+
 // import { useMsal } from '@azure/msal-react';
 // import { useDispatch } from 'react-redux';
 // import { loginSuccess } from 'actions';
@@ -53,6 +57,7 @@ function Dashboard() {
         </Box>
         <Github />
       </Container>
+      <Footer />
     </Box>
   );
 }
