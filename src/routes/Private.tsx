@@ -1,23 +1,42 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Box, Container, Heading, Link, Paragraph, Text } from 'styled-minimal';
+// import styled from 'styled-components';
+// import { Box, Container, Heading, Link, Paragraph, Text } from 'styled-minimal';
+import { Box, Heading } from 'styled-minimal/lib';
 
-import { spacer } from 'modules/theme';
+// import { spacer } from 'modules/theme';
 
-import Github from 'containers/GitHub';
+// import Github from 'containers/GitHub';
 import { useAppSelector } from 'modules/hooks';
 import { selectUser } from 'selectors';
 
 
 import Footer from 'components/Footer';
+import CardComponent from 'components/CardComponent';
 
 // import { useMsal } from '@azure/msal-react';
 // import { useDispatch } from 'react-redux';
 // import { loginSuccess } from 'actions';
 
-const Header = styled.div`
-  margin-bottom: ${spacer(3)};
-  text-align: center;
+// const Header = styled.div`
+//   margin-bottom: ${spacer(3)};
+//   text-align: center;
+// `;
+import styled from 'styled-components';
+
+const Container = styled.div`
+  display: flex;
+`;
+
+const LeftPane = styled.div`
+  flex: 0.3;
+`;
+
+const RightPane = styled.div`
+  flex: 0.7;
+  padding-left:10%;
+  padding-right: 10%;
+  padding-top: 10px;
+  padding-bottom: 10px;
 `;
 
 function Dashboard() {
@@ -36,9 +55,9 @@ function Dashboard() {
   
   return (
     <Box key="Private" data-testid="Private">
-      <Container ySpacing>
+      {/* <Container ySpacing>
         <Header>
-          <Heading>Oh hai! {userAccount.user.account.name}</Heading>
+          
           <Paragraph>
             You can get this boilerplate{' '}
             <Link
@@ -56,7 +75,16 @@ function Dashboard() {
           </Text>
         </Box>
         <Github />
-      </Container>
+      </Container> */}
+      <Heading>Oh hai! {userAccount.user.account.name}</Heading>
+       <Container>
+      <LeftPane>
+        <p>Left Side</p>
+      </LeftPane>
+      <RightPane>
+        <CardComponent />
+      </RightPane>
+    </Container>
       <Footer />
     </Box>
   );
