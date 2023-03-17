@@ -28,11 +28,12 @@ const Container = styled.div`
 `;
 
 const LeftPane = styled.div`
-  flex: 0.3;
+  flex: 0.35;
+  justify-content: center;
 `;
 
 const RightPane = styled.div`
-  flex: 0.7;
+  flex: 0.65;
   padding-left:10%;
   padding-right: 10%;
   padding-top: 10px;
