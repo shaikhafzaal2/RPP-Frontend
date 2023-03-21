@@ -38,7 +38,7 @@ const Item = styled(Link)`
   width: 100%;
   /* stylelint-disable */
   ${responsive({
-    md: {
+    md :{
       padding: spacer(3),
     },
     lg: {

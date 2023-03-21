@@ -1,17 +1,18 @@
 import React from 'react';
 // import styled from 'styled-components';
 // import { Box, Container, Heading, Link, Paragraph, Text } from 'styled-minimal';
-import { Box, Heading } from 'styled-minimal/lib';
+import { Box, } from 'styled-minimal/lib';
 
 // import { spacer } from 'modules/theme';
 
 // import Github from 'containers/GitHub';
-import { useAppSelector } from 'modules/hooks';
-import { selectUser } from 'selectors';
+// import { useAppSelector } from 'modules/hooks';
+// import { selectUser } from 'selectors';
 
 
 import Footer from 'components/Footer';
 import CardComponent from 'components/CardComponent';
+import { FilterComponent } from 'components/FilterComponent';
 
 // import { useMsal } from '@azure/msal-react';
 // import { useDispatch } from 'react-redux';
@@ -28,20 +29,25 @@ const Container = styled.div`
 `;
 
 const LeftPane = styled.div`
-  flex: 0.35;
+  flex: 0.3;
   justify-content: center;
+  align-items: flex-end;
+  padding-left:15%;
+  padding-right: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
 `;
 
 const RightPane = styled.div`
-  flex: 0.65;
-  padding-left:10%;
+  flex: 0.7;
+  padding-left:5%;
   padding-right: 10%;
   padding-top: 10px;
   padding-bottom: 10px;
 `;
 
 function Dashboard() {
-  const userAccount = useAppSelector(selectUser);
+  // const userAccount = useAppSelector(selectUser);
 
   // const { instance } = useMsal();
   // const dispatch = useDispatch();
@@ -77,12 +83,15 @@ function Dashboard() {
         </Box>
         <Github />
       </Container> */}
-      <Heading>Oh hai! {userAccount.user.account.name}</Heading>
+      
        <Container>
       <LeftPane>
-        <p>Left Side</p>
+        <FilterComponent />
       </LeftPane>
       <RightPane>
+        <CardComponent />
+        <CardComponent />
+        <CardComponent />
         <CardComponent />
       </RightPane>
     </Container>

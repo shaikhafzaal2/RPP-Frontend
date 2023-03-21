@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
+import locationIcon from "../assets/icons/locationIcon.png"
 
 
 const GlobalStyle = createGlobalStyle`
@@ -14,9 +15,11 @@ const GlobalStyle = createGlobalStyle`
 const CardContainer = styled.div`
   display: flex;
   flex-direction: row;
-  height: 240px;
-  width: 720px;
-  border: 1px solid #ccc;
+  height: 200px;
+  width: 90%;
+  margin-top: 7px;
+  margin-bottom: 8px;
+  border: 1px solid #C73E27;
   border-radius: 10px;
   border-left-width: 4px; 
   border-left-color: #C73E27;
@@ -37,7 +40,7 @@ const RightPane = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: right;
   flex: 0.3;
   background-color: #fff;
   border-radius: 10px;
@@ -45,27 +48,37 @@ const RightPane = styled.div`
 
 const CompanyName = styled.p`
     
-    font-size: 24px;
+    font-size: 22px;
     margin-bottom: 1px;
+    margin-top: 10px;
 `;
 
 const Tagline = styled.p`
-  font-size: 14px;
-  margin-bottom: 5px;
+  font-size: 12px;
+  margin-bottom: 2px;
+  margin:0px
 `;
 
 const Location = styled.p`
-  font-size: 14px;
-  margin-bottom: 5px;
+  font-size: 12px;
+  margin-bottom: 2px;
+  
 `;
 const Department = styled.p`
-  font-size: 14px;
-  margin-bottom: 5px;
+  font-size: 12px;
+  margin-bottom: 2px;
 `;
 
 const Logo = styled.img`
   height: 50px;
-  margin-bottom: 5px;
+  margin-top: 30px;
+  margin-bottom: 2px;
+  
+`;
+const LocationIcon = styled.img`
+  height: 15px;
+  padding-right: 5px;
+  margin-top: 5px;
   
 `;
 
@@ -78,6 +91,36 @@ const ApplyButton = styled.button`
   cursor: pointer;
   border-radius: 5px;
 `;
+const BottomContainer = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+
+`;
+const ComponentContainer = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+padding-right:40px
+`;
+
+const ComponentName = styled.p`
+font-family: 'Noto Sans', sans-serif;
+font-style: normal;
+font-weight: 600;
+font-size: 12.2927px;
+line-height: 17px;
+color: #C73E27;
+margin-bottom: 8px;
+`;
+
+const RoleComponent = styled.p`
+font-family: 'Noto Sans', sans-serif;
+font-style: normal;
+font-weight: 600;
+font-size: 15.8049px;
+margin: 0;
+`;
 
 function CardComponent() {
   return (
@@ -86,8 +129,20 @@ function CardComponent() {
         <GlobalStyle />
         <CompanyName>Company Name</CompanyName>
         <Tagline>Tagline of the company</Tagline>
-        <Location>Location of the company</Location>
-        <Department>FET</Department>
+        <Location>
+        <LocationIcon src={locationIcon} />
+          Location of the company</Location>
+        <Department>Faculty</Department>
+        <BottomContainer>
+        <ComponentContainer>
+        <ComponentName>Role</ComponentName>
+        <RoleComponent>Game Developer</RoleComponent>
+        </ComponentContainer>
+        <ComponentContainer>
+        <ComponentName>CTC</ComponentName>
+        <RoleComponent>18-24LPA</RoleComponent>
+        </ComponentContainer>
+        </BottomContainer>
       </LeftPane>
       <RightPane>
         <Logo src="path/to/logo.png" alt="Company Logo" />
