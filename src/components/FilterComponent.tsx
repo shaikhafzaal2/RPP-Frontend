@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
+import filterIcon from "../assets/icons/filterIcon.png"
 
 
 
@@ -29,8 +30,24 @@ const ComponentName = styled.p`
     margin-bottom: 1px;
     margin-top: 10px;
     color: white;
-    text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
+    
+    
+`;
+
+const FilterBox = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+margin-top: 5px;
+`;
+
+const FilterIcon = styled.img`
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+  
 `;
 
 const DropdownName = styled.p`
@@ -84,7 +101,11 @@ export const FilterComponent = () => {
   return (
     <FiletrContainer>
         <GlobalStyle />
+        <FilterBox>
+        <FilterIcon src={filterIcon} />
         <ComponentName>Filters</ComponentName>
+        </FilterBox>
+       
         <DropdownName>Faculty</DropdownName>
         <Select>
             <Option value="fet">FET</Option>

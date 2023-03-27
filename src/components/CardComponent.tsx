@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 import locationIcon from "../assets/icons/locationIcon.png"
+import readmoreIcon from "../assets/icons/readmore.png"
+import companyLogo from "../assets/logos/companyLogo.png"
 
 
 const GlobalStyle = createGlobalStyle`
@@ -33,24 +35,27 @@ const LeftPane = styled.div`
   display: flex;
   flex-direction: column;
   flex: 0.7;
-  padding: 16px;
+  padding-top: 15px;
+  margin-left: 25px;
 `;
 
 const RightPane = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: right;
+  align-items: flex-end;
+  float: right;
   flex: 0.3;
   background-color: #fff;
   border-radius: 10px;
+  
+  margin-right: 25px;
 `;
 
 const CompanyName = styled.p`
     
     font-size: 22px;
     margin-bottom: 1px;
-    margin-top: 10px;
+    margin-top: 8px;
 `;
 
 const Tagline = styled.p`
@@ -70,7 +75,8 @@ const Department = styled.p`
 `;
 
 const Logo = styled.img`
-  height: 50px;
+  height: 80px;
+  width: 80px;
   margin-top: 30px;
   margin-bottom: 2px;
   
@@ -84,6 +90,7 @@ const LocationIcon = styled.img`
 
 const ApplyButton = styled.button`
   padding: 8px 20px;
+  margin-top: 10px;
   font-size: 16px;
   border: none;
   background-color: #C73E27;
@@ -122,6 +129,29 @@ font-size: 15.8049px;
 margin: 0;
 `;
 
+const ReadMoreContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 5px;
+`;
+
+const ReadMore = styled.p`
+font-family: 'Noto Sans', sans-serif;
+font-style: normal;
+font-weight: 600;
+font-size: 12.2927px;
+line-height: 17px;
+color: #C73E27;
+margin-bottom: 8px;
+`;
+
+const ReadmoreIcon = styled.img`
+  height: 10px;
+  padding-left: 5px;
+  margin-top: 5px;
+`
+
 function CardComponent() {
   return (
     <CardContainer>
@@ -145,8 +175,15 @@ function CardComponent() {
         </BottomContainer>
       </LeftPane>
       <RightPane>
-        <Logo src="path/to/logo.png" alt="Company Logo" />
+        <Logo src={companyLogo} alt="Company Logo" />
         <ApplyButton>Apply Now</ApplyButton>
+        <ReadMoreContainer>
+        <ReadMore>Read more</ReadMore>
+        <ReadmoreIcon src={readmoreIcon} />
+        </ReadMoreContainer>
+        
+        
+       
       </RightPane>
     </CardContainer>
   );
