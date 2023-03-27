@@ -17,8 +17,8 @@ const CardContainer = styled.div`
   flex-direction: row;
   height: 200px;
   width: 90%;
-  margin-top: 7px;
-  margin-bottom: 8px;
+  margin-top: 0px;
+  margin-bottom: 20px;
   border: 1px solid #C73E27;
   border-radius: 10px;
   border-left-width: 4px; 

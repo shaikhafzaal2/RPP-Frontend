@@ -26,13 +26,14 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   display: flex;
+  padding-top:1.3%
 `;
 
 const LeftPane = styled.div`
   flex: 0.3;
   justify-content: center;
   align-items: flex-end;
-  padding-left:15%;
+  padding-left:12%;
   padding-right: 0;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -41,7 +42,7 @@ const LeftPane = styled.div`
 const RightPane = styled.div`
   flex: 0.7;
   padding-left:5%;
-  padding-right: 10%;
+  padding-right: 12%;
   padding-top: 10px;
   padding-bottom: 10px;
 `;
