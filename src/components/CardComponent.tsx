@@ -175,7 +175,7 @@ const ReadmoreIcon = styled.img`
           </ComponentContainer>
           <ComponentContainer>
             <ComponentName>CTC</ComponentName>
-            <RoleComponent>{company.ctc}LPA</RoleComponent>
+            <RoleComponent>{company.ctc} LPA</RoleComponent>
           </ComponentContainer>
         </BottomContainer>
       </LeftPane>
