@@ -4,6 +4,7 @@ import { createGlobalStyle } from 'styled-components';
 import locationIcon from "../assets/icons/locationIcon.png"
 import readmoreIcon from "../assets/icons/readmore.png"
 import companyLogo from "../assets/logos/companyLogo.png"
+import { Company } from 'types';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -18,7 +19,7 @@ const CardContainer = styled.div`
   display: flex;
   flex-direction: row;
   height: 200px;
-  width: 90%;
+  width: 80%;
   margin-top: 0px;
   margin-bottom: 20px;
   border: 1px solid #C73E27;
@@ -55,17 +56,18 @@ const CompanyName = styled.p`
     
     font-size: 22px;
     margin-bottom: 1px;
-    margin-top: 8px;
+    margin-top: 0px;
 `;
 
 const Tagline = styled.p`
-  font-size: 12px;
+  color:#6c757d;
+  font-size: 14px;
   margin-bottom: 2px;
   margin:0px
 `;
 
 const Location = styled.p`
-  font-size: 12px;
+  font-size: 14px;
   margin-bottom: 2px;
   
 `;
@@ -77,7 +79,7 @@ const Department = styled.p`
 const Logo = styled.img`
   height: 80px;
   width: 80px;
-  margin-top: 30px;
+  margin-top: 20px;
   margin-bottom: 2px;
   
 `;
@@ -106,14 +108,16 @@ align-items: center;
 `;
 const ComponentContainer = styled.div`
 display: flex;
+flex:1;
 flex-direction: column;
-align-items: center;
+align-items: stretch;
 padding-right:40px
 `;
 
 const ComponentName = styled.p`
 font-family: 'Noto Sans', sans-serif;
 font-style: normal;
+text-align: center;
 font-weight: 600;
 font-size: 12.2927px;
 line-height: 17px;
@@ -124,8 +128,9 @@ margin-bottom: 8px;
 const RoleComponent = styled.p`
 font-family: 'Noto Sans', sans-serif;
 font-style: normal;
+text-align: center;
 font-weight: 600;
-font-size: 15.8049px;
+font-size:14px;
 margin: 0;
 `;
 
@@ -152,26 +157,26 @@ const ReadmoreIcon = styled.img`
   margin-top: 5px;
 `
 
-function CardComponent() {
+ const CardComponent = ({ company }:{company:Company})=> {
   return (
     <CardContainer>
       <LeftPane>
         <GlobalStyle />
-        <CompanyName>Company Name</CompanyName>
-        <Tagline>Tagline of the company</Tagline>
+        <CompanyName>{company.name}</CompanyName>
+        <Tagline>{company.type}</Tagline>
         <Location>
         <LocationIcon src={locationIcon} />
-          Location of the company</Location>
-        <Department>Faculty</Department>
+        {company.jobLocation}</Location>
+        <Department>{company.faculty}</Department>
         <BottomContainer>
-        <ComponentContainer>
-        <ComponentName>Role</ComponentName>
-        <RoleComponent>Game Developer</RoleComponent>
-        </ComponentContainer>
-        <ComponentContainer>
-        <ComponentName>CTC</ComponentName>
-        <RoleComponent>18-24LPA</RoleComponent>
-        </ComponentContainer>
+          <ComponentContainer>
+            <ComponentName>Role</ComponentName>
+            <RoleComponent>{company.role}</RoleComponent>
+          </ComponentContainer>
+          <ComponentContainer>
+            <ComponentName>CTC</ComponentName>
+            <RoleComponent>{company.ctc}LPA</RoleComponent>
+          </ComponentContainer>
         </BottomContainer>
       </LeftPane>
       <RightPane>

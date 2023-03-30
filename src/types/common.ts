@@ -56,4 +56,18 @@ export interface ShowAlertOptions {
   variant?: string;
 }
 
+export interface Company {
+  name: string;
+  type: string;
+  jobLocation: string;
+  faculty: string;
+  role: string;
+  ctc: number;
+  date: Date;
+  aboutCompany: string;
+  jd: string;
+  requiredQualifications: string;
+  requiredcgpa: number;
+}
+
 export type Transitions = 'fade' | 'slideDown' | 'slideLeft' | 'slideRight' | 'slideUp';
