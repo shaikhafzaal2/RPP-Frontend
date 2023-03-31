@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 // import styled from 'styled-components';
 // import { Box, Container, Heading, Link, Paragraph, Text } from 'styled-minimal';
 import { Box, } from 'styled-minimal/lib';
@@ -23,6 +23,10 @@ import { FilterComponent } from 'components/FilterComponent';
 //   text-align: center;
 // `;
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { getCompanyRequest } from 'actions';
+import { useAppSelector } from 'modules/hooks';
+import { selectCompany } from 'selectors';
 
 const Container = styled.div`
   display: flex;
@@ -51,15 +55,14 @@ function Dashboard() {
   // const userAccount = useAppSelector(selectUser);
 
   // const { instance } = useMsal();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   
-  // useEffect(() => {
-  //   instance.handleRedirectPromise().then((response) => { 
+  useEffect(() => {
+    dispatch(getCompanyRequest());
+  }, [])
 
-          
-  //     response?.account==null?null: dispatch(loginSuccess(response.account));
-  //   })
-  // }, [])
+  const companiesdata = useAppSelector(selectCompany).companies;
+  console.log("this is companydata: "+ JSON.stringify( companiesdata));
   
   return (
     <Box key="Private" data-testid="Private">
@@ -90,10 +93,12 @@ function Dashboard() {
         <FilterComponent />
       </LeftPane>
       <RightPane>
+
+        {companiesdata? companiesdata.map((e: any)=>(<CardComponent key={e._id} company ={e}/>)):null }
+        {/* <CardComponent />
         <CardComponent />
         <CardComponent />
-        <CardComponent />
-        <CardComponent />
+        <CardComponent /> */}
       </RightPane>
     </Container>
       <Footer />

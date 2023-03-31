@@ -40,11 +40,16 @@ export interface UserState {
   error: any | undefined;
 }
 
+export interface CompaniesState {
+  companies: any | undefined;
+  error: any | undefined;
+}
 export interface RootState {
   alerts: AlertsState;
   app: AppState;
   github: GitHubState;
   user: UserState;
+  company:CompaniesState
 }
 
 export interface WithDispatch {

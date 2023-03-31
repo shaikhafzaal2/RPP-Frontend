@@ -16,3 +16,8 @@ export const selectUser = createSelector(
   (state: RootState) => state.user,
   user => user,
 );
+
+export const selectCompany = createSelector(
+  (state: RootState) => state.company,
+  company => company,
+);
