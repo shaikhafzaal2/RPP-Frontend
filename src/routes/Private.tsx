@@ -94,7 +94,7 @@ function Dashboard() {
       </LeftPane>
       <RightPane>
 
-        {companiesdata? companiesdata.map((e: any)=>(<CardComponent key={e._id} company ={e}/>)):null }
+        {companiesdata.map((e: any)=>(<CardComponent key={e._id} company ={e}/>))}
         {/* <CardComponent />
         <CardComponent />
         <CardComponent />

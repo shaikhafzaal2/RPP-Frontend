@@ -7,7 +7,7 @@ import { getCompanyFailure,getCompanySuccess } from 'actions/company';
 import { CompaniesState } from 'types';
 
 export const companyState:CompaniesState = { 
-  companies: {},
+  companies: [],
   error: null,
 };
 export default {
@@ -20,7 +20,7 @@ export default {
     })
     .addCase(getCompanyFailure, (state, action) => {
       
-      state.companies = null;
+      state.companies = [];
       state.error = action.payload;
     }) 
 })};
