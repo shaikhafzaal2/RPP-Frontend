@@ -18,6 +18,7 @@ import Login from 'routes/Login';
 import NotFound from 'routes/NotFound';
 import Dashboard from 'routes/Private';
 import { UserState } from 'types';
+import ProfileScreen from './routes/Profile';
 // import { useIsAuthenticated } from '@azure/msal-react';
 
 const AppWrapper = styled.div`
@@ -40,9 +41,9 @@ function Root() {
   const { changed } = useTreeChanges(user);
 
   const isAuthenticated = user.isLoggedIn;
-  
+
   // const isAuthenticated = useIsAuthenticated();
-  console.log(isAuthenticated)
+  console.log(isAuthenticated);
 
   useEffect(() => {
     if (changed('isAuthenticated', true)) {
@@ -86,6 +87,7 @@ function Root() {
                 }
                 path="/dashboard"
               />
+              <Route element={<ProfileScreen />} path="/profile" />
               <Route element={<NotFound />} path="*" />
             </Routes>
           </Main>
