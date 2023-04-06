@@ -76,7 +76,7 @@ const Button = styled.button`
 `;
 
 const Label = styled.span`
-  font-size: 25px;
+  font-size: 22px;
   font-weight: bold;
   margin-bottom: 0px;
   display: flex;
@@ -86,7 +86,7 @@ const Label = styled.span`
 `;
 
 const Value = styled.span`
-  font-size: 25px;
+  font-size: 22px;
   margin-bottom: 0px;
   display: flex;
   justify-content: flex-start;
