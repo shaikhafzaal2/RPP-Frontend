@@ -6,17 +6,14 @@ import styled from 'styled-components';
 
 // import { appColor, headerHeight, spacer } from 'modules/theme';
 
-
-
 // import { logOut } from 'actions';
 import Icon from 'components/Icon';
 
-import profile from '../assets/icons/profile.png'
-import dropdown from '../assets/icons/dropdown.png'
-import { Container, responsive,  } from 'styled-minimal';
-import {  headerHeight, spacer } from 'modules/theme';
+import profile from '../assets/icons/profile.png';
+// import dropdown from '../assets/icons/dropdown.png';
+import { Container, responsive } from 'styled-minimal';
+import { headerHeight, spacer } from 'modules/theme';
 // import { logOut } from 'actions';
-
 
 import Logo from 'components/Logo';
 // import { useMsal } from '@azure/msal-react';
@@ -32,7 +29,7 @@ import { selectUser } from 'selectors';
 
 // import { useMsal } from '@azure/msal-react';
 // import { useMsal } from '@azure/msal-react';
-
+import { Link } from 'react-router-dom';
 
 const HeaderWrapper = styled.header`
   background-color: #ffffff;
@@ -60,13 +57,10 @@ const HeaderContainer = styled(Container)`
   display: flex;
   justify-content: space-between;
   height: 100%;
-  
+
   padding-bottom: ${spacer(2)};
   padding-top: ${spacer(3)};
 `;
-
-
-
 
 const Logout = styled.button`
   align-items: center;
@@ -89,26 +83,29 @@ const Logout = styled.button`
   }
 `;
 const Offer = styled.a`
-text-decoration: none;
-color: #433270;
-padding:30px;
-font-family: 'Noto Sans', sans-serif;
-font-style: normal;
-font-weight: 600;
-font-size: 15px;
-margin-right: 10px;
-&:hover {
+  text-decoration: none;
+  color: #433270;
+  padding: 30px;
+  font-family: 'Noto Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  margin-right: 10px;
+  &:hover {
     color: #555555;
   }
 `;
 const UserName = styled.span`
-font-family: 'Noto Sans', sans-serif;
-font-style: normal;
-font-weight: 600;
-color: #433270;
-font-size: 15px;
-margin-right: 5px;
-
+  font-family: 'Noto Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  color: #433270;
+  font-size: 15px;
+  margin-right: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 150px;
 `;
 
 const ProfileIcon = styled.div`
@@ -117,56 +114,55 @@ const ProfileIcon = styled.div`
   cursor: pointer;
 `;
 const Profile = styled.img`
- margin-right: 5px;
+  margin-right: 5px;
 `;
-const DropdownIcon = styled.img`
- margin-right: 10px;
-`;
+// const DropdownIcon = styled.img`
+//   margin-right: 10px;
+// `;
 const LinksContainer = styled.div`
   display: flex;
   align-items: center;
+  //
 `;
-const DropdownMenu = styled.div`
-  position: absolute;
-  top: 70px;
-  right: 10px;
-  background-color: #000000;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  padding: 10px;
-  display: none;
+// const DropdownMenu = styled.div`
+//   position: absolute;
+//   top: 70px;
+//   right: 10px;
+//   background-color: #000000;
+//   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+//   z-index: 1;
+//   padding: 10px;
+//   display: none;
 
-  ${Profile}:hover & {
-    display: block;
-  }
-`;
+//   ${Profile}:hover & {
+//     display: block;
+//   }
+// `;
 
-const MenuItem = styled.div`
-  margin-bottom: 10px;
-  cursor: pointer;
+// const MenuItem = styled.div`
+//   margin-bottom: 10px;
+//   cursor: pointer;
 
-  &:hover {
-    color: #C73E27;
-  }
-`;
+//   &:hover {
+//     color: #c73e27;
+//   }
+// `;
 
 export default function Header() {
   const dispatch = useDispatch();
   // const { instance } = useMsal();
 
   const handleClickLogout = () => {
-  //   instance.logoutPopup({
-  //                 postLogoutRedirectUri: "/",
-  //             }).then(()=>{dispatch(logoutRequest())});
-  // };
+    //   instance.logoutPopup({
+    //                 postLogoutRedirectUri: "/",
+    //             }).then(()=>{dispatch(logoutRequest())});
+    // };
 
-//   instance.logoutRedirect({
-//     postLogoutRedirectUri: "/",
-// })
-dispatch(logoutSuccess())
-};
-
-
+    //   instance.logoutRedirect({
+    //     postLogoutRedirectUri: "/",
+    // })
+    dispatch(logoutSuccess());
+  };
 
   // const handleLogout = () => {
   //   // localStorage.clear();
@@ -175,7 +171,7 @@ dispatch(logoutSuccess())
   //     //   // dispatch(logoutRequest);
   //     //     // instance.logoutPopup({
   //     //     //   mainWindowRedirectUri: "/"
-            
+
   //     //     // });
   //     //     // dispatch(logoutRequest);
   //     // } else if (logoutType === "redirect") {
@@ -183,41 +179,34 @@ dispatch(logoutSuccess())
   //     //     instance.logoutRedirect({
   //     //         postLogoutRedirectUri: "/",
   //     //     }).then(dispatch(logoutRequest));
-          
+
   //     // }
   // }
 
   const userAccount = useAppSelector(selectUser);
 
-
-
   return (
     <HeaderWrapper data-testid="Header">
       <HeaderContainer>
         <Logo />
-        
-        <LinksContainer >
-        <Offer>MY OFFERS</Offer>
-        <UserName>{userAccount.user.account.name}</UserName>
-        <ProfileIcon>
-        <Profile src={profile}/>
-        <DropdownIcon src={dropdown} />
-        <DropdownMenu>
-          <MenuItem>View Profile</MenuItem>
-          <MenuItem>Change Password</MenuItem>
-          <MenuItem>
-          
-          </MenuItem>
-        </DropdownMenu>
-        </ProfileIcon>
-        <Logout onClick={handleClickLogout}>
-          <span>logout</span>
-          <Icon name="sign-out" width={16} />
+
+        <LinksContainer>
+          <Offer>MY OFFERS</Offer>
+          <UserName>{userAccount.user.account.name}</UserName>
+          <Link to="/profile">
+            <div style={{ flexDirection: 'row' }}>
+              <ProfileIcon>
+                <Profile src={profile} />
+              </ProfileIcon>
+            </div>
+          </Link>
+
+          <Logout onClick={handleClickLogout}>
+            <span>logout</span>
+            <Icon name="sign-out" width={16} />
           </Logout>
         </LinksContainer>
-       
-</HeaderContainer>
+      </HeaderContainer>
     </HeaderWrapper>
   );
 }
-
