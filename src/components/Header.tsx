@@ -105,7 +105,7 @@ const UserName = styled.span`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  width: 150px;
+  width: 100px;
 `;
 
 const ProfileIcon = styled.div`
