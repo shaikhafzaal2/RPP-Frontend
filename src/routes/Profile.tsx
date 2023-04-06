@@ -26,7 +26,7 @@ const ProfileContainer = styled.div`
 
 const LeftContainer = styled.div`
   display: flex;
-  flex: 0.7;
+  flex: 0.6;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
@@ -36,41 +36,21 @@ const LeftContainer = styled.div`
 
 const RightContainer = styled.div`
   display: flex;
-  flex: 0.3;
+  flex: 0.4;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap: 20px;
   padding: 0px;
-  margin-left: 10%;
+  margin-left: 75px;
 `;
-const ItemContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-end;
-  padding-top: 100px;
-  width: 100%;
-`;
-const ItemLeftContainer = styled.div`
-  display: flex;
-  flex: 0.35;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 25px;
-  padding: 0px;
-  margin: 0px;
-`;
-const ItemRightContainer = styled.div`
-  display: flex;
-  flex: 0.65;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 25px;
-  padding: 0px;
-  margin: 0px;
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 50px 50px;
+  grid-gap: 8px;
+  margin-top: 75px;
 `;
 
 const ProfileImage = styled.img`
@@ -100,7 +80,7 @@ const Label = styled.span`
   font-weight: bold;
   margin-bottom: 0px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
   gap: 10px;
 `;
@@ -113,15 +93,8 @@ const Value = styled.span`
   align-items: center;
   border-bottom: 1px solid #c73e27;
   margin-left: 20px;
+  padding: 10px;
 `;
-
-// const LabelContainer = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-evenly;
-//   align-items: flex-start;
-//   padding: 10px;
-// `;
 
 // Component
 const ProfileScreen = () => {
@@ -130,28 +103,24 @@ const ProfileScreen = () => {
       <ProfileContainer>
         <GlobalStyle />
         <LeftContainer>
-          <ItemContainer>
-            <ItemLeftContainer>
-              <Label>Name :</Label>
-              <Label>Ph Number :</Label>
-              <Label>Faculty :</Label>
-              <Label>Degree :</Label>
-              <Label>Stream :</Label>
-              <Label>Start Year :</Label>
-              <Label>End Year :</Label>
-              <Label>CGPA :</Label>
-            </ItemLeftContainer>
-            <ItemRightContainer>
-              <Value>John Doe</Value>
-              <Value>+91987456321</Value>
-              <Value>Faculty of Engineering and Technology</Value>
-              <Value>B.Tech</Value>
-              <Value>Computer Science and Engineering</Value>
-              <Value>2019</Value>
-              <Value>2023</Value>
-              <Value>8.2</Value>
-            </ItemRightContainer>
-          </ItemContainer>
+          <Grid>
+            <Label>Name :</Label>
+            <Value>John Doe</Value>
+            <Label>Ph Number :</Label>
+            <Value>+91987456321</Value>
+            <Label>Faculty :</Label>
+            <Value>Faculty of Engineering and Technology</Value>
+            <Label>Degree :</Label>
+            <Value>B.Tech</Value>
+            <Label>Stream :</Label>
+            <Value>Computer Science and Engineering</Value>
+            <Label>Start Year :</Label>
+            <Value>2019</Value>
+            <Label>End Year :</Label>
+            <Value>2023</Value>
+            <Label>CGPA :</Label>
+            <Value>8.2</Value>
+          </Grid>
         </LeftContainer>
         <RightContainer>
           <ProfileImage src="https://via.placeholder.com/150" alt="Profile Picture" />
