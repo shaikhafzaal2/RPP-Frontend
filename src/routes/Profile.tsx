@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
+import { EditProfile } from 'components/EditProfile';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -21,7 +22,7 @@ const ProfileContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 const LeftContainer = styled.div`
@@ -43,6 +44,7 @@ const RightContainer = styled.div`
   gap: 20px;
   padding: 0px;
   margin-left: 75px;
+  margin-top: 75px;
 `;
 
 const Grid = styled.div`
@@ -91,13 +93,23 @@ const Value = styled.span`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  border-bottom: 1px solid #c73e27;
+  border: 1px solid #c73e27;
+  border-radius: 8px;
   margin-left: 20px;
-  padding: 10px;
+  padding: 15px;
 `;
 
 // Component
 const ProfileScreen = () => {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleButtonClick = () => {
+    setIsPopupOpen(true);
+  };
+  const handlePopupClose = () => {
+    setIsPopupOpen(false);
+  };
+
   return (
     <MainContainer>
       <ProfileContainer>
@@ -125,7 +137,8 @@ const ProfileScreen = () => {
         <RightContainer>
           <ProfileImage src="https://via.placeholder.com/150" alt="Profile Picture" />
           <Button>View Resume</Button>
-          <Button>Edit Profile</Button>
+          <Button onClick={handleButtonClick}>Edit Profile</Button>
+          {isPopupOpen && <EditProfile onClose={handlePopupClose} />}
         </RightContainer>
       </ProfileContainer>
     </MainContainer>
