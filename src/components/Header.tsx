@@ -64,9 +64,9 @@ const HeaderContainer = styled(Container)`
 
 const Logout = styled.button`
   align-items: center;
-  background-color: #c73e27;
+  border: 1px solid white;
   border-radius: 8.24176px;
-  color: white;
+  color: #c73e27;
   display: flex;
   font-size: 15px;
   padding: 10px;
@@ -77,15 +77,19 @@ const Logout = styled.button`
   &.active {
     color: #000000;
   }
+  &:hover {
+    border: 1px solid #c73e27;
+  }
 
   span {
     display: inline-block;
     margin-right: 0.4rem;
-    text-transform: uppercase;
+    color: #c73e27;
     font-family: 'Noto Sans', sans-serif;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 15px;
+    margin-right: 10px;
   }
 `;
 const Offer = styled.a`
@@ -208,7 +212,7 @@ export default function Header() {
           </Link>
 
           <Logout onClick={handleClickLogout}>
-            <span>logout</span>
+            <span>Logout</span>
             <Icon name="sign-out" width={16} />
           </Logout>
         </LinksContainer>

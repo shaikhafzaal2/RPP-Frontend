@@ -22,7 +22,7 @@ const ProfileContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 const LeftContainer = styled.div`
@@ -44,6 +44,7 @@ const RightContainer = styled.div`
   gap: 20px;
   padding: 0px;
   margin-left: 75px;
+  margin-top: 75px;
 `;
 
 const Grid = styled.div`
