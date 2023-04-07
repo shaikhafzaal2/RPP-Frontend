@@ -64,10 +64,13 @@ const HeaderContainer = styled(Container)`
 
 const Logout = styled.button`
   align-items: center;
-  color: #000000;
+  background-color: #c73e27;
+  border-radius: 8.24176px;
+  color: white;
   display: flex;
   font-size: 15px;
-  padding: ${spacer(2)};
+  padding: 10px;
+  margin-left: 5px;
 
   ${responsive({ lg: { fontSize: '1.6rem' } })}; /* stylelint-disable-line */
 
@@ -79,6 +82,9 @@ const Logout = styled.button`
     display: inline-block;
     margin-right: 0.4rem;
     text-transform: uppercase;
+    font-family: 'Noto Sans', sans-serif;
+    font-style: normal;
+    font-weight: 600;
     font-size: 15px;
   }
 `;

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
+import { EditProfile } from 'components/EditProfile';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -98,6 +99,15 @@ const Value = styled.span`
 
 // Component
 const ProfileScreen = () => {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleButtonClick = () => {
+    setIsPopupOpen(true);
+  };
+  const handlePopupClose = () => {
+    setIsPopupOpen(false);
+  };
+
   return (
     <MainContainer>
       <ProfileContainer>
@@ -125,7 +135,8 @@ const ProfileScreen = () => {
         <RightContainer>
           <ProfileImage src="https://via.placeholder.com/150" alt="Profile Picture" />
           <Button>View Resume</Button>
-          <Button>Edit Profile</Button>
+          <Button onClick={handleButtonClick}>Edit Profile</Button>
+          {isPopupOpen && <EditProfile onClose={handlePopupClose} />}
         </RightContainer>
       </ProfileContainer>
     </MainContainer>
