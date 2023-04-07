@@ -81,6 +81,7 @@ const LocationIcon = styled.img`
   height: 15px;
   padding-right: 5px;
   margin-top: 5px;
+  margin-right: 10px;
 `;
 
 const ApplyButton = styled.button`
@@ -177,11 +178,12 @@ const CardComponent = ({ company }: { company: Company }) => {
         <Link to="/description">
           <ApplyButton>Apply Now</ApplyButton>
         </Link>
-
-        <ReadMoreContainer>
-          <ReadMore>Read more</ReadMore>
-          <ReadmoreIcon src={readmoreIcon} />
-        </ReadMoreContainer>
+        <Link to="/description">
+          <ReadMoreContainer>
+            <ReadMore>Read more</ReadMore>
+            <ReadmoreIcon src={readmoreIcon} />
+          </ReadMoreContainer>
+        </Link>
       </RightPane>
     </CardContainer>
   );
