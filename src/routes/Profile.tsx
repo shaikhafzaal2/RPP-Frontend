@@ -92,9 +92,10 @@ const Value = styled.span`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  border-bottom: 1px solid #c73e27;
+  border: 1px solid #c73e27;
+  border-radius: 8px;
   margin-left: 20px;
-  padding: 10px;
+  padding: 15px;
 `;
 
 // Component
