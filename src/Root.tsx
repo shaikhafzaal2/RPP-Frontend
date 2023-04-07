@@ -19,6 +19,8 @@ import NotFound from 'routes/NotFound';
 import Dashboard from 'routes/Private';
 import { UserState } from 'types';
 import ProfileScreen from './routes/Profile';
+import { Description } from 'routes/Description';
+import Footer from 'components/Footer';
 // import { useIsAuthenticated } from '@azure/msal-react';
 
 const AppWrapper = styled.div`
@@ -88,10 +90,11 @@ function Root() {
                 path="/dashboard"
               />
               <Route element={<ProfileScreen />} path="/profile" />
+              <Route element={<Description />} path="/description" />
               <Route element={<NotFound />} path="*" />
             </Routes>
           </Main>
-          {/* <Footer /> */}
+          <Footer />
           <SystemAlerts />
         </AppWrapper>
       </ThemeProvider>
