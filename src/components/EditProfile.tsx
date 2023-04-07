@@ -211,6 +211,7 @@ export const EditProfile = ({ onClose }: PopupProps) => {
                 <Option value="PhD">PhD</Option>
                 <Option value="BSc">BSc</Option>
                 <Option value="MBA">MBA</Option>
+                <Option value="CSE">CSE</Option>
               </Select>
             </div>
             <Label>CGPA :</Label>
