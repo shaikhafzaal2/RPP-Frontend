@@ -10,7 +10,7 @@ import { Box, } from 'styled-minimal/lib';
 // import { selectUser } from 'selectors';
 
 
-import Footer from 'components/Footer';
+// import Footer from 'components/Footer';
 import CardComponent from 'components/CardComponent';
 import { FilterComponent } from 'components/FilterComponent';
 
@@ -101,7 +101,7 @@ function Dashboard() {
         <CardComponent /> */}
       </RightPane>
     </Container>
-      <Footer />
+      {/* <Footer /> */}
     </Box>
   );
 }
