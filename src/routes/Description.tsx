@@ -14,8 +14,9 @@ const GlobalStyle = createGlobalStyle`
 const DescriptionContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-top: 2%;
+  padding-left: 15%;
+  padding-right: 15%;
   justify-content: space-between;
 `;
 const TopContainer = styled.div`
@@ -99,7 +100,7 @@ const ButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 10px;
-  margin-bottom: 35px;
+  margin-bottom: 5%;
 `;
 
 const ApplyButton = styled.button`
