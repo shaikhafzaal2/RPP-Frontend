@@ -153,6 +153,7 @@ export const FilterComponent = () => {
             <Option value={undefined}>All</Option>  
             <Option value="Gaming">Gaming</Option>
             <Option value="Fintech">Fintech</Option>
+            <Option value="Software Development">Software Development</Option>
         </Select>
         <div style={{"display":"flex", "flexDirection":"row", "padding":"20px","alignItems":"center"}}>
         <CheckboxDisplay />
