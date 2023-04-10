@@ -21,6 +21,7 @@ import { UserState } from 'types';
 import ProfileScreen from './routes/Profile';
 import { Description } from 'routes/Description';
 import Footer from 'components/Footer';
+import { Admin } from 'routes/Admin';
 // import { useIsAuthenticated } from '@azure/msal-react';
 
 const AppWrapper = styled.div`
@@ -91,6 +92,7 @@ function Root() {
               />
               <Route element={<ProfileScreen />} path="/profile" />
               <Route element={<Description />} path="/description" />
+              <Route element={<Admin />} path="/admin" />
               <Route element={<NotFound />} path="*" />
             </Routes>
           </Main>
