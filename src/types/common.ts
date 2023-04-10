@@ -35,7 +35,9 @@ export interface RouteProps {
   path: string;
   to?: string;
 }
-
+export interface RouteParams {
+  id?: string; // Specify the type of 'id' parameter
+}
 export interface Status {
   ERROR: 'error';
   IDLE: 'idle';
@@ -57,10 +59,12 @@ export interface ShowAlertOptions {
 }
 
 export interface Company {
+  _id: string;
   name: string;
   type: string;
   jobLocation: string;
   faculty: string;
+  department:string;
   role: string;
   ctc: number;
   date: Date;
@@ -70,4 +74,17 @@ export interface Company {
   requiredcgpa: number;
 }
 
+export interface Filters {
+  name?: any;
+  type?: any;
+  jobLocation?: any;
+  department?: any;
+  faculty?: any;
+  role?: any;
+  ctc?: any;
+  aboutCompany?: any;
+  jd?: any;
+  requiredQualifications?: any;
+  requiredcgpa?: any;
+}
 export type Transitions = 'fade' | 'slideDown' | 'slideLeft' | 'slideRight' | 'slideUp';

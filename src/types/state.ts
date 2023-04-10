@@ -44,12 +44,28 @@ export interface CompaniesState {
   companies: any | undefined;
   error: any | undefined;
 }
+export interface FilterState {
+  filters: {  
+    name?: any | undefined;
+    type?: any | undefined;
+    jobLocation?: any | undefined;
+    department?:any | undefined;
+    faculty?: any | undefined;
+    role?: any | undefined;
+    ctc?: any | undefined;
+    aboutCompany?: any | undefined;
+    jd?: any | undefined;
+    requiredQualifications?: any | undefined;
+    requiredcgpa?: any | undefined;
+  };  
+}
 export interface RootState {
   alerts: AlertsState;
   app: AppState;
   github: GitHubState;
   user: UserState;
-  company:CompaniesState
+  company:CompaniesState;
+  filters:FilterState;
 }
 
 export interface WithDispatch {

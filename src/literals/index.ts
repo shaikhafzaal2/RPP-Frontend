@@ -18,6 +18,7 @@ export const ActionTypes = keyMirror({
   USER_GET_COMPANY_SUCCESS:undefined,
   USER_GET_COMPANY_REQUEST:undefined,  
   USER_GET_COMPANY_FAILURE:undefined,  
+  UPDATE_FILTERS:undefined,
 });
 
 export const STATUS: Status = {

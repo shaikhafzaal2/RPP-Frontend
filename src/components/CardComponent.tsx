@@ -178,7 +178,7 @@ const CardComponent = ({ company }: { company: Company }) => {
         <Link to="/description">
           <ApplyButton>Apply Now</ApplyButton>
         </Link>
-        <Link to="/description">
+        <Link to ={`/description/${company._id}`}>
           <ReadMoreContainer>
             <ReadMore>Read more</ReadMore>
             <ReadmoreIcon src={readmoreIcon} />
