@@ -1,7 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
-import filterIcon from '../assets/icons/filterIcon.png';
+import filterIcon from "../assets/icons/filterIcon.png"
+import { updateFilters } from 'actions';
+import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
+// import { Filters } from 'types';
+// import { updateFilters } from 'actions';
+
+
+
 
 const FiletrContainer = styled.div`
   display: flex;
@@ -89,32 +97,65 @@ const CheckboxText = styled.div`
 `;
 
 export const FilterComponent = () => {
+  const dispatch = useDispatch();
+
+  const updateFilter = (props:any ) =>{
+    console.log("updatefilter called");
+    dispatch(updateFilters(props));
+  }
   return (
     <FiletrContainer>
       <GlobalStyle />
       <FilterBox>
         <FilterIcon src={filterIcon} />
         <ComponentName>Filters</ComponentName>
-      </FilterBox>
-
-      <DropdownName>Faculty</DropdownName>
-      <Select>
-        <Option value="fet">FET</Option>
-        <Option value="fad">FAD</Option>
-      </Select>
-
-      <DropdownName>Department</DropdownName>
-      <Select>
-        <Option value="cse">CSE</Option>
-        <Option value="me">ME</Option>
-      </Select>
-
-      <DropdownName>Company Type</DropdownName>
-      <Select>
-        <Option value="gaming">Gaming</Option>
-        <Option value="fintech">Fintech</Option>
-      </Select>
-      <div style={{ display: 'flex', flexDirection: 'row', padding: '20px', alignItems: 'center' }}>
+        </FilterBox>
+       
+        <DropdownName>Faculty</DropdownName>
+        <Select onChange={(e)=>{
+          console.log("Selected"+e.target.value);
+             updateFilter({
+              payload: {
+                faculty: e.target.value=="All"?null:e.target.value,               
+              },
+              type: ''
+            })}}>
+            <Option value={undefined}>All</Option> 
+            <Option value="Faculty of Engineering and Technology FET">FET</Option>
+            <Option value="Faculty of Art and Design FAD">FAD</Option>
+        </Select>
+        
+        <DropdownName>Department</DropdownName>
+        <Select onChange={(e)=>{
+              console.log("Selected"+e.target.value);
+                updateFilter({
+                  payload: {
+                    department:  e.target.value=="All"?null:e.target.value,            
+                  },
+                  type: ''
+                })
+              }}>
+            <Option value={undefined} >All</Option> 
+            <Option value="CSE">CSE</Option>
+            <Option value="ME">ME</Option>
+        </Select>
+        
+        <DropdownName>Company Type</DropdownName>
+        <Select onChange={(e)=>{
+            console.log("Selected"+e.target.value);
+              updateFilter({
+                payload: {
+                  type:  e.target.value=="All"?null:e.target.value,           
+                },
+                type: ''
+              })
+            }}>
+            <Option value={undefined}>All</Option>  
+            <Option value="Gaming">Gaming</Option>
+            <Option value="Fintech">Fintech</Option>
+            <Option value="Software Development">Software Development</Option>
+        </Select>
+        <div style={{"display":"flex", "flexDirection":"row", "padding":"20px","alignItems":"center"}}>
         <CheckboxDisplay />
         <CheckboxText>Applied Companies</CheckboxText>
       </div>

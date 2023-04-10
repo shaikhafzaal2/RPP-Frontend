@@ -24,7 +24,7 @@ import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { getCompanyRequest } from 'actions';
 import { useAppSelector } from 'modules/hooks';
-import { selectCompany } from 'selectors';
+import { selectCompany, selectFilter } from 'selectors';
 
 const Container = styled.div`
   display: flex;
@@ -53,14 +53,16 @@ function Dashboard() {
   // const userAccount = useAppSelector(selectUser);
 
   // const { instance } = useMsal();
+  const currFilters = useAppSelector(selectFilter).filters;
+  const companiesdata = useAppSelector(selectCompany).companies;
+  console.log('this is companydata: ' + JSON.stringify(companiesdata));
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getCompanyRequest());
-  }, []);
+    dispatch(getCompanyRequest(currFilters));
+  }, [currFilters]);
 
-  const companiesdata = useAppSelector(selectCompany).companies;
-  console.log('this is companydata: ' + JSON.stringify(companiesdata));
+
 
   return (
     <Box key="Private" data-testid="Private">

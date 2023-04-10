@@ -89,8 +89,16 @@ function Root() {
                 }
                 path="/dashboard"
               />
-              <Route element={<ProfileScreen />} path="/profile" />
-              <Route element={<Description />} path="/description" />
+              <Route element={ 
+                  <PrivateRoute isAuthenticated={isAuthenticated} to="/">
+                    <ProfileScreen />
+                  </PrivateRoute>
+                } path="/profile" />
+              <Route element={
+                 <PrivateRoute isAuthenticated={isAuthenticated} to="/">
+                    <Description /> 
+                 </PrivateRoute>
+                } path="/description/:id" />
               <Route element={<NotFound />} path="*" />
             </Routes>
           </Main>
