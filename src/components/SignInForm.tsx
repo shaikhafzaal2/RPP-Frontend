@@ -1,7 +1,7 @@
 // import { useMsal } from '@azure/msal-react';
 import { loginRequest } from 'actions';
 // import { loginRequest } from 'authConfig';
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
@@ -54,14 +54,14 @@ const Option = styled.option`
   padding: 10px;
 `;
 
-/* const Input = styled.input`
-   width: 100%;
-   height: 40px;
-   margin-bottom: 20px;
-   padding: 10px;
-   font-size: 16px;
-   border-radius: 6px;
-`; */
+const Input = styled.input`
+  width: 100%;
+  height: 40px;
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 6px;
+`;
 
 const Button = styled.button`
   width: 100%;
@@ -78,7 +78,12 @@ const SignInForm = () => {
   const dispatch = useDispatch();
 
   const handleLogin = () => {
-    dispatch(loginRequest());
+    if (role === 'admin') {
+      window.location.href = '/#/admin';
+    } else {
+      dispatch(loginRequest());
+    }
+
     // if (loginType === "popup") {
     //     instance.loginPopup(loginRequest).then((response) => {
     //       console.log(response.account);
@@ -91,15 +96,22 @@ const SignInForm = () => {
     //     instance.loginRedirect(loginRequest)}
   };
 
+  const [role, setRole] = useState('');
+
+  const handleRoleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setRole(event.target.value);
+  };
+
   return (
     <Container>
       <FormContainer>
         <Label>Sign In</Label>
         <Form>
-          <Select name="role">
+          <Select name="role" value={role} onChange={handleRoleChange}>
             <Option value="student">Student</Option>
             <Option value="admin">Admin</Option>
           </Select>
+          {role === 'admin' && <Input type="password" placeholder="Enter Security Code" />}
           {/* <Input type="text" placeholder="Enter your college email Id" />
           <Input type="password" placeholder="Password" /> */}
 

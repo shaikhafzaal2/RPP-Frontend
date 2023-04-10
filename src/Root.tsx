@@ -21,6 +21,7 @@ import { UserState } from 'types';
 import ProfileScreen from './routes/Profile';
 import { Description } from 'routes/Description';
 import Footer from 'components/Footer';
+import { Admin } from 'routes/Admin';
 // import { useIsAuthenticated } from '@azure/msal-react';
 
 const AppWrapper = styled.div`
@@ -89,16 +90,23 @@ function Root() {
                 }
                 path="/dashboard"
               />
-              <Route element={ 
+              <Route
+                element={
                   <PrivateRoute isAuthenticated={isAuthenticated} to="/">
                     <ProfileScreen />
                   </PrivateRoute>
-                } path="/profile" />
-              <Route element={
-                 <PrivateRoute isAuthenticated={isAuthenticated} to="/">
-                    <Description /> 
-                 </PrivateRoute>
-                } path="/description/:id" />
+                }
+                path="/profile"
+              />
+              <Route
+                element={
+                  <PrivateRoute isAuthenticated={isAuthenticated} to="/">
+                    <Description />
+                  </PrivateRoute>
+                }
+                path="/description/:id"
+              />
+              <Route element={<Admin />} path="/admin" />
               <Route element={<NotFound />} path="*" />
             </Routes>
           </Main>
