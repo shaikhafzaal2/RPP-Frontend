@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 
 
-import {  } from 'actions';
+import { logoutSuccess } from 'actions';
 import { getCompanyFailure,getCompanySuccess } from 'actions/company';
 
 import { CompaniesState } from 'types';
@@ -22,5 +22,9 @@ export default {
       
       state.companies = [];
       state.error = action.payload;
-    }) 
+    })    .addCase(logoutSuccess, (state, _action) => {
+      
+      state.companies = [];
+      state.error = null;
+    })  
 })};
