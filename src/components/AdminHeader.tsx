@@ -1,8 +1,19 @@
 import { responsive } from '@styled-system/css';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 import Icon from './Icon';
+
+interface ChildProps {
+  onStateChange: (childState: string) => void;
+}
+interface ChildState {
+  myState: string; // <-- change the name of the state property here
+}
+
+// interface PageButtonProps {
+//   onClick?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+// }
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -96,7 +107,15 @@ const Logout = styled.button`
   }
 `;
 
-export const AdminHeader = () => {
+export const AdminHeader: React.FC<ChildProps> = ({ onStateChange }) => {
+  const [myState, setMyState] = useState<ChildState>({
+    myState: '', // <-- change the name of the state property here
+  });
+  const handleClick = (newState: string) => {
+    setMyState({ myState: newState });
+    onStateChange(newState);
+  };
+  console.log(myState.myState);
   return (
     <MainContainer>
       <GlobalStyle />
@@ -109,9 +128,10 @@ export const AdminHeader = () => {
       </LogoContainer>
       <WelcomeText>Welcome to Admin Panel</WelcomeText>
       <ButtonContainer>
-        <PageButton>View Students</PageButton>
-        <PageButton>View Posted Jobs</PageButton>
-        <PageButton>Post Jobs</PageButton>
+        <PageButton onClick={() => handleClick('students')}>View Students</PageButton>
+        <PageButton onClick={() => handleClick('postedJob')}>View Posted Jobs</PageButton>
+
+        <PageButton onClick={() => handleClick('postJobs')}>Post Jobs</PageButton>
       </ButtonContainer>
     </MainContainer>
   );
