@@ -15,7 +15,7 @@ export const Admin: React.FC<ParentProps> = () => {
   const [childState, setChildState] = useState<ParentState>({ childState: 'students' });
 
   const handleStateChange = (newState: string) => {
-    setChildState({ childState: newState }); // <-- keep the state name as "childState"
+    setChildState({ childState: newState });
   };
   let componentToRender;
 
@@ -30,12 +30,8 @@ export const Admin: React.FC<ParentProps> = () => {
   return (
     <div>
       <AdminHeader onStateChange={handleStateChange} />
-      {/* <p>Child state: {childState.childState}</p> */}
 
       {componentToRender}
-      {/* <Routes>
-        <Route element={<PostedJobs />} path="/postedjobs" />
-      </Routes> */}
     </div>
   );
 };

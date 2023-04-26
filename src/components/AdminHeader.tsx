@@ -8,12 +8,8 @@ interface ChildProps {
   onStateChange: (childState: string) => void;
 }
 interface ChildState {
-  myState: string; // <-- change the name of the state property here
+  myState: string;
 }
-
-// interface PageButtonProps {
-//   onClick?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-// }
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -109,7 +105,7 @@ const Logout = styled.button`
 
 export const AdminHeader: React.FC<ChildProps> = ({ onStateChange }) => {
   const [myState, setMyState] = useState<ChildState>({
-    myState: '', // <-- change the name of the state property here
+    myState: '',
   });
   const handleClick = (newState: string) => {
     setMyState({ myState: newState });
