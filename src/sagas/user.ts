@@ -26,7 +26,7 @@ export function* loginSaga() {
 
  
     const tokenRequest = {
-      scopes: ["user.read", "openid", "profile"],
+      scopes: [],
       requested_expiry: 4200 // 2 hours
     };
 
