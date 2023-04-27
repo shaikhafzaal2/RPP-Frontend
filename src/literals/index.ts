@@ -17,8 +17,17 @@ export const ActionTypes = keyMirror({
   USER_LOGOUT_SUCCESS: undefined,
   USER_GET_COMPANY_SUCCESS:undefined,
   USER_GET_COMPANY_REQUEST:undefined,  
-  USER_GET_COMPANY_FAILURE:undefined,  
+  USER_GET_COMPANY_FAILURE:undefined,
+  USER_GET_PROFILE_SUCCESS:undefined,
+  USER_GET_PROFILE_REQUEST:undefined,  
+  USER_GET_PROFILE_FAILURE:undefined,    
   UPDATE_FILTERS:undefined,
+  GET_FILTER_REQUEST:undefined,
+  GET_FILTER_SUCCESS:undefined,
+  GET_FILTER_FAILURE:undefined,
+  UPLOAD_PROFILE_SUCCESS:undefined,
+  UPLOAD_PROFILE_FAILURE:undefined,
+  UPLOAD_PROFILE_REQUEST:undefined,
 });
 
 export const STATUS: Status = {

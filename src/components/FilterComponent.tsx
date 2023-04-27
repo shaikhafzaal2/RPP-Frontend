@@ -4,6 +4,8 @@ import { createGlobalStyle } from 'styled-components';
 import filterIcon from "../assets/icons/filterIcon.png"
 import { updateFilters } from 'actions';
 import { useDispatch } from 'react-redux';
+import { useAppSelector } from 'modules/hooks';
+import { selectFilter } from 'selectors';
 // import { useDispatch } from 'react-redux';
 // import { Filters } from 'types';
 // import { updateFilters } from 'actions';
@@ -98,7 +100,8 @@ const CheckboxText = styled.div`
 
 export const FilterComponent = () => {
   const dispatch = useDispatch();
-
+  const filterdata = useAppSelector(selectFilter).infoFilters;
+  console.log("This is filter state data: "+ JSON.stringify( filterdata));
   const updateFilter = (props:any ) =>{
     console.log("updatefilter called");
     dispatch(updateFilters(props));
@@ -121,8 +124,11 @@ export const FilterComponent = () => {
               type: ''
             })}}>
             <Option value={undefined}>All</Option> 
-            <Option value="Faculty of Engineering and Technology FET">FET</Option>
-            <Option value="Faculty of Art and Design FAD">FAD</Option>
+             {filterdata.faculties?.map(faculty => (  
+                 
+                 <Option key={faculty['keyword']} value={faculty['name']}>{faculty['keyword']}</Option>
+              ))}     
+          
         </Select>
         
         <DropdownName>Department</DropdownName>
@@ -136,8 +142,10 @@ export const FilterComponent = () => {
                 })
               }}>
             <Option value={undefined} >All</Option> 
-            <Option value="CSE">CSE</Option>
-            <Option value="ME">ME</Option>
+            {filterdata.departments?.map(dep => (  
+                 
+                 <Option key={dep['name']} value={dep['name']}>{dep['name']}</Option>
+              ))} 
         </Select>
         
         <DropdownName>Company Type</DropdownName>
@@ -151,9 +159,10 @@ export const FilterComponent = () => {
               })
             }}>
             <Option value={undefined}>All</Option>  
-            <Option value="Gaming">Gaming</Option>
-            <Option value="Fintech">Fintech</Option>
-            <Option value="Software Development">Software Development</Option>
+            {filterdata.companyTypes?.map(comp => (  
+                 
+                 <Option key={comp['name']} value={comp['name']}>{comp['name']}</Option>
+              ))} 
         </Select>
         <div style={{"display":"flex", "flexDirection":"row", "padding":"20px","alignItems":"center"}}>
         <CheckboxDisplay />
