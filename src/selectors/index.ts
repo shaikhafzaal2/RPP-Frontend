@@ -22,6 +22,11 @@ export const selectCompany = createSelector(
   (state: RootState) => state.company,
   company => company,
 );
+
+export const selectProfile = createSelector(
+  (state: RootState) => state.profile,
+  profile => profile,
+);
 export const selectFilter = createSelector(
   (state: RootState) => state.filters,
   filters => filters,

@@ -74,6 +74,32 @@ export interface Company {
   requiredcgpa: number;
 }
 
+export interface Profile {
+  _id?: string;
+  homeAccountId: string;
+  name: string;
+  email: string;
+  profilePic?: string;
+  degree: string;
+  faculty: string;
+  phoneNumber: number;
+  stream: string;
+  cgpa: number;
+  startYear: number;
+  endYear: number;
+  resume?: string;
+  programme?: string;
+  __v?: number;
+  update_at?: string;
+}
+
+export interface AuthResult {
+  idToken: string;
+  accessToken: string;
+  expiresOn: Date;
+}
+
+
 export interface Filters {
   name?: any;
   type?: any;
@@ -87,4 +113,13 @@ export interface Filters {
   requiredQualifications?: any;
   requiredcgpa?: any;
 }
+export interface InfoFilters {
+
+  departments: [],
+  faculties: [],
+  companyTypes:[],
+  degrees:[]
+
+}
+
 export type Transitions = 'fade' | 'slideDown' | 'slideLeft' | 'slideRight' | 'slideUp';

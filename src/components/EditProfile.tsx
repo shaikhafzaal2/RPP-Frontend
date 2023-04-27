@@ -1,5 +1,14 @@
-import React from 'react';
+import { uploadProfileRequest } from 'actions';
+import { useAppSelector } from 'modules/hooks';
+
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { selectFilter, selectProfile, selectUser } from 'selectors';
 import styled from 'styled-components';
+import { Profile } from 'types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFile } from '@fortawesome/free-solid-svg-icons';
+
 
 const PopupContainer = styled.div`
   display: flex;
@@ -93,7 +102,7 @@ const Button = styled.button`
 `;
 
 const Select = styled.select`
-  width: 120%;
+  width: 130%;
   height: 40px;
   margin-left: 20px;
   padding: 10px;
@@ -104,7 +113,7 @@ const Select = styled.select`
 `;
 
 const Option = styled.option`
-  color: black;
+  color: black;  
   background: white;
   display: flex;
   flex-direction: column;
@@ -116,7 +125,7 @@ const Option = styled.option`
 `;
 
 const Input = styled.input`
-  width: 120%;
+  width: 130%;
   height: 40px;
   margin-left: 20px;
   padding: 10px;
@@ -160,6 +169,109 @@ type PopupProps = {
 };
 
 export const EditProfile = ({ onClose }: PopupProps) => {
+
+  const dispatch = useDispatch();
+  const [startYears, setStartYears] = useState<number []| null>(null);
+  const [endYears, setEndYears] = useState<number []| null>(null);
+  const currentYear = new Date().getFullYear();
+  const startYearsArray = Array.from({ length: 10 }, (_, i) => currentYear - i);
+  const endYearsArray = Array.from({ length: 10 }, (_, i) => currentYear + i);
+  const filterdata = useAppSelector(selectFilter).infoFilters;
+  const userdata = useAppSelector(selectUser).user;
+  const profiledata = useAppSelector(selectProfile);
+  
+console.log()
+  const [profile, setProfile] = useState<Profile>({
+    homeAccountId: userdata.account.homeAccountId,
+    name:  userdata.account.name,
+    profilePic:profiledata.profiles.profilePic,
+    email:  userdata.account.username,
+    degree:  profiledata.profiles.degree?profiledata.profiles.faculty:filterdata.degrees[0]['name'],
+    faculty:  profiledata.profiles.faculty?profiledata.profiles.faculty:filterdata.faculties[0]['name'],
+    phoneNumber: profiledata.profiles.phoneNumber,
+    stream: profiledata.profiles.stream?profiledata.profiles.faculty:filterdata.departments[0]['name'],
+    cgpa: profiledata.profiles.cgpa,
+    resume: profiledata.profiles.resume,
+    startYear: profiledata.profiles.startYear?profiledata.profiles.startYear:currentYear,
+    endYear: profiledata.profiles.endYear?profiledata.profiles.endYear:currentYear,
+    programme:profiledata.profiles.programme,
+  });
+
+  const [image, setImage] = useState<File | null>(null);
+  const [pdf, setPdf] = useState<File | null>(null);
+
+
+  useEffect(() => {
+    setStartYears(startYearsArray);
+    setEndYears(endYearsArray);
+  }, []);
+  useEffect(() => {
+    let objectUrl: string | null = null;
+    if (image) {
+      objectUrl = URL.createObjectURL(image);
+    }
+    return () => {
+      if (objectUrl) {
+        URL.revokeObjectURL(objectUrl);
+      }
+    };
+  }, [image]);
+
+  console.log("The years are"+startYears);
+  console.log("The years are"+endYears);
+
+  
+
+
+
+
+  
+
+
+    const imageInputRef = useRef<HTMLInputElement>(null);
+    const pdfInputRef = useRef<HTMLInputElement>(null);
+  
+    const handleImageButtonClick = () => {
+      if (imageInputRef.current) {
+        imageInputRef.current.click();
+      }
+    };
+  
+    const handlePdfButtonClick = () => {
+      if (pdfInputRef.current) {
+        pdfInputRef.current.click();
+      }
+    };
+
+    const handleInputChange = (event: any) => {
+      const { name, value } = event.target;
+      setProfile((prevState: any) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    };
+
+    
+
+    const handleSubmit = () => {
+      // event.preventDefault();
+      dispatch(uploadProfileRequest({ profile, image, pdf }));
+    };
+  
+  
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      setImage(event.target.files[0]);
+    }
+  };
+
+  const handlePdfChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      setPdf(event.target.files[0]);
+    }
+  };
+
   return (
     <PopupContainer>
       <MainContainer>
@@ -168,69 +280,105 @@ export const EditProfile = ({ onClose }: PopupProps) => {
             <Label>Graduation :</Label>
             <div style={{ display: 'flex', flexDirection: 'row' }}>
               <RadioContainer>
-                <RadioInput type="radio" />
+                <RadioInput defaultChecked={true} required={true}  type="radio" name='programme' value={'UG'} onChange={handleInputChange}/>
                 <RadioLabel>UG</RadioLabel>
-              </RadioContainer>
-              <RadioContainer>
-                <RadioInput type="radio" />
+              {/* </RadioContainer>
+              <RadioContainer> */}
+                <RadioInput type="radio" name='programme' value={'PG'} onChange={handleInputChange}/>
                 <RadioLabel>PG</RadioLabel>
               </RadioContainer>
             </div>
 
             <Label>Start Year : </Label>
             <div>
-              <Select>
-                <Option value="2018">2018</Option>
-                <Option value="2019">2019</Option>
-                <Option value="2020">2020</Option>
-                <Option value="2021">2021</Option>
-                <Option value="2022">2022</Option>
+              <Select name='startYear' required={true} value={profile.startYear} onChange={(e)=>handleInputChange(e)}>
+
+              {startYears?.map(year => (         
+                  <Option key={year} value={year}>{year} </Option>
+              ))}       
+              
               </Select>
             </div>
             <Label>End Year : </Label>
             <div>
-              <Select>
-                <Option value="2021">2021</Option>
-                <Option value="2022">2022</Option>
-                <Option value="2023">2023</Option>
-                <Option value="2024">2024</Option>
-                <Option value="2025">2025</Option>
+              <Select name='endYear' required={true} value={profile.endYear}  onChange={(e)=>handleInputChange(e)}>
+              {endYears?.map(year => (         
+                  <Option key={year} value={year.toString()}>{year}</Option>
+              ))}     
+         
               </Select>
             </div>
             <Label>Faculty :</Label>
             <div>
-              <Select>
-                <Option value="fet">FET</Option>
-                <Option value="fis">FIS</Option>
+              <Select name='faculty' required={true} defaultValue={profile.faculty} onChange={(e)=>handleInputChange(e)}>
+              {filterdata.faculties?.map(faculty => (  
+                 
+                 <Option key={faculty['keyword']} value={faculty['name']}>{faculty['keyword']}</Option>
+              ))}     
+                {/* <Option value="fet">FET</Option>
+                <Option value="fis">FIS</Option> */}
               </Select>
             </div>
             <Label>Degree :</Label>
             <div>
-              <Select>
-                <Option value="MSc">MSc</Option>
-                <Option value="PhD">PhD</Option>
-                <Option value="BSc">BSc</Option>
-                <Option value="MBA">MBA</Option>
-                <Option value="CSE">CSE</Option>
+              <Select name='degree' required={true} defaultValue={profile.degree} onChange={(e)=>handleInputChange(e)}>
+
+              {filterdata.degrees?.map(deg => (  
+                 
+                 <Option key={deg['name']} value={deg['name']}>{deg['name']}</Option>
+              ))}     
+     
               </Select>
             </div>
+            <Label>Stream :</Label>
+            <div>
+              <Select name='stream' required={true} defaultValue={profile.stream} onChange={(e)=>handleInputChange(e)}>
+
+              {filterdata.departments?.map(deg => (  
+                 
+                 <Option key={deg['name']} value={deg['name']}>{deg['name']}</Option>
+              ))}     
+     
+              </Select>
+            </div>
+            
             <Label>CGPA :</Label>
             <div>
-              <Input type="text" placeholder="Enter your CGPA" />
+              <Input type='tel' maxLength={4}  name='cgpa' required={true} defaultValue={profile.cgpa} onChange={handleInputChange} placeholder="Enter your CGPA" />
             </div>
             <Label>Phone Number :</Label>
-            <Input type="text" placeholder="Enter your phone number" />
+            <Input type="tel" required maxLength={10} defaultValue={profile.phoneNumber} name='phoneNumber' onChange={handleInputChange} placeholder="Enter your phone number" />
           </Grid>
         </LeftContainer>
         <RightContainer>
-          <ProfileImage src="" />
-          <Button>Update Image</Button>
-          <Button>Upload Resume</Button>
+          {image?<ProfileImage src={URL.createObjectURL(image)}  />:<ProfileImage src={profiledata.profiles.profilePic}/>}
+          <Button onClick={handleImageButtonClick} >Update Image</Button>
+          <input
+       type="file"
+       accept="image/*"
+       ref={imageInputRef}
+       style={{ display: 'none' }}
+       onChange={handleImageChange}
+      />
+          <Button onClick={handlePdfButtonClick}>Upload Resume</Button>
+          <input
+          type="file"
+          accept="application/pdf"
+          ref={pdfInputRef}
+          style={{ display: 'none' }}
+          onChange={handlePdfChange}
+      />
+
+{pdf&& (
+  <div>
+    <FontAwesomeIcon icon={faFile} /> {pdf.name}
+  </div>
+)}
         </RightContainer>
       </MainContainer>
       <ButtonContainer>
-        <Button>Reset</Button>
-        <Button onClick={onClose}>Save</Button>
+        <Button onClick={onClose}>Close</Button>
+        <Button type='submit' onClick={()=>handleSubmit()}>{profiledata.loading?"Loading...":"Save"}</Button>
       </ButtonContainer>
     </PopupContainer>
   );

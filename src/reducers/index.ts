@@ -3,6 +3,7 @@ import app, { appState } from './app';
 import company, { companyState } from './company';
 import  filters, { filterState } from './filters';
 import github, { githubState } from './github';
+import profile, { profileState } from './profile';
 import user, { userState } from './user';
 
 export const initialState = {
@@ -11,7 +12,8 @@ export const initialState = {
   github: githubState,
   user: userState,
   company: companyState,
-  filters :filterState
+  filters : filterState,
+  profile : profileState,
 };
 
 export default {
@@ -20,5 +22,6 @@ export default {
   ...github,
   ...user,
   ...company,
-  ...filters
+  ...filters,
+  ...profile
 };

@@ -22,9 +22,9 @@ import { FilterComponent } from 'components/FilterComponent';
 // `;
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { getCompanyRequest } from 'actions';
+import { getCompanyRequest, getProfileRequest } from 'actions';
 import { useAppSelector } from 'modules/hooks';
-import { selectCompany, selectFilter } from 'selectors';
+import { selectCompany, selectFilter, selectUser } from 'selectors';
 
 const Container = styled.div`
   display: flex;
@@ -50,7 +50,7 @@ const RightPane = styled.div`
 `;
 
 function Dashboard() {
-  // const userAccount = useAppSelector(selectUser);
+  const userAccount = useAppSelector(selectUser).user.account;
 
   // const { instance } = useMsal();
   const currFilters = useAppSelector(selectFilter).filters;
@@ -58,8 +58,12 @@ function Dashboard() {
   console.log('this is companydata: ' + JSON.stringify(companiesdata));
   const dispatch = useDispatch();
 
+
+
   useEffect(() => {
+    // dispatch(getFiltersRequest());
     dispatch(getCompanyRequest(currFilters));
+    dispatch(getProfileRequest(userAccount.homeAccountId));
   }, [currFilters]);
 
 

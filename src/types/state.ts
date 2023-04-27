@@ -44,6 +44,12 @@ export interface CompaniesState {
   companies: any | undefined;
   error: any | undefined;
 }
+
+export interface ProfilesState {
+  loading: Boolean;
+  profiles: any | undefined;
+  error: any | undefined;
+}
 export interface FilterState {
   filters: {  
     name?: any | undefined;
@@ -57,7 +63,14 @@ export interface FilterState {
     jd?: any | undefined;
     requiredQualifications?: any | undefined;
     requiredcgpa?: any | undefined;
-  };  
+     
+  },
+  infoFilters:{
+    faculties:Array<Record<string, any>>;
+    departments:Array<Record<string, any>>;
+    companyTypes:Array<Record<string, any>>;
+    degrees:Array<Record<string, any>>;
+  }; 
 }
 export interface RootState {
   alerts: AlertsState;
@@ -66,6 +79,7 @@ export interface RootState {
   user: UserState;
   company:CompaniesState;
   filters:FilterState;
+  profile:ProfilesState;
 }
 
 export interface WithDispatch {

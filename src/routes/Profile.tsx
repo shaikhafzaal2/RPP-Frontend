@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 import { EditProfile } from 'components/EditProfile';
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from 'modules/hooks';
+import { selectProfile, selectUser } from 'selectors';
+import { getProfileRequest } from 'actions';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -56,8 +60,8 @@ const Grid = styled.div`
 `;
 
 const ProfileImage = styled.img`
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 180px;
   border: 2px solid #c73e27;
   border-radius: 50%;
   object-fit: cover;
@@ -89,6 +93,8 @@ const Label = styled.span`
 
 const Value = styled.span`
   font-size: 22px;
+  min-width: 300px;
+  min-height:50px;
   margin-bottom: 0px;
   display: flex;
   justify-content: flex-start;
@@ -100,8 +106,22 @@ const Value = styled.span`
 `;
 
 // Component
+
 const ProfileScreen = () => {
+  const profiledata = useAppSelector(selectProfile).profiles;
+  const currUser = useAppSelector(selectUser).user.account.homeAccountId;
+  console.log("Homeaccountid is: "+currUser)
+
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProfileRequest(currUser));
+   
+  }, [isPopupOpen]);
+
+
+
+  
 
   const handleButtonClick = () => {
     setIsPopupOpen(true);
@@ -110,6 +130,15 @@ const ProfileScreen = () => {
     setIsPopupOpen(false);
   };
 
+  const handleResumeClick = () => {
+    
+    window.open(profiledata.resumenew, '_blank');
+    // return <iframe src={profiledata.resume} width="100%" height="600px" />
+  };
+
+  
+
+
   return (
     <MainContainer>
       <ProfileContainer>
@@ -117,28 +146,28 @@ const ProfileScreen = () => {
         <LeftContainer>
           <Grid>
             <Label>Name :</Label>
-            <Value>John Doe</Value>
+            <Value>{profiledata.name}</Value>
             <Label>Ph Number :</Label>
-            <Value>+91987456321</Value>
+            <Value>{profiledata.phoneNumber}</Value>
             <Label>Faculty :</Label>
-            <Value>Faculty of Engineering and Technology</Value>
+            <Value>{profiledata.faculty}</Value>
             <Label>Degree :</Label>
-            <Value>B.Tech</Value>
+            <Value>{profiledata.degree}</Value>
             <Label>Stream :</Label>
-            <Value>Computer Science and Engineering</Value>
+            <Value>{profiledata.stream}</Value>
             <Label>Start Year :</Label>
-            <Value>2019</Value>
+            <Value>{profiledata.startYear}</Value>
             <Label>End Year :</Label>
-            <Value>2023</Value>
+            <Value>{profiledata.endYear}</Value>
             <Label>CGPA :</Label>
-            <Value>8.2</Value>
+            <Value>{profiledata.cgpa}</Value>
           </Grid>
         </LeftContainer>
         <RightContainer>
-          <ProfileImage src="https://via.placeholder.com/150" alt="Profile Picture" />
-          <Button>View Resume</Button>
+          <ProfileImage src={profiledata.profilePic} />
+          <Button onClick={handleResumeClick}>View Resume</Button>
           <Button onClick={handleButtonClick}>Edit Profile</Button>
-          {isPopupOpen && <EditProfile onClose={handlePopupClose} />}
+          {(isPopupOpen || !profiledata ) && <EditProfile onClose={handlePopupClose} />}
         </RightContainer>
       </ProfileContainer>
     </MainContainer>
