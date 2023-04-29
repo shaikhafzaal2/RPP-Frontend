@@ -9,7 +9,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 
 export function* getProfilesSaga(payload:any) {
-  const sasToken = '?sv=2021-12-02&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2023-04-28T22:42:27Z&st=2023-04-28T14:42:27Z&spr=https&sig=2TLXjIOsJNXss%2B72UpZyxM7SHN99GiB%2BBztko4kuumc%3D'
+  // const sasToken = '?sv=2021-12-02&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2023-04-28T22:42:27Z&st=2023-04-28T14:42:27Z&spr=https&sig=2TLXjIOsJNXss%2B72UpZyxM7SHN99GiB%2BBztko4kuumc%3D'
   console.log("This is the payload in profilesaga"+ payload.payload);
   
   
@@ -21,9 +21,9 @@ export function* getProfilesSaga(payload:any) {
     const response : AxiosResponse = yield call(axios.get, url,{responseType:'json'});
     const pdfUrl = response.data.resume?response.data.resume:'';
 
-    const pdfUrlWithSAS = `${pdfUrl}${sasToken}`;
+    // const pdfUrlWithSAS = `${pdfUrl}${sasToken}`;
 
-    console.log("The response pdf url is "+ pdfUrlWithSAS);
+    console.log("The response pdf url is "+ pdfUrl);
 
     // const headers = {
     //   "Authorization": "",
@@ -33,7 +33,7 @@ export function* getProfilesSaga(payload:any) {
 
 
 
-     const pdfDataResponse: AxiosResponse<Blob> = yield call(axios.get,pdfUrlWithSAS, {
+     const pdfDataResponse: AxiosResponse<Blob> = yield call(axios.get,pdfUrl, {
       
       responseType: 'blob',
     });
