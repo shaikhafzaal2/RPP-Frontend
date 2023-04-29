@@ -5,7 +5,7 @@ import { ActionTypes } from 'literals';
 import { getFiltersRequest, getProfileRequest, loginFailure,  loginSuccess,  logoutSuccess } from 'actions';
 import { AccountInfo, PublicClientApplication } from "@azure/msal-browser";
 import { msalConfig } from 'authConfig';
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { AuthResult } from 'types';
 
 // import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
@@ -26,7 +26,7 @@ export function* loginSaga() {
 
  
     const tokenRequest = {
-      scopes: ["user.read", "openid", "profile"],
+      scopes: [],
       requested_expiry: 4200 // 2 hours
     };
 
@@ -39,15 +39,15 @@ localStorage.setItem('idToken', newaccessToken?newaccessToken:'');
 
 console.log("localStorage token: "+localStorage.getItem('idToken'));
 
-    // const config: AxiosRequestConfig  = {
-    //   headers: {
-    //     'Authorization': `Bearer ${newaccessToken}`,
-    //     'Content-Type': 'application/json'
-    //   }
-    // }
+    const config: AxiosRequestConfig  = {
+      headers: {
+        'Authorization': `Bearer ${newaccessToken}`,
+        'Content-Type': 'application/json'
+      }
+    }
 
-    axios.defaults.headers.common['Authorization'] =  `Bearer ${newaccessToken}`;
-    axios.defaults.headers.common['Content-Type'] = 'application/json';
+    // axios.defaults.headers.common['Authorization'] =  `Bearer ${newaccessToken}`;
+    // axios.defaults.headers.common['Content-Type'] = 'application/json';
 
 
 
@@ -58,12 +58,12 @@ console.log("localStorage token: "+localStorage.getItem('idToken'));
       admin:false
     }
     console.log(data);
-    const response : AxiosResponse = yield call(axios.post, '/users/register', data);
+    const response : AxiosResponse = yield call(axios.post, '/users/register', data,config);
     console.log(response);
     if (response.status==200) 
     yield put(loginSuccess(myAccount)),    
     yield put (getFiltersRequest()),
-    yield put(getProfileRequest('bb90520a-9de3-43ac-b645-7091022a7661.e038180b-0021-401f-83a9-a2d45acee0dc'))
+    yield put(getProfileRequest((myAccount as any).account.homeAccountId))
     
   } catch (error) {
     console.log(error)

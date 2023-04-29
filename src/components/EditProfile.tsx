@@ -184,17 +184,17 @@ console.log()
   const [profile, setProfile] = useState<Profile>({
     homeAccountId: userdata.account.homeAccountId,
     name:  userdata.account.name,
-    profilePic:profiledata.profiles.profilePic,
+    profilePic:profiledata.profiles.profilePic?profiledata.profiles.profilePic:'',
     email:  userdata.account.username,
-    degree:  profiledata.profiles.degree?profiledata.profiles.faculty:filterdata.degrees[0]['name'],
+    degree:  profiledata.profiles.degree?profiledata.profiles.degree:filterdata.degrees[0]['name'],
     faculty:  profiledata.profiles.faculty?profiledata.profiles.faculty:filterdata.faculties[0]['name'],
     phoneNumber: profiledata.profiles.phoneNumber,
-    stream: profiledata.profiles.stream?profiledata.profiles.faculty:filterdata.departments[0]['name'],
-    cgpa: profiledata.profiles.cgpa,
-    resume: profiledata.profiles.resume,
+    stream: profiledata.profiles.stream?profiledata.profiles.stream:filterdata.departments[0]['name'],
+    cgpa: profiledata.profiles.cgpa?profiledata.profiles.cgpa:0,
+    resume: profiledata.profiles.resume?profiledata.profiles.resume:'',
     startYear: profiledata.profiles.startYear?profiledata.profiles.startYear:currentYear,
     endYear: profiledata.profiles.endYear?profiledata.profiles.endYear:currentYear,
-    programme:profiledata.profiles.programme,
+    programme:profiledata.profiles.programme?profiledata.profiles.programme:filterdata.degrees[0]['name'],
   });
 
   const [image, setImage] = useState<File | null>(null);
@@ -280,11 +280,11 @@ console.log()
             <Label>Graduation :</Label>
             <div style={{ display: 'flex', flexDirection: 'row' }}>
               <RadioContainer>
-                <RadioInput defaultChecked={true} required={true}  type="radio" name='programme' value={'UG'} onChange={handleInputChange}/>
+                <RadioInput defaultChecked={profile.programme=='UG'? true:false} required={true}  type="radio" name='programme' value={'UG'} onChange={handleInputChange}/>
                 <RadioLabel>UG</RadioLabel>
               {/* </RadioContainer>
               <RadioContainer> */}
-                <RadioInput type="radio" name='programme' value={'PG'} onChange={handleInputChange}/>
+                <RadioInput defaultChecked={profile.programme=='PG'? true:false}  type="radio" name='programme' value={'PG'} onChange={handleInputChange}/>
                 <RadioLabel>PG</RadioLabel>
               </RadioContainer>
             </div>

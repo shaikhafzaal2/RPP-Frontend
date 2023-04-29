@@ -198,7 +198,9 @@ export default function Header() {
   return (
     <HeaderWrapper data-testid="Header">
       <HeaderContainer>
+      <Link to="/">
         <Logo />
+      </Link>
 
         <LinksContainer>
           <Offer>MY OFFERS</Offer>
