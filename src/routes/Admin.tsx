@@ -5,11 +5,16 @@ import { useState } from 'react';
 import { PostedJobs } from './PostedJobs';
 import { ViewStudents } from './ViewStudents';
 import { PostJobs } from './PostJobs';
+import styled from 'styled-components';
 
 interface ParentProps {}
 interface ParentState {
   childState: string;
 }
+
+const RenderContainer = styled.div`
+  padding: 25px;
+`;
 
 export const Admin: React.FC<ParentProps> = () => {
   const [childState, setChildState] = useState<ParentState>({ childState: 'students' });
@@ -27,11 +32,11 @@ export const Admin: React.FC<ParentProps> = () => {
   } else if (childState.childState === 'postJobs') {
     componentToRender = <PostJobs />;
   }
+
   return (
     <div>
       <AdminHeader onStateChange={handleStateChange} />
-
-      {componentToRender}
+      <RenderContainer>{componentToRender}</RenderContainer>
     </div>
   );
 };
