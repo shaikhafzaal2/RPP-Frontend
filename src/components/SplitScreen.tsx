@@ -45,10 +45,11 @@ const Image = styled.img`
 const Heading = styled.span`
   font-family: 'Noto Sans', sans-serif;
   font-weight:600;
-  font-size: 40px;
+  font-size: 45px;
   color: #C73E27;
   text-align: center;
-  padding: 0 -20px;
+  padding-left: 30px;
+  padding-right: 30px;
 
   @media only screen and (min-width: 768px) {
     font-size: 5rem;

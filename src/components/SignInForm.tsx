@@ -30,7 +30,7 @@ const FormContainer = styled.div`
   @media (max-width: 768px) {
     padding:5%;
     width: 70%;
-    height: 200px;
+    height: 250px;
   }
 `;
 
