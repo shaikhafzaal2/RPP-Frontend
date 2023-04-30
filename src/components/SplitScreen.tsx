@@ -2,52 +2,81 @@ import React from 'react';
 import styled from 'styled-components'
 import SignInForm from './SignInForm';
 
-
 const Container = styled.div`
-  display: flex;
+  width: 100%;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @media only screen and (min-width: 768px) {
+    flex-direction: row;
+  }
 `;
 
 const Left = styled.div`
-  width: 50%;
+  width: 100%;
   background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
-const Image = styled.img`
+  margin-bottom: 20px;
 
+  @media only screen and (min-width: 768px) {
+    width: 50%;
+    margin-bottom: 0;
+  }
+`;
+
+const Image = styled.img`
   width: 60%;
-  height: 25%;
+  height: auto;
   padding: 3%;
   margin-bottom: 40px;
   
+  @media only screen and (min-width: 768px) {
+    width: 70%;
+    height: auto;
+  }
 `;
 
 const Heading = styled.span`
- 
   font-family: 'Noto Sans', sans-serif;
   font-weight:600;
   font-size: 40px;
   color: #C73E27;
   text-align: center;
-  padding: 0 -20px
- 
+  padding: 0 -20px;
+
+  @media only screen and (min-width: 768px) {
+    font-size: 5rem;
+  }
 `;
 
 const Right = styled.div`
-  width: 50%;
+  width: 100%;
   background-color: #FFFFFF;
+
+  @media only screen and (min-width: 768px) {
+    width: 50%;
+  }
 `;
+
 const VerticalLine = styled.div`
-  position: absolute;
-  top: 150px;
-  bottom: 199px;
+  position: absolute;  
+  bottom: 20%;
   left: 50%;
   width: 2px;
-  height:408px;
+  height:60%;
   background-color: #c73e27;
+  display:block;
+  @media (max-width: 768px) {
+    display: none;
+  }
+
+
 `;
 
 const SplitScreen = () => {
