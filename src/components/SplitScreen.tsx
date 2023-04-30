@@ -50,7 +50,6 @@ const Heading = styled.span`
   text-align: center;
   padding-left: 30px;
   padding-right: 30px;
-
   @media only screen and (min-width: 768px) {
     font-size: 5rem;
   }
