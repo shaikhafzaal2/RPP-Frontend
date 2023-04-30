@@ -7,6 +7,7 @@ const FooterContainer = styled.div`
   align-items: center;
   background-color: #3D000B;
   padding: 20px;
+  
 `;
 
 const LogoContainer = styled.div`
@@ -18,6 +19,10 @@ const Logo = styled.img`
   height: 30%;
   width: 30%;
   margin-right: 10px;
+  @media (max-width: 768px) {
+    height: auto;
+    width: 180px;
+  }
 `;
 
 const SocialIcons = styled.div`
@@ -32,9 +37,12 @@ const SupportText = styled.p`
   
   color: #EB9D40;
   font-family: 'Noto Sans', sans-serif;
-font-style: normal;
-font-weight: 600;
-font-size: 26px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 3rem;
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 
 const ContactDetails = styled.div`
@@ -47,6 +55,9 @@ const ContactItem = styled.p`
   font-size: 14px;
   color: #C73E27;
   margin-bottom: 5px;
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const Footer = () => {
