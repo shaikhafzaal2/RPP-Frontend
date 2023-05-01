@@ -6,15 +6,19 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  width: 90%;
+  
+  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  @media (max-width: 768px) {
+    padding:5%;
+  }
 `;
 
 const FormContainer = styled.div`
-  width: 60%;
+  width: 50%;
   height: 300px;
   background-color: #ffffff;
   border: 2px solid #433270;
@@ -23,6 +27,11 @@ const FormContainer = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 8px;
+  @media (max-width: 768px) {
+    padding:5%;
+    width: 70%;
+    height: 250px;
+  }
 `;
 
 const Label = styled.h1`
@@ -74,7 +83,7 @@ const Button = styled.button`
 `;
 
 const SignInForm = () => {
-  // const { instance } = useMsal();
+
   const dispatch = useDispatch();
 
   const handleLogin = () => {
@@ -84,16 +93,7 @@ const SignInForm = () => {
       dispatch(loginRequest());
     }
 
-    // if (loginType === "popup") {
-    //     instance.loginPopup(loginRequest).then((response) => {
-    //       console.log(response.account);
-    //       response?.account==null?null:dispatch(loginSuccess(response.account));
-    //     }).catch(e => {
-    //         console.log(e);
-    //         dispatch(loginFailure(e))
-    //     });
-    // } else if (loginType === "redirect") {
-    //     instance.loginRedirect(loginRequest)}
+
   };
 
   const [role, setRole] = useState('');
@@ -112,8 +112,6 @@ const SignInForm = () => {
             <Option value="admin">Admin</Option>
           </Select>
           {role === 'admin' && <Input type="password" placeholder="Enter Security Code" />}
-          {/* <Input type="text" placeholder="Enter your college email Id" />
-          <Input type="password" placeholder="Password" /> */}
 
           <Button type="submit" onClick={() => handleLogin()}>
             Microsoft Sign In

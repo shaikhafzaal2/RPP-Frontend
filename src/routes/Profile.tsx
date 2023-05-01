@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 import { EditProfile } from 'components/EditProfile';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import { useAppSelector } from 'modules/hooks';
 import { selectProfile, selectUser } from 'selectors';
-import { getProfileRequest } from 'actions';
+// import { getProfileRequest } from 'actions';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -113,13 +113,17 @@ const ProfileScreen = () => {
   console.log("Homeaccountid is: "+currUser)
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getProfileRequest(currUser));
+    // dispatch(getProfileRequest(currUser));
    
   }, [isPopupOpen]);
 
+useEffect(() => {
+  
 
+  handlePopupClose();
+}, [profiledata]);
 
   
 
@@ -132,7 +136,7 @@ const ProfileScreen = () => {
 
   const handleResumeClick = () => {
     
-    window.open(profiledata.resumenew, '_blank');
+    window.open(profiledata.resumenew?profiledata.resumenew:'', '_blank');
     // return <iframe src={profiledata.resume} width="100%" height="600px" />
   };
 
@@ -146,28 +150,28 @@ const ProfileScreen = () => {
         <LeftContainer>
           <Grid>
             <Label>Name :</Label>
-            <Value>{profiledata.name}</Value>
+            <Value>{profiledata.name?profiledata.name:'John Doe'}</Value>
             <Label>Ph Number :</Label>
-            <Value>{profiledata.phoneNumber}</Value>
+            <Value>{profiledata.phoneNumber?profiledata.phoneNumber:'1234567891'}</Value>
             <Label>Faculty :</Label>
-            <Value>{profiledata.faculty}</Value>
+            <Value>{profiledata.faculty?profiledata.faculty:'Faculty of ABC'}</Value>
             <Label>Degree :</Label>
-            <Value>{profiledata.degree}</Value>
+            <Value>{profiledata.degree?profiledata.degree:'Masters'}</Value>
             <Label>Stream :</Label>
-            <Value>{profiledata.stream}</Value>
+            <Value>{profiledata.stream?profiledata.stream:'Computer Science'}</Value>
             <Label>Start Year :</Label>
-            <Value>{profiledata.startYear}</Value>
+            <Value>{profiledata.startYear?profiledata.startYear:'2023'}</Value>
             <Label>End Year :</Label>
-            <Value>{profiledata.endYear}</Value>
+            <Value>{profiledata.endYear?profiledata.endYear:'2023'}</Value>
             <Label>CGPA :</Label>
-            <Value>{profiledata.cgpa}</Value>
+            <Value>{profiledata.cgpa?profiledata.cgpa:10}</Value>
           </Grid>
         </LeftContainer>
         <RightContainer>
-          <ProfileImage src={profiledata.profilePic} />
+          <ProfileImage src={profiledata.profilePic?profiledata.profilePic:''} />
           <Button onClick={handleResumeClick}>View Resume</Button>
           <Button onClick={handleButtonClick}>Edit Profile</Button>
-          {(isPopupOpen || !profiledata ) && <EditProfile onClose={handlePopupClose} />}
+          {isPopupOpen  && <EditProfile onClose={handlePopupClose} />}
         </RightContainer>
       </ProfileContainer>
     </MainContainer>
