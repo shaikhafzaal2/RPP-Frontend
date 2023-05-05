@@ -88,7 +88,7 @@ const SignInForm = () => {
 
   const handleLogin = () => {
     if (role === 'admin') {
-      window.location.href = '/#/admin';
+      window.location.href = '/RPP-Frontend#/admin';
     } else {
       dispatch(loginRequest());
     }
