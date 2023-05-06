@@ -182,10 +182,10 @@ export const EditProfile = ({ onClose }: PopupProps) => {
   
 console.log()
   const [profile, setProfile] = useState<Profile>({
-    homeAccountId: userdata.account.homeAccountId,
-    name:  userdata.account.name,
+    homeAccountId: userdata.homeAccountId,
+    name:  userdata.name,
     profilePic:profiledata.profiles.profilePic?profiledata.profiles.profilePic:'',
-    email:  userdata.account.username,
+    email:  userdata.username,
     degree:  profiledata.profiles.degree?profiledata.profiles.degree:filterdata.degrees[0]['name'],
     faculty:  profiledata.profiles.faculty?profiledata.profiles.faculty:filterdata.faculties[0]['name'],
     phoneNumber: profiledata.profiles.phoneNumber,
@@ -219,14 +219,6 @@ console.log()
 
   console.log("The years are"+startYears);
   console.log("The years are"+endYears);
-
-  
-
-
-
-
-  
-
 
     const imageInputRef = useRef<HTMLInputElement>(null);
     const pdfInputRef = useRef<HTMLInputElement>(null);
@@ -315,8 +307,7 @@ console.log()
                  
                  <Option key={faculty['keyword']} value={faculty['name']}>{faculty['keyword']}</Option>
               ))}     
-                {/* <Option value="fet">FET</Option>
-                <Option value="fis">FIS</Option> */}
+              
               </Select>
             </div>
             <Label>Degree :</Label>

@@ -109,7 +109,7 @@ const Value = styled.span`
 
 const ProfileScreen = () => {
   const profiledata = useAppSelector(selectProfile).profiles;
-  const currUser = useAppSelector(selectUser).user.account.homeAccountId;
+  const currUser = useAppSelector(selectUser).user.homeAccountId;
   console.log("Homeaccountid is: "+currUser)
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);

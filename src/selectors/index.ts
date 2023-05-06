@@ -1,6 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 
 
+
 import { RootState } from 'types';
 
 export const selectApp = createSelector(
@@ -30,4 +31,8 @@ export const selectProfile = createSelector(
 export const selectFilter = createSelector(
   (state: RootState) => state.filters,
   filters => filters,
+);
+export const selectStudents = createSelector(
+  (state: RootState) => state.students,
+  students => students,
 );

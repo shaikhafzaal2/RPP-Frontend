@@ -1,25 +1,7 @@
 import React, { useEffect } from 'react';
-// import styled from 'styled-components';
-// import { Box, Container, Heading, Link, Paragraph, Text } from 'styled-minimal';
 import { Box } from 'styled-minimal/lib';
-
-// import { spacer } from 'modules/theme';
-
-// import Github from 'containers/GitHub';
-// import { useAppSelector } from 'modules/hooks';
-// import { selectUser } from 'selectors';
-
 import CardComponent from 'components/CardComponent';
 import { FilterComponent } from 'components/FilterComponent';
-
-// import { useMsal } from '@azure/msal-react';
-// import { useDispatch } from 'react-redux';
-// import { loginSuccess } from 'actions';
-
-// const Header = styled.div`
-//   margin-bottom: ${spacer(3)};
-//   text-align: center;
-// `;
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { getCompanyRequest, getProfileRequest } from 'actions';
@@ -50,9 +32,7 @@ const RightPane = styled.div`
 `;
 
 function Dashboard() {
-  const userAccount = useAppSelector(selectUser).user.account;
-
-  // const { instance } = useMsal();
+  const userAccount = useAppSelector(selectUser).user;
   const currFilters = useAppSelector(selectFilter).filters;
   const companiesdata = useAppSelector(selectCompany).companies;
   console.log('this is companydata: ' + JSON.stringify(companiesdata));
@@ -60,8 +40,7 @@ function Dashboard() {
 
 
 
-  useEffect(() => {
-    // dispatch(getFiltersRequest());
+  useEffect(() => {  
     dispatch(getCompanyRequest(currFilters));
     dispatch(getProfileRequest(userAccount.homeAccountId));
   }, [currFilters]);
@@ -70,27 +49,7 @@ function Dashboard() {
 
   return (
     <Box key="Private" data-testid="Private">
-      {/* <Container ySpacing>
-        <Header>
-          
-          <Paragraph>
-            You can get this boilerplate{' '}
-            <Link
-              href="https://github.com/gilbarbara/react-redux-saga-boilerplate/"
-              target="_blank"
-            >
-              here
-            </Link>
-          </Paragraph>
-        </Header>
-        <Box mb={4} textAlign="center">
-          <Heading as="h5">Here's some GitHub data</Heading>
-          <Text fontSize={1}>
-            <i>*Just to have some requests in the sagas...</i>
-          </Text>
-        </Box>
-        <Github />
-      </Container> */}
+     
 
       <Container>
         <LeftPane>
@@ -100,10 +59,7 @@ function Dashboard() {
           {companiesdata.map((e: any) => (
             <CardComponent key={e._id} company={e} />
           ))}
-          {/* <CardComponent />
-        <CardComponent />
-        <CardComponent />
-        <CardComponent /> */}
+         
         </RightPane>
       </Container>
     </Box>

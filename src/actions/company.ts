@@ -7,3 +7,5 @@ import { Company } from 'types/common';
 export const getCompanyRequest = createAction(ActionTypes.USER_GET_COMPANY_REQUEST,  (payload: any) => actionPayload(payload),);
 export const getCompanySuccess = createAction<PayloadAction<Company>>(ActionTypes.USER_GET_COMPANY_SUCCESS);
 export const getCompanyFailure = createAction(ActionTypes.USER_GET_COMPANY_FAILURE,  (payload: any) => actionPayload(payload),);
+export const deleteCompany = createAction(ActionTypes.ADMIN_DELETE_COMPANY, (payload: any) => actionPayload(payload),);
+export const postCompany = createAction(ActionTypes.ADMIN_POST_COMPANY, (payload: any) => actionPayload(payload),);

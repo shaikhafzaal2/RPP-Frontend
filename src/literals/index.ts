@@ -28,6 +28,14 @@ export const ActionTypes = keyMirror({
   UPLOAD_PROFILE_SUCCESS:undefined,
   UPLOAD_PROFILE_FAILURE:undefined,
   UPLOAD_PROFILE_REQUEST:undefined,
+  ADMIN_LOGIN_REQUEST:undefined,
+  ADMIN_LOGIN_SUCCESS:undefined,
+  ADMIN_DELETE_COMPANY:undefined,
+  ADMIN_POST_COMPANY:undefined,
+  ADMIN_REMOVE_STUDENT:undefined,
+  GET_STUDENT_REQUEST:undefined,
+  GET_STUDENT_SUCCESS:undefined,
+  GET_STUDENT_FAILURE:undefined,
 });
 
 export const STATUS: Status = {

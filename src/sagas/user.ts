@@ -2,26 +2,22 @@ import { all, call, put, takeEvery  } from 'redux-saga/effects';
 
 import { ActionTypes } from 'literals';
 
-import { getFiltersRequest, getProfileRequest, loginFailure,  loginSuccess,  logoutSuccess } from 'actions';
+import { AdminLoginSuccess, getFiltersRequest, getProfileRequest, loginFailure,  loginSuccess,  logoutSuccess } from 'actions';
 import { AccountInfo, PublicClientApplication } from "@azure/msal-browser";
 import { msalConfig } from 'authConfig';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { AuthResult } from 'types';
 
-// import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+
 
 
 const msalInstance = new PublicClientApplication (msalConfig);
 axios.defaults.baseURL = location.hostname === "localhost"?'http://localhost:3001':'https://rppmainbackend.azurewebsites.net/';
 
-export function* loginSaga() {
-  
+export function* loginSaga() {  
   try {
     let myAccount: AccountInfo;
-    myAccount = yield call([msalInstance,msalInstance.loginPopup]);
-    
-  
-   
+    myAccount = yield call([msalInstance,msalInstance.loginPopup]);   
     console.log(myAccount);
 
  
@@ -34,10 +30,10 @@ export function* loginSaga() {
 
     const res :AuthResult = yield call([msalInstance, msalInstance.acquireTokenSilent], tokenRequest);
     const newaccessToken = res.idToken;
-console.log('NewTokenData:'+ newaccessToken);
-localStorage.setItem('idToken', newaccessToken?newaccessToken:'');
+    console.log('NewTokenData:'+ newaccessToken);
+    localStorage.setItem('idToken', newaccessToken?newaccessToken:'');
 
-console.log("localStorage token: "+localStorage.getItem('idToken'));
+    console.log("localStorage token: "+localStorage.getItem('idToken'));
 
     const config: AxiosRequestConfig  = {
       headers: {
@@ -45,23 +41,18 @@ console.log("localStorage token: "+localStorage.getItem('idToken'));
         'Content-Type': 'application/json'
       }
     }
-
-    // axios.defaults.headers.common['Authorization'] =  `Bearer ${newaccessToken}`;
-    // axios.defaults.headers.common['Content-Type'] = 'application/json';
-
-
-
     const data = {
       homeAccountId: (myAccount as any).account.homeAccountId,
       name:(myAccount as any).account.name,
       email: (myAccount as any).account.username,
-      admin:false
+      admin: false
     }
+
     console.log(data);
     const response : AxiosResponse = yield call(axios.post, '/users/register', data,config);
     console.log(response);
     if (response.status==200) 
-    yield put(loginSuccess(myAccount)),    
+    yield put(loginSuccess(response.data.user)),    
     yield put (getFiltersRequest()),
     yield put(getProfileRequest((myAccount as any).account.homeAccountId))
     
@@ -71,6 +62,52 @@ console.log("localStorage token: "+localStorage.getItem('idToken'));
   }
 }
 
+
+export function* AdminloginSaga() {
+  
+  try {
+    let myAccount: AccountInfo;
+    myAccount = yield call([msalInstance,msalInstance.loginPopup]);   
+    console.log(myAccount);
+ 
+    const tokenRequest = {
+      scopes: [],
+      requested_expiry: 4200 // 2 hours
+    };
+
+    msalInstance.setActiveAccount(myAccount);
+
+    const res :AuthResult = yield call([msalInstance, msalInstance.acquireTokenSilent], tokenRequest);
+    const newaccessToken = res.idToken;
+    console.log('NewTokenData:'+ newaccessToken);
+    localStorage.setItem('idToken', newaccessToken?newaccessToken:'');
+    console.log("localStorage token: "+localStorage.getItem('idToken'));
+
+    const config: AxiosRequestConfig  = {
+      headers: {
+        'Authorization': `Bearer ${newaccessToken}`,
+        'Content-Type': 'application/json'
+      }
+    }
+    const data = {
+      homeAccountId: (myAccount as any).account.homeAccountId,
+      name:(myAccount as any).account.name,
+      email: (myAccount as any).account.username,
+      admin:true
+    }
+    
+    console.log(data);
+    const response : AxiosResponse = yield call(axios.post, '/users/register', data,config);
+    console.log(response);
+    if (response.status==200) 
+    yield put(AdminLoginSuccess(myAccount)),
+    yield put (getFiltersRequest());        
+    
+  } catch (error) {
+    console.log(error)
+    yield put(loginFailure(error))
+  }
+}
 
 export function* logoutSaga() {
   
@@ -94,10 +131,14 @@ function* watchLogin() {
   yield takeEvery(ActionTypes.USER_LOGIN_REQUEST, loginSaga);
 }
 
+function* watchAdminLogin() {
+  yield takeEvery(ActionTypes.ADMIN_LOGIN_REQUEST, AdminloginSaga);
+}
+
 export default function* root() {
-  yield all([
-    // takeLatest(ActionTypes.USER_LOGIN_REQUEST, loginSaga),
+  yield all([   
     watchLogin(),
     watchLogout(),
+    watchAdminLogin(),
   ]);
 }

@@ -4,6 +4,7 @@ import company, { companyState } from './company';
 import  filters, { filterState } from './filters';
 import github, { githubState } from './github';
 import profile, { profileState } from './profile';
+import students, { studentsState } from './students';
 import user, { userState } from './user';
 
 export const initialState = {
@@ -14,6 +15,7 @@ export const initialState = {
   company: companyState,
   filters : filterState,
   profile : profileState,
+  student : studentsState
 };
 
 export default {
@@ -23,5 +25,6 @@ export default {
   ...user,
   ...company,
   ...filters,
-  ...profile
+  ...profile,
+  ...students,
 };

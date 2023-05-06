@@ -101,6 +101,7 @@ const CheckboxText = styled.div`
 export const FilterComponent = () => {
   const dispatch = useDispatch();
   const filterdata = useAppSelector(selectFilter).infoFilters;
+  const selectfilters = useAppSelector(selectFilter).filters
   console.log("This is filter state data: "+ JSON.stringify( filterdata));
   const updateFilter = (props:any ) =>{
     console.log("updatefilter called");
@@ -115,7 +116,7 @@ export const FilterComponent = () => {
         </FilterBox>
        
         <DropdownName>Faculty</DropdownName>
-        <Select onChange={(e)=>{
+        <Select defaultValue={selectfilters.faculty?selectfilters.faculty:"All"} onChange={(e)=>{
           console.log("Selected"+e.target.value);
              updateFilter({
               payload: {
@@ -123,7 +124,7 @@ export const FilterComponent = () => {
               },
               type: ''
             })}}>
-            <Option value={undefined}>All</Option> 
+            <Option value={"All"}>All</Option> 
              {filterdata.faculties?.map(faculty => (  
                  
                  <Option key={faculty['keyword']} value={faculty['name']}>{faculty['keyword']}</Option>
@@ -132,7 +133,7 @@ export const FilterComponent = () => {
         </Select>
         
         <DropdownName>Department</DropdownName>
-        <Select onChange={(e)=>{
+        <Select defaultValue={selectfilters.department?selectfilters.department:"All"} onChange={(e)=>{
               console.log("Selected"+e.target.value);
                 updateFilter({
                   payload: {
@@ -141,7 +142,7 @@ export const FilterComponent = () => {
                   type: ''
                 })
               }}>
-            <Option value={undefined} >All</Option> 
+            <Option value={'All'} >All</Option> 
             {filterdata.departments?.map(dep => (  
                  
                  <Option key={dep['name']} value={dep['name']}>{dep['name']}</Option>
@@ -149,7 +150,7 @@ export const FilterComponent = () => {
         </Select>
         
         <DropdownName>Company Type</DropdownName>
-        <Select onChange={(e)=>{
+        <Select defaultValue={selectfilters.type?selectfilters.type:"All"} onChange={(e)=>{
             console.log("Selected"+e.target.value);
               updateFilter({
                 payload: {
@@ -158,7 +159,7 @@ export const FilterComponent = () => {
                 type: ''
               })
             }}>
-            <Option value={undefined}>All</Option>  
+            <Option value={"All"}>All</Option>  
             {filterdata.companyTypes?.map(comp => (  
                  
                  <Option key={comp['name']} value={comp['name']}>{comp['name']}</Option>
