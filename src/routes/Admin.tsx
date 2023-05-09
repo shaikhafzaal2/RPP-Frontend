@@ -1,11 +1,13 @@
 import { AdminHeader } from 'components/AdminHeader';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 // import { Route, Routes } from 'react-router-dom';
 import { PostedJobs } from './PostedJobs';
 import { ViewStudents } from './ViewStudents';
 import { PostJobs } from './PostJobs';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { getCompanyRequest } from 'actions';
 
 interface ParentProps {}
 interface ParentState {
@@ -17,12 +19,24 @@ const RenderContainer = styled.div`
 `;
 
 export const Admin: React.FC<ParentProps> = () => {
-  const [childState, setChildState] = useState<ParentState>({ childState: 'students' });
 
+
+  const [childState, setChildState] = useState<ParentState>({ childState: 'students' });
   const handleStateChange = (newState: string) => {
     setChildState({ childState: newState });
   };
+  
+
   let componentToRender;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+
+    dispatch(getCompanyRequest({}));
+    
+  
+   
+  }, []);
 
   // Compare the state with a string and render a component conditionally
   if (childState.childState === 'postedJob') {

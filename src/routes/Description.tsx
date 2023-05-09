@@ -5,7 +5,7 @@ import { createGlobalStyle } from 'styled-components';
 import { Company, RouteParams } from 'types';
 import { useLocation, useParams } from 'react-router-dom';
 import { useAppSelector } from 'modules/hooks';
-import { selectCompany } from 'selectors';
+import { selectCompany, selectProfile, selectUser } from 'selectors';
 // import { useParams } from 'react-router-dom';
 // import { RouteParams } from 'types';
 
@@ -66,6 +66,7 @@ const Grid = styled.div`
   grid-template-rows: 40px 40px;
   grid-gap: 0px;
   margin-top: 35px;
+  margin-bottom: 35px;
 `;
 
 const Label = styled.span`
@@ -92,7 +93,7 @@ const Heading = styled.span`
   margin-bottom: 8px;
 `;
 
-const Content = styled.p`
+const Content = styled.div`
   font-family: 'Noto Sans', sans-serif;
   font-style: normal;
   font-size: 18px;
@@ -134,8 +135,18 @@ export const Description = () => {
   console.log("id is: "+ JSON.stringify(id));
 
   const companiesdata = useAppSelector(selectCompany).companies;
+  const profiledata = useAppSelector(selectProfile).profiles;
+  const userdata = useAppSelector(selectUser);
   const selectedCompany: Company = companiesdata.find((c:Company) => c._id === id);
   console.log('this is companydata: ' + JSON.stringify(selectedCompany));
+
+  const handleApplyBtn = (e:any)=>{
+    if (userdata.user.eligible){
+    selectedCompany.requiredcgpa<= profiledata.cgpa? window.open(e):alert("You are not eligible for this placement drive");
+    } else {
+      alert("You are removed from Placement Activities. Contact Placement Department for more details")
+    }
+  }
   return (
     <DescriptionContainer>
       <GlobalStyle />
@@ -157,18 +168,18 @@ export const Description = () => {
       </Grid>
       <Heading>About Us</Heading>
       <Content>
-       {selectedCompany.aboutCompany}
+       {selectedCompany.aboutCompany.split('\n').map((e,i) => <p key={i+1}>{e}</p>)}
       </Content>
       <Heading>Job Duties</Heading>
       <Content>
-        {selectedCompany.jd}
+        {selectedCompany.jd.split('\n').map((e,i) => <p key={i+1}>{e}</p>)}
       </Content>
       <Heading>Required Qualifications</Heading>
       <Content>
-       {selectedCompany.requiredQualifications}
+       {selectedCompany.requiredQualifications.split('\n').map((e,i) => <p key={i+1}>{e}</p>)}
       </Content>
       <ButtonContainer>
-        <ApplyButton>Apply Now</ApplyButton>
+        <ApplyButton onClick={()=>handleApplyBtn(selectedCompany.applyLink)}>Apply Now</ApplyButton>
       </ButtonContainer>
     </DescriptionContainer>
   );

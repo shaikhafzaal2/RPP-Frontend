@@ -22,7 +22,7 @@ import ProfileScreen from './routes/Profile';
 import { Description } from 'routes/Description';
 import Footer from 'components/Footer';
 import { Admin } from 'routes/Admin';
-// import { useIsAuthenticated } from '@azure/msal-react';
+
 
 const AppWrapper = styled.div`
   display: flex;
@@ -35,7 +35,7 @@ const AppWrapper = styled.div`
 
 const Main = styled.main<Pick<UserState, 'isLoggedIn'>>`
   min-height: 100vh;
-  padding: ${({ isLoggedIn }) => (isLoggedIn ? `${px(headerHeight)} 0 0` : 0)};
+  padding: ${({ isLoggedIn }) => (isLoggedIn? `${px(headerHeight)} 0 0` : 0)};
 `;
 
 function Root() {
@@ -44,6 +44,8 @@ function Root() {
   const { changed } = useTreeChanges(user);
 
   const isAuthenticated = user.isLoggedIn;
+  const isAuthenticatedAdmin = user.isAdmin;
+  
 
   // const isAuthenticated = useIsAuthenticated();
   console.log(isAuthenticated);
@@ -71,12 +73,12 @@ function Root() {
               rel="stylesheet"
             />
           </Helmet>
-          {isAuthenticated && <Header />}
-          <Main isLoggedIn={isAuthenticated}>
+          {isAuthenticated && !isAuthenticatedAdmin &&<Header />}
+          <Main isLoggedIn={isAuthenticated && !isAuthenticatedAdmin}>
             <Routes>
               <Route
                 element={
-                  <PublicRoute isAuthenticated={isAuthenticated} to="/dashboard">
+                  <PublicRoute isAuthenticated={isAuthenticated} to={isAuthenticatedAdmin?"/admin" : "/dashboard"}>
                     <Login />
                   </PublicRoute>
                 }
@@ -106,7 +108,14 @@ function Root() {
                 }
                 path="/description/:id"
               />
-              <Route element={<Admin />} path="/admin" />
+              <Route 
+                element={
+                  <PrivateRoute isAuthenticated={isAuthenticated} to="/">
+                    <Admin />
+                  </PrivateRoute>
+              } 
+                path="/admin" 
+              />
               <Route element={<NotFound />} path="*" />
             </Routes>
           </Main>

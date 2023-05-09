@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 interface Props {
   children: React.ReactElement;
@@ -9,7 +9,7 @@ interface Props {
 
 export default function PublicRoute(props: Props): JSX.Element {
   const { children, isAuthenticated, to = '/' } = props;
-  const { state } = useLocation();
+  // const { state } = useLocation();
 
-  return isAuthenticated ? <Navigate to={(state as any)?.redirect || to} /> : children;
+  return isAuthenticated ? <Navigate to={ to} /> : children;
 }

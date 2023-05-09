@@ -1,5 +1,6 @@
 // import { useMsal } from '@azure/msal-react';
-import { loginRequest } from 'actions';
+import { AdminLogin, loginRequest } from 'actions';
+import axios from 'axios';
 // import { loginRequest } from 'authConfig';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -88,19 +89,36 @@ const SignInForm = () => {
 
   const handleLogin = () => {
     if (role === 'admin') {
-      window.location.href = '/RPP-Frontend#/admin';
+      const data = {"secret": password}
+      axios.post("/admin/auth", data)
+      .then(response => {
+        if (response.data.success) {
+          console.log("Authentication successful");
+          dispatch(AdminLogin());
+        } else {
+          console.log("Authentication failed");
+          alert('Incorrect Security Code');
+        }
+      })
+      .catch(error => {
+        console.log("Error occurred while making the request", error);
+      });    
     } else {
       dispatch(loginRequest());
     }
-
-
   };
 
   const [role, setRole] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleRoleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setRole(event.target.value);
   };
+
+  const handlepassword = (event: any) => {
+    setPassword(event.target.value);
+  };
+
 
   return (
     <Container>
@@ -111,9 +129,9 @@ const SignInForm = () => {
             <Option value="student">Student</Option>
             <Option value="admin">Admin</Option>
           </Select>
-          {role === 'admin' && <Input type="password" placeholder="Enter Security Code" />}
+          {role === 'admin' && <Input type="password" onChange={(e)=>handlepassword(e)} placeholder="Enter Security Code" />}
 
-          <Button type="submit" onClick={() => handleLogin()}>
+          <Button type="submit" onClick={ () => handleLogin()}>
             Microsoft Sign In
           </Button>
         </Form>

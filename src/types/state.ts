@@ -38,10 +38,15 @@ export interface UserState {
   isLoggedIn: boolean;
   user: any | undefined;
   error: any | undefined;
+  isAdmin: any | undefined;
 }
 
 export interface CompaniesState {
   companies: any | undefined;
+  error: any | undefined;
+}
+export interface StudentsState {
+  students: any | undefined;
   error: any | undefined;
 }
 
@@ -80,6 +85,7 @@ export interface RootState {
   company:CompaniesState;
   filters:FilterState;
   profile:ProfilesState;
+  students:StudentsState;
 }
 
 export interface WithDispatch {

@@ -22,6 +22,7 @@ export type Icons =
   | 'question-circle'
   | 'sign-in'
   | 'sign-out'
+  | 'search'
   | 'times-circle-o'
   | 'times-circle'
   | 'times';
@@ -59,6 +60,7 @@ export interface ShowAlertOptions {
 }
 
 export interface Company {
+  applyLink: any;
   _id: string;
   name: string;
   type: string;

@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 import React from 'react';
+import { useAppSelector } from 'modules/hooks';
+import { selectCompany } from 'selectors';
+import { useDispatch } from 'react-redux';
+import { deleteCompany } from 'actions';
 
 const Table = styled.table`
   border-collapse: collapse;
@@ -8,6 +12,7 @@ const Table = styled.table`
 
 const TableHeader = styled.th`
   background-color: #f2f2f2;
+  min-width: 150px;
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
@@ -24,7 +29,27 @@ const TableData = styled.td`
   padding: 8px;
 `;
 
+const RemoveButton = styled.button`
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+`;
+
+
 export const PostedJobs = () => {
+  const companiesdata = useAppSelector(selectCompany).companies;
+
+  const dispatch = useDispatch();
+
+  const handleRemoveBtn = (id:String)=> {
+    console.log("this is delete id: "+id);
+    dispatch(deleteCompany(id));
+  }
+
+
   return (
     <Table>
       <thead>
@@ -38,23 +63,16 @@ export const PostedJobs = () => {
         </TableRow>
       </thead>
       <tbody>
-        <TableRow>
-          <TableData>1</TableData>
-          <TableData>SDE-1</TableData>
-          <TableData>Karthik IT Ltd</TableData>
-          <TableData>Lorem Ipsum </TableData>
-          <TableData>900000</TableData>
-          <TableData>No</TableData>
-        </TableRow>
-
-        <TableRow>
-          <TableData>2</TableData>
-          <TableData>UI/UX Dev</TableData>
-          <TableData>Afzal Tech</TableData>
-          <TableData>Lorem Ipsum</TableData>
-          <TableData>1200000</TableData>
-          <TableData>No</TableData>
-        </TableRow>
+       {companiesdata&& companiesdata.map((company:any,index:any) => (
+          <TableRow key={index+1}>
+            <TableData >{index+1}</TableData>
+            <TableData >{company.role}</TableData>
+            <TableData >{company.name}</TableData>
+            <TableData >{company.jd}</TableData>
+            <TableData >{company.ctc} LPA</TableData>
+            <TableData ><RemoveButton onClick={()=>handleRemoveBtn(company._id)} >Delete</RemoveButton></TableData>
+          </TableRow>
+        ))}
       </tbody>
     </Table>
   );

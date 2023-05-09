@@ -10,25 +10,13 @@ import styled from 'styled-components';
 import Icon from 'components/Icon';
 
 import profile from '../assets/icons/profile.png';
-// import dropdown from '../assets/icons/dropdown.png';
 import { Container, responsive } from 'styled-minimal';
 import { headerHeight, spacer } from 'modules/theme';
-// import { logOut } from 'actions';
-
 import Logo from 'components/Logo';
-// import { useMsal } from '@azure/msal-react';
 import { logoutSuccess } from 'actions';
-
 import { useDispatch } from 'react-redux';
-// import { useMsal } from '@azure/msal-react';
-// import { useMsal } from '@azure/msal-react';
-
 import { useAppSelector } from 'modules/hooks';
 import { selectUser } from 'selectors';
-// import { fontSize } from 'styled-system';
-
-// import { useMsal } from '@azure/msal-react';
-// import { useMsal } from '@azure/msal-react';
 import { Link } from 'react-router-dom';
 
 const HeaderWrapper = styled.header`
@@ -126,72 +114,24 @@ const ProfileIcon = styled.div`
 const Profile = styled.img`
   margin-right: 5px;
 `;
-// const DropdownIcon = styled.img`
-//   margin-right: 10px;
-// `;
+
 const LinksContainer = styled.div`
   display: flex;
   align-items: center;
   //
 `;
-// const DropdownMenu = styled.div`
-//   position: absolute;
-//   top: 70px;
-//   right: 10px;
-//   background-color: #000000;
-//   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-//   z-index: 1;
-//   padding: 10px;
-//   display: none;
 
-//   ${Profile}:hover & {
-//     display: block;
-//   }
-// `;
-
-// const MenuItem = styled.div`
-//   margin-bottom: 10px;
-//   cursor: pointer;
-
-//   &:hover {
-//     color: #c73e27;
-//   }
-// `;
 
 export default function Header() {
   const dispatch = useDispatch();
-  // const { instance } = useMsal();
+
 
   const handleClickLogout = () => {
-    //   instance.logoutPopup({
-    //                 postLogoutRedirectUri: "/",
-    //             }).then(()=>{dispatch(logoutRequest())});
-    // };
 
-    //   instance.logoutRedirect({
-    //     postLogoutRedirectUri: "/",
-    // })
     dispatch(logoutSuccess());
   };
 
-  // const handleLogout = () => {
-  //   // localStorage.clear();
-  //   dispatch(logoutRequest);
-  //     // if (logoutType === "popup") {
-  //     //   // dispatch(logoutRequest);
-  //     //     // instance.logoutPopup({
-  //     //     //   mainWindowRedirectUri: "/"
 
-  //     //     // });
-  //     //     // dispatch(logoutRequest);
-  //     // } else if (logoutType === "redirect") {
-  //     //   // dispatch(logoutRequest);
-  //     //     instance.logoutRedirect({
-  //     //         postLogoutRedirectUri: "/",
-  //     //     }).then(dispatch(logoutRequest));
-
-  //     // }
-  // }
 
   const userAccount = useAppSelector(selectUser);
 
@@ -204,7 +144,7 @@ export default function Header() {
 
         <LinksContainer>
           <Offer>MY OFFERS</Offer>
-          <UserName>{userAccount.user.account.name}</UserName>
+          <UserName>{userAccount.user.name}</UserName>
           <Link to="/profile">
             <div style={{ flexDirection: 'row' }}>
               <ProfileIcon>

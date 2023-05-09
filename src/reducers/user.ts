@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 
 
-import { loginFailure, loginSuccess, logoutSuccess } from 'actions';
+import { AdminLoginSuccess, loginFailure, loginSuccess, logoutSuccess } from 'actions';
 
 import { UserState } from 'types';
 
@@ -9,6 +9,7 @@ export const userState: UserState = {
   isLoggedIn: false,
   user: null,
   error: null,
+  isAdmin:false,
 };
 export default {
   user: createReducer<UserState>(userState, (builder) => {
@@ -27,5 +28,12 @@ export default {
       state.isLoggedIn = false;
       state.user = null;
       state.error = null;
+      state.isAdmin = false;
+    })    
+    .addCase(AdminLoginSuccess, (state, action) => {
+      state.isLoggedIn = true;
+      state.user = action.payload;
+      state.error = null;
+      state.isAdmin = true;
     });
 })};
