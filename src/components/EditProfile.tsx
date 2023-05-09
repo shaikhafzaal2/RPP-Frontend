@@ -185,7 +185,7 @@ console.log()
     homeAccountId: userdata.homeAccountId,
     name:  userdata.name,
     profilePic:profiledata.profiles.profilePic?profiledata.profiles.profilePic:'',
-    email:  userdata.username,
+    email:  userdata.email,
     degree:  profiledata.profiles.degree?profiledata.profiles.degree:filterdata.degrees[0]['name'],
     faculty:  profiledata.profiles.faculty?profiledata.profiles.faculty:filterdata.faculties[0]['name'],
     phoneNumber: profiledata.profiles.phoneNumber,
