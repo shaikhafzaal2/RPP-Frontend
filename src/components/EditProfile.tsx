@@ -188,7 +188,7 @@ console.log()
     email:  userdata.email,
     degree:  profiledata.profiles.degree?profiledata.profiles.degree:filterdata.degrees[0]['name'],
     faculty:  profiledata.profiles.faculty?profiledata.profiles.faculty:filterdata.faculties[0]['name'],
-    phoneNumber: profiledata.profiles.phoneNumber,
+    phoneNumber: profiledata.profiles.phoneNumber?profiledata.profiles.phoneNumber:userdata.phoneNumber,
     stream: profiledata.profiles.stream?profiledata.profiles.stream:filterdata.departments[0]['name'],
     cgpa: profiledata.profiles.cgpa?profiledata.profiles.cgpa:0,
     resume: profiledata.profiles.resume?profiledata.profiles.resume:'',
