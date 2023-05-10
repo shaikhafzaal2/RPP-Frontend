@@ -21,7 +21,9 @@ axios.defaults.baseURL = location.hostname === "localhost"?'http://localhost:300
 export function* loginSaga() {  
   try {
     let myAccount: AccountInfo;
-    myAccount = yield msalInstance.loginPopup(loginRequest);  //call([msalInstance,msalInstance.loginPopup]);   
+    myAccount = yield msalInstance.loginPopup({
+      scopes: ["User.Read", "profile", "openid"]
+    });  //call([msalInstance,msalInstance.loginPopup]);   
     console.log(myAccount);
 
  
