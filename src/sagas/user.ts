@@ -4,7 +4,7 @@ import { ActionTypes } from 'literals';
 
 import { AdminLoginSuccess, getFiltersRequest, getProfileRequest, loginFailure,  loginSuccess,  logoutSuccess } from 'actions';
 import { AccountInfo, PublicClientApplication } from "@azure/msal-browser";
-import { loginRequest, msalConfig } from 'authConfig';
+import { msalConfig } from 'authConfig';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { AuthResult } from 'types';
 import { callMsGraph } from 'graph';
