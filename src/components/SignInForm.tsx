@@ -1,9 +1,11 @@
 // import { useMsal } from '@azure/msal-react';
 import { AdminLogin, loginRequest } from 'actions';
 import axios from 'axios';
+
 // import { loginRequest } from 'authConfig';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -83,8 +85,8 @@ const Button = styled.button`
   border-radius: 6px;
 `;
 
-const SignInForm = () => {
-
+const SignInForm = () => {  
+  
   const dispatch = useDispatch();
 
   const handleLogin = () => {

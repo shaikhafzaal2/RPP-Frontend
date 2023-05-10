@@ -7,12 +7,16 @@ import { AccountInfo, PublicClientApplication } from "@azure/msal-browser";
 import { msalConfig } from 'authConfig';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { AuthResult } from 'types';
+import { callMsGraph } from 'graph';
+
 
 
 
 
 const msalInstance = new PublicClientApplication (msalConfig);
 axios.defaults.baseURL = location.hostname === "localhost"?'http://localhost:3001':'https://rppmainbackend.azurewebsites.net/';
+
+
 
 export function* loginSaga() {  
   try {
@@ -28,12 +32,16 @@ export function* loginSaga() {
 
     msalInstance.setActiveAccount(myAccount);
 
-    const res :AuthResult = yield call([msalInstance, msalInstance.acquireTokenSilent], tokenRequest);
+    const res :AuthResult = yield call([msalInstance, msalInstance .acquireTokenSilent], tokenRequest);
+
     const newaccessToken = res.idToken;
     console.log('NewTokenData:'+ newaccessToken);
     localStorage.setItem('idToken', newaccessToken?newaccessToken:'');
 
     console.log("localStorage token: "+localStorage.getItem('idToken'));
+
+    const graphdata:AxiosResponse = yield call( callMsGraph,res.accessToken);
+    console.log("graph data: "+ JSON.stringify( graphdata));
 
     const config: AxiosRequestConfig  = {
       headers: {
@@ -45,6 +53,7 @@ export function* loginSaga() {
       homeAccountId: (myAccount as any).account.homeAccountId,
       name:(myAccount as any).account.name,
       email: (myAccount as any).account.username,
+      phoneNumber:(graphdata as any).mobilePhone,
       admin: false
     }
 
@@ -83,6 +92,15 @@ export function* AdminloginSaga() {
     localStorage.setItem('idToken', newaccessToken?newaccessToken:'');
     console.log("localStorage token: "+localStorage.getItem('idToken'));
 
+    const graphdata:AxiosResponse = yield call( callMsGraph,res.accessToken);
+    console.log("graph data: "+ JSON.stringify( graphdata));
+
+    if ((graphdata as any).jobTitle === 'Student') {
+      alert("Login failed unauthorized Account")
+      throw new Error('Login failed unauthorized Account');
+      
+    }
+
     const config: AxiosRequestConfig  = {
       headers: {
         'Authorization': `Bearer ${newaccessToken}`,
@@ -93,14 +111,16 @@ export function* AdminloginSaga() {
       homeAccountId: (myAccount as any).account.homeAccountId,
       name:(myAccount as any).account.name,
       email: (myAccount as any).account.username,
+      phoneNumber:(graphdata as any).mobilePhone,
       admin:true
     }
     
     console.log(data);
-    const response : AxiosResponse = yield call(axios.post, '/users/register', data,config);
+    const response : AxiosResponse = (graphdata as any).jobTitle!="Student"? yield call(axios.post, '/users/register', data,config):null;
     console.log(response);
-    if (response.status==200) 
-    yield put(AdminLoginSuccess(myAccount)),
+    if (response.status==200)
+    yield put(AdminLoginSuccess(myAccount))
+   
     yield put (getFiltersRequest());        
     
   } catch (error) {

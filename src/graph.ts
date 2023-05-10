@@ -1,21 +1,19 @@
+import { call } from "redux-saga/effects";
 import { graphConfig } from "./authConfig";
 
 /**
  * Attaches a given access token to a MS Graph API call. Returns information about the user
  * @param accessToken 
  */
-export async function callMsGraph(accessToken: string): Promise<any> {
-    const headers = new Headers();
-    const bearer = `Bearer ${accessToken}`;
 
-    headers.append("Authorization", bearer);
+export function* callMsGraph(accessToken: string): any {
 
-    const options: RequestInit = {
-        method: "GET",
-        headers: headers
-    };
 
-    return fetch(graphConfig.graphMeEndpoint, options)
-        .then(response => response.json())
-        .catch(error => console.log(error));
-}
+    const response = yield call(fetch, graphConfig.graphMeEndpoint, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+  
+    return yield response.json();
+  }
