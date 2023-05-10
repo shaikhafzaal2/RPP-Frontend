@@ -22,7 +22,7 @@ import ProfileScreen from './routes/Profile';
 import { Description } from 'routes/Description';
 import Footer from 'components/Footer';
 import { Admin } from 'routes/Admin';
-
+import { MyOffers } from 'routes/MyOffers';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -35,7 +35,7 @@ const AppWrapper = styled.div`
 
 const Main = styled.main<Pick<UserState, 'isLoggedIn'>>`
   min-height: 100vh;
-  padding: ${({ isLoggedIn }) => (isLoggedIn? `${px(headerHeight)} 0 0` : 0)};
+  padding: ${({ isLoggedIn }) => (isLoggedIn ? `${px(headerHeight)} 0 0` : 0)};
 `;
 
 function Root() {
@@ -45,7 +45,6 @@ function Root() {
 
   const isAuthenticated = user.isLoggedIn;
   const isAuthenticatedAdmin = user.isAdmin;
-  
 
   // const isAuthenticated = useIsAuthenticated();
   console.log(isAuthenticated);
@@ -73,12 +72,15 @@ function Root() {
               rel="stylesheet"
             />
           </Helmet>
-          {isAuthenticated && !isAuthenticatedAdmin &&<Header />}
+          {isAuthenticated && !isAuthenticatedAdmin && <Header />}
           <Main isLoggedIn={isAuthenticated && !isAuthenticatedAdmin}>
             <Routes>
               <Route
                 element={
-                  <PublicRoute isAuthenticated={isAuthenticated} to={isAuthenticatedAdmin?"/admin" : "/dashboard"}>
+                  <PublicRoute
+                    isAuthenticated={isAuthenticated}
+                    to={isAuthenticatedAdmin ? '/admin' : '/dashboard'}
+                  >
                     <Login />
                   </PublicRoute>
                 }
@@ -108,14 +110,23 @@ function Root() {
                 }
                 path="/description/:id"
               />
-              <Route 
+              <Route
+                element={
+                  <PrivateRoute isAuthenticated={isAuthenticated} to="/">
+                    <MyOffers />
+                  </PrivateRoute>
+                }
+                path="/myoffers"
+              />
+              <Route
                 element={
                   <PrivateRoute isAuthenticated={isAuthenticated} to="/">
                     <Admin />
                   </PrivateRoute>
-              } 
-                path="/admin" 
+                }
+                path="/admin"
               />
+
               <Route element={<NotFound />} path="*" />
             </Routes>
           </Main>
