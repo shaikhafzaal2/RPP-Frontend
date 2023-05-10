@@ -4,7 +4,7 @@ import { ActionTypes } from 'literals';
 
 import { AdminLoginSuccess, getFiltersRequest, getProfileRequest, loginFailure,  loginSuccess,  logoutSuccess } from 'actions';
 import { AccountInfo, PublicClientApplication } from "@azure/msal-browser";
-import { msalConfig } from 'authConfig';
+import { loginRequest, msalConfig } from 'authConfig';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { AuthResult } from 'types';
 import { callMsGraph } from 'graph';
@@ -21,12 +21,13 @@ axios.defaults.baseURL = location.hostname === "localhost"?'http://localhost:300
 export function* loginSaga() {  
   try {
     let myAccount: AccountInfo;
-    myAccount = yield call([msalInstance,msalInstance.loginPopup]);   
+    myAccount = yield msalInstance.loginPopup(loginRequest);  //call([msalInstance,msalInstance.loginPopup]);   
     console.log(myAccount);
 
  
     const tokenRequest = {
-      scopes: [],
+      scopes: ["User.Read", "profile", "openid"]
+      ,
       requested_expiry: 4200 // 2 hours
     };
 
@@ -138,8 +139,7 @@ export function* logoutSaga() {
   } catch (error) {
     console.log(error)
    
-  }
- 
+  } 
 }
 
 function* watchLogout() {
