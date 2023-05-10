@@ -1,11 +1,11 @@
 // import { useMsal } from '@azure/msal-react';
 import { AdminLogin, loginRequest } from 'actions';
 import axios from 'axios';
-import { useAppSelector } from 'modules/hooks';
+
 // import { loginRequest } from 'authConfig';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { selectUser } from 'selectors';
+
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -85,12 +85,8 @@ const Button = styled.button`
   border-radius: 6px;
 `;
 
-const SignInForm = () => {
-
-  const userdata = useAppSelector(selectUser);
-
-  userdata.error=="Login failed unauthorized Account" && alert(userdata.error);
-
+const SignInForm = () => {  
+  
   const dispatch = useDispatch();
 
   const handleLogin = () => {
