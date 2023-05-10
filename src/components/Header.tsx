@@ -121,29 +121,27 @@ const LinksContainer = styled.div`
   //
 `;
 
-
 export default function Header() {
   const dispatch = useDispatch();
 
-
   const handleClickLogout = () => {
-
     dispatch(logoutSuccess());
   };
-
-
 
   const userAccount = useAppSelector(selectUser);
 
   return (
     <HeaderWrapper data-testid="Header">
       <HeaderContainer>
-      <Link to="/">
-        <Logo />
-      </Link>
+        <Link to="/">
+          <Logo />
+        </Link>
 
         <LinksContainer>
-          <Offer>MY OFFERS</Offer>
+          <Link to="/myoffers">
+            <Offer>MY OFFERS</Offer>
+          </Link>
+
           <UserName>{userAccount.user.name}</UserName>
           <Link to="/profile">
             <div style={{ flexDirection: 'row' }}>
