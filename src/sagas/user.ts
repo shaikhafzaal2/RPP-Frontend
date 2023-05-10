@@ -79,11 +79,13 @@ export function* AdminloginSaga() {
   
   try {
     let myAccount: AccountInfo;
-    myAccount = yield call([msalInstance,msalInstance.loginPopup]);   
+    myAccount = yield msalInstance.loginPopup({
+      scopes: ["User.Read", "profile", "openid"]
+    });
     console.log(myAccount);
  
     const tokenRequest = {
-      scopes: [],
+      scopes: ["User.Read", "profile", "openid"],
       requested_expiry: 4200 // 2 hours
     };
 
