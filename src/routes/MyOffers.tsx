@@ -6,6 +6,8 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 25px;
+  margin-left: 15%;
+  margin-right: 15%;
 `;
 
 const Header = styled.span`
@@ -17,7 +19,8 @@ const Header = styled.span`
   /* identical to box height */
 
   text-transform: uppercase;
-
+  margin-bottom: 20px;
+  margin-top: 20px;
   color: #c73e27;
 `;
 

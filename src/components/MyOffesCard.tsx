@@ -28,6 +28,13 @@ const ComponentContainer = styled.div`
   justify-content: space-between;
   align-items: flex-start;
 `;
+const ChildContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 15%;
+`;
 
 const SerialContainer = styled.div`
   display: flex;
@@ -63,14 +70,16 @@ export const MyOffersCard: React.FC<CardProps> = ({
 }) => {
   return (
     <CardContainer>
-      <SerialContainer>
-        <Value>{serialNumber}</Value>
-      </SerialContainer>
+      <ChildContainer>
+        <SerialContainer>
+          <Value>{serialNumber}</Value>
+        </SerialContainer>
 
-      <ComponentContainer>
-        <Label>Company Name</Label>
-        <Value>{companyName}</Value>
-      </ComponentContainer>
+        <ComponentContainer>
+          <Label>Company Name</Label>
+          <Value>{companyName}</Value>
+        </ComponentContainer>
+      </ChildContainer>
 
       <ComponentContainer>
         <Label>Job Profile</Label>
