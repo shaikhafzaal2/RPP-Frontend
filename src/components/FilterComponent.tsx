@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
-import filterIcon from "../assets/icons/filterIcon.png"
+import filterIcon from '../assets/icons/filterIcon.png';
 import { updateFilters } from 'actions';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from 'modules/hooks';
@@ -9,9 +9,6 @@ import { selectFilter } from 'selectors';
 // import { useDispatch } from 'react-redux';
 // import { Filters } from 'types';
 // import { updateFilters } from 'actions';
-
-
-
 
 const FiletrContainer = styled.div`
   display: flex;
@@ -22,6 +19,9 @@ const FiletrContainer = styled.div`
   background-color: #c73e27;
   border-radius: 10px;
   box-shadow: 0px 3.36px 5.04px 2.52px rgba(0, 0, 0, 0.25);
+  @media (max-width: 768px) {
+    width: 250px;
+  }
 `;
 
 const GlobalStyle = createGlobalStyle`
@@ -70,6 +70,9 @@ const Select = styled.select`
   font-size: 16px;
   border-radius: 6px;
   box-shadow: 0px 3.36px 11.76px rgba(0, 0, 0, 0.1);
+  @media (max-width: 768px) {
+    width: 210px;
+  }
 `;
 
 const Option = styled.option`
@@ -101,71 +104,83 @@ const CheckboxText = styled.div`
 export const FilterComponent = () => {
   const dispatch = useDispatch();
   const filterdata = useAppSelector(selectFilter).infoFilters;
-  const selectfilters = useAppSelector(selectFilter).filters
-  console.log("This is filter state data: "+ JSON.stringify( filterdata));
-  const updateFilter = (props:any ) =>{
-    console.log("updatefilter called");
+  const selectfilters = useAppSelector(selectFilter).filters;
+  console.log('This is filter state data: ' + JSON.stringify(filterdata));
+  const updateFilter = (props: any) => {
+    console.log('updatefilter called');
     dispatch(updateFilters(props));
-  }
+  };
   return (
     <FiletrContainer>
       <GlobalStyle />
       <FilterBox>
         <FilterIcon src={filterIcon} />
         <ComponentName>Filters</ComponentName>
-        </FilterBox>
-       
-        <DropdownName>Faculty</DropdownName>
-        <Select defaultValue={selectfilters.faculty?selectfilters.faculty:"All"} onChange={(e)=>{
-          console.log("Selected"+e.target.value);
-             updateFilter({
-              payload: {
-                faculty: e.target.value=="All"?null:e.target.value,               
-              },
-              type: ''
-            })}}>
-            <Option value={"All"}>All</Option> 
-             {filterdata.faculties?.map(faculty => (  
-                 
-                 <Option key={faculty['keyword']} value={faculty['name']}>{faculty['keyword']}</Option>
-              ))}     
-          
-        </Select>
-        
-        <DropdownName>Department</DropdownName>
-        <Select defaultValue={selectfilters.department?selectfilters.department:"All"} onChange={(e)=>{
-              console.log("Selected"+e.target.value);
-                updateFilter({
-                  payload: {
-                    department:  e.target.value=="All"?null:e.target.value,            
-                  },
-                  type: ''
-                })
-              }}>
-            <Option value={'All'} >All</Option> 
-            {filterdata.departments?.map(dep => (  
-                 
-                 <Option key={dep['name']} value={dep['name']}>{dep['name']}</Option>
-              ))} 
-        </Select>
-        
-        <DropdownName>Company Type</DropdownName>
-        <Select defaultValue={selectfilters.type?selectfilters.type:"All"} onChange={(e)=>{
-            console.log("Selected"+e.target.value);
-              updateFilter({
-                payload: {
-                  type:  e.target.value=="All"?null:e.target.value,           
-                },
-                type: ''
-              })
-            }}>
-            <Option value={"All"}>All</Option>  
-            {filterdata.companyTypes?.map(comp => (  
-                 
-                 <Option key={comp['name']} value={comp['name']}>{comp['name']}</Option>
-              ))} 
-        </Select>
-        <div style={{"display":"flex", "flexDirection":"row", "padding":"20px","alignItems":"center"}}>
+      </FilterBox>
+
+      <DropdownName>Faculty</DropdownName>
+      <Select
+        defaultValue={selectfilters.faculty ? selectfilters.faculty : 'All'}
+        onChange={e => {
+          console.log('Selected' + e.target.value);
+          updateFilter({
+            payload: {
+              faculty: e.target.value == 'All' ? null : e.target.value,
+            },
+            type: '',
+          });
+        }}
+      >
+        <Option value={'All'}>All</Option>
+        {filterdata.faculties?.map(faculty => (
+          <Option key={faculty['keyword']} value={faculty['name']}>
+            {faculty['keyword']}
+          </Option>
+        ))}
+      </Select>
+
+      <DropdownName>Department</DropdownName>
+      <Select
+        defaultValue={selectfilters.department ? selectfilters.department : 'All'}
+        onChange={e => {
+          console.log('Selected' + e.target.value);
+          updateFilter({
+            payload: {
+              department: e.target.value == 'All' ? null : e.target.value,
+            },
+            type: '',
+          });
+        }}
+      >
+        <Option value={'All'}>All</Option>
+        {filterdata.departments?.map(dep => (
+          <Option key={dep['name']} value={dep['name']}>
+            {dep['name']}
+          </Option>
+        ))}
+      </Select>
+
+      <DropdownName>Company Type</DropdownName>
+      <Select
+        defaultValue={selectfilters.type ? selectfilters.type : 'All'}
+        onChange={e => {
+          console.log('Selected' + e.target.value);
+          updateFilter({
+            payload: {
+              type: e.target.value == 'All' ? null : e.target.value,
+            },
+            type: '',
+          });
+        }}
+      >
+        <Option value={'All'}>All</Option>
+        {filterdata.companyTypes?.map(comp => (
+          <Option key={comp['name']} value={comp['name']}>
+            {comp['name']}
+          </Option>
+        ))}
+      </Select>
+      <div style={{ display: 'flex', flexDirection: 'row', padding: '20px', alignItems: 'center' }}>
         <CheckboxDisplay />
         <CheckboxText>Applied Companies</CheckboxText>
       </div>

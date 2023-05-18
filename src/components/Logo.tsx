@@ -1,7 +1,7 @@
 import React from 'react';
 // import SVG from 'react-inlinesvg';
 import styled from 'styled-components';
-import msrLogo from '../assets/logos/MsrLogoW.png'
+import msrLogo from '../assets/logos/MsrLogoW.png';
 
 export const Wrapper = styled.div`
   align-items: flex-start;
@@ -9,16 +9,14 @@ export const Wrapper = styled.div`
   font-size: 0;
 
   svg {
-    height: 4.2rem;
-    max-height: 100%;
+    /* max-height: 100%; */
     width: auto;
   }
 `;
 const Image = styled.img`
-
-  width: 45%;
+  height: 30px;
+  /* width: 45%; */
   margin-bottom: 8px;
-  
 `;
 
 function Logo() {

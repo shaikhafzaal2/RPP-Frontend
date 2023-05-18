@@ -43,6 +43,9 @@ const CompanyName = styled.p`
   margin-top: 0px;
   color: #c73e27;
   font-weight: 600;
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 
 const Tagline = styled.p`
@@ -53,20 +56,39 @@ const Tagline = styled.p`
   margin-bottom: 2px;
   margin: 0px;
   font-weight: 600;
+  @media (max-width: 768px) {
+    font-size: 1.4rem;
+  }
 `;
 const Logo = styled.img`
   height: 80px;
   width: 80px;
   margin-top: 20px;
   margin-bottom: 2px;
+  @media (max-width: 768px) {
+    height: 5rem;
+    width: 5rem;
+  }
 `;
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 40px 40px;
   grid-gap: 0px;
   margin-top: 35px;
   margin-bottom: 35px;
+  @media (max-width: 768px) {
+    display: block;
+    grid-template-columns: repeat(2, 2fr);
+    grid-template-rows: 40px 40px;
+    grid-gap: 0px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+`;
+const LabelContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 const Label = styled.span`
@@ -76,12 +98,20 @@ const Label = styled.span`
   color: #c73e27;
   align-items: center;
   font-weight: 600;
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+  }
 `;
 const Value = styled.span`
   font-family: 'Noto Sans', sans-serif;
   font-style: normal;
   font-size: 18px;
   color: #000000;
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
 `;
 
 const Heading = styled.span`
@@ -91,6 +121,9 @@ const Heading = styled.span`
   font-size: 28px;
   color: #c73e27;
   margin-bottom: 8px;
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const Content = styled.div`
@@ -100,6 +133,9 @@ const Content = styled.div`
   line-height: 28px;
   color: #000000;
   margin-bottom: 20px;
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
 `;
 const ButtonContainer = styled.div`
   display: flex;
@@ -128,25 +164,31 @@ const ApplyButton = styled.button`
 export const Description = () => {
   const { pathname } = useLocation();
 
-  useEffect(()=>{
+  useEffect(() => {
     window.scrollTo(0, 0);
-  },[pathname])
-  const {id}: RouteParams = useParams();
-  console.log("id is: "+ JSON.stringify(id));
+  }, [pathname]);
+  const { id }: RouteParams = useParams();
+  console.log('id is: ' + JSON.stringify(id));
 
   const companiesdata = useAppSelector(selectCompany).companies;
   const profiledata = useAppSelector(selectProfile).profiles;
   const userdata = useAppSelector(selectUser);
-  const selectedCompany: Company = companiesdata.find((c:Company) => c._id === id);
+  const selectedCompany: Company = companiesdata.find((c: Company) => c._id === id);
   console.log('this is companydata: ' + JSON.stringify(selectedCompany));
 
-  const handleApplyBtn = (e:any)=>{
-    if (userdata.user.eligible){
-    selectedCompany.requiredcgpa<= profiledata.cgpa? window.open(e):alert("You are not eligible for this placement drive");
+  const handleApplyBtn = (e: any) => {
+    if (userdata.user.eligible) {
+      selectedCompany.requiredcgpa <= profiledata.cgpa
+        ? window.open(e)
+        : alert('You are not eligible for this placement drive');
     } else {
-      alert("You are removed from Placement Activities. Contact Placement Department for more details")
+      alert(
+        'You are removed from Placement Activities. Contact Placement Department for more details',
+      );
     }
-  }
+  };
+  const selectedCompanyDate = new Date(selectedCompany.date);
+  const formattedDate = selectedCompanyDate.toLocaleDateString('en-GB');
   return (
     <DescriptionContainer>
       <GlobalStyle />
@@ -159,27 +201,47 @@ export const Description = () => {
         <Logo src={companyLogo} />
       </TopContainer>
       <Grid>
-        <Label>Work Location</Label>
-        <Label>Role</Label>
-        <Label>CTC</Label>
-        <Value>{selectedCompany.jobLocation}</Value>
-        <Value>{selectedCompany.role}</Value>
-        <Value>{selectedCompany.ctc} LPA</Value>
+        <LabelContainer style={{ paddingRight: '20px' }}>
+          <Label>Work Location</Label>
+          <Value>{selectedCompany.jobLocation}</Value>
+        </LabelContainer>
+        <LabelContainer>
+          <Label>Role</Label>
+          <Value>{selectedCompany.role}</Value>
+        </LabelContainer>
+
+        <LabelContainer>
+          <Label>CTC</Label>
+          <Value>{selectedCompany.ctc} LPA</Value>
+        </LabelContainer>
+
+        <LabelContainer>
+          <Label>Apply By</Label>
+          <Value>{formattedDate}</Value>
+        </LabelContainer>
       </Grid>
       <Heading>About Us</Heading>
       <Content>
-       {selectedCompany.aboutCompany.split('\n').map((e,i) => <p key={i+1}>{e}</p>)}
+        {selectedCompany.aboutCompany.split('\n').map((e, i) => (
+          <p key={i + 1}>{e}</p>
+        ))}
       </Content>
       <Heading>Job Duties</Heading>
       <Content>
-        {selectedCompany.jd.split('\n').map((e,i) => <p key={i+1}>{e}</p>)}
+        {selectedCompany.jd.split('\n').map((e, i) => (
+          <p key={i + 1}>{e}</p>
+        ))}
       </Content>
       <Heading>Required Qualifications</Heading>
       <Content>
-       {selectedCompany.requiredQualifications.split('\n').map((e,i) => <p key={i+1}>{e}</p>)}
+        {selectedCompany.requiredQualifications.split('\n').map((e, i) => (
+          <p key={i + 1}>{e}</p>
+        ))}
       </Content>
       <ButtonContainer>
-        <ApplyButton onClick={()=>handleApplyBtn(selectedCompany.applyLink)}>Apply Now</ApplyButton>
+        <ApplyButton onClick={() => handleApplyBtn(selectedCompany.applyLink)}>
+          Apply Now
+        </ApplyButton>
       </ButtonContainer>
     </DescriptionContainer>
   );
