@@ -78,6 +78,10 @@ const Logout = styled.button`
     font-weight: 400;
     font-size: 15px;
     margin-right: 10px;
+    @media (max-width: 768px) {
+      display: none;
+      /* margin-right: 2px; */
+    }
   }
 `;
 const Offer = styled.a`
@@ -87,8 +91,12 @@ const Offer = styled.a`
   font-family: 'Noto Sans', sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 15px;
-  margin-right: 10px;
+  font-size: 1.42rem;
+  @media (max-width: 768px) {
+    padding-right: 10px;
+    font-size: 1.2rem;
+  }
+
   &:hover {
     color: #555555;
   }
@@ -104,6 +112,9 @@ const UserName = styled.span`
   white-space: nowrap;
   text-overflow: ellipsis;
   width: 100px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const ProfileIcon = styled.div`

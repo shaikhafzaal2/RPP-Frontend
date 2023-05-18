@@ -27,6 +27,11 @@ const ProfileContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 const LeftContainer = styled.div`
@@ -49,6 +54,27 @@ const RightContainer = styled.div`
   padding: 0px;
   margin-left: 75px;
   margin-top: 75px;
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const BufferContainer = styled.div`
+  display: none;
+  flex: 0.4;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 0px;
+  margin-left: 75px;
+  margin-top: 75px;
+  @media (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 50px;
+  }
 `;
 
 const Grid = styled.div`
@@ -66,6 +92,12 @@ const ProfileImage = styled.img`
   border-radius: 50%;
   object-fit: cover;
   margin-left: 20px;
+  @media (max-width: 768px) {
+    height: 12rem;
+    width: 12rem;
+    margin-left: 0px;
+    margin-right: 50px;
+  }
 `;
 
 const Button = styled.button`
@@ -79,6 +111,13 @@ const Button = styled.button`
   border-radius: 5px;
   font-size: 18px;
   cursor: pointer;
+  @media (max-width: 768px) {
+    height: 4rem;
+    width: 10rem;
+    font-size: 1rem;
+    margin: 0 0;
+    margin-left: 10px;
+  }
 `;
 
 const Label = styled.span`
@@ -89,12 +128,16 @@ const Label = styled.span`
   justify-content: flex-end;
   align-items: center;
   gap: 10px;
+  @media (max-width: 768px) {
+    font-size: 1.3rem;
+    width: 8rem;
+  }
 `;
 
 const Value = styled.span`
   font-size: 22px;
   min-width: 300px;
-  min-height:50px;
+  min-height: 50px;
   margin-bottom: 0px;
   display: flex;
   justify-content: flex-start;
@@ -103,6 +146,11 @@ const Value = styled.span`
   border-radius: 8px;
   margin-left: 20px;
   padding: 15px;
+  @media (max-width: 768px) {
+    font-size: 1.3rem;
+    min-width: 18rem;
+    padding: 10px;
+  }
 `;
 
 // Component
@@ -110,22 +158,17 @@ const Value = styled.span`
 const ProfileScreen = () => {
   const profiledata = useAppSelector(selectProfile).profiles;
   const currUser = useAppSelector(selectUser).user.homeAccountId;
-  console.log("Homeaccountid is: "+currUser)
+  console.log('Homeaccountid is: ' + currUser);
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   // const dispatch = useDispatch();
   useEffect(() => {
     // dispatch(getProfileRequest(currUser));
-   
   }, [isPopupOpen]);
 
-useEffect(() => {
-  
-
-  handlePopupClose();
-}, [profiledata]);
-
-  
+  useEffect(() => {
+    handlePopupClose();
+  }, [profiledata]);
 
   const handleButtonClick = () => {
     setIsPopupOpen(true);
@@ -135,43 +178,46 @@ useEffect(() => {
   };
 
   const handleResumeClick = () => {
-    
-    window.open(profiledata.resumenew?profiledata.resumenew:'', '_blank');
+    window.open(profiledata.resumenew ? profiledata.resumenew : '', '_blank');
     // return <iframe src={profiledata.resume} width="100%" height="600px" />
   };
-
-  
-
 
   return (
     <MainContainer>
       <ProfileContainer>
         <GlobalStyle />
+        <BufferContainer>
+          <ProfileImage src={profiledata.profilePic ? profiledata.profilePic : ''} />
+          <Button onClick={handleResumeClick}>View Resume</Button>
+          <Button onClick={handleButtonClick}>Edit Profile</Button>
+          {isPopupOpen && <EditProfile onClose={handlePopupClose} />}
+        </BufferContainer>
         <LeftContainer>
           <Grid>
             <Label>Name :</Label>
-            <Value>{profiledata.name?profiledata.name:'John Doe'}</Value>
+            <Value>{profiledata.name ? profiledata.name : 'John Doe'}</Value>
             <Label>Ph Number :</Label>
-            <Value>{profiledata.phoneNumber?profiledata.phoneNumber:'1234567891'}</Value>
+            <Value>{profiledata.phoneNumber ? profiledata.phoneNumber : '1234567891'}</Value>
             <Label>Faculty :</Label>
-            <Value>{profiledata.faculty?profiledata.faculty:'Faculty of ABC'}</Value>
+            <Value>{profiledata.faculty ? profiledata.faculty : 'Faculty of ABC'}</Value>
             <Label>Degree :</Label>
-            <Value>{profiledata.degree?profiledata.degree:'Masters'}</Value>
+            <Value>{profiledata.degree ? profiledata.degree : 'Masters'}</Value>
             <Label>Stream :</Label>
-            <Value>{profiledata.stream?profiledata.stream:'Computer Science'}</Value>
+            <Value>{profiledata.stream ? profiledata.stream : 'Computer Science'}</Value>
             <Label>Start Year :</Label>
-            <Value>{profiledata.startYear?profiledata.startYear:'2023'}</Value>
+            <Value>{profiledata.startYear ? profiledata.startYear : '2023'}</Value>
             <Label>End Year :</Label>
-            <Value>{profiledata.endYear?profiledata.endYear:'2023'}</Value>
+            <Value>{profiledata.endYear ? profiledata.endYear : '2023'}</Value>
             <Label>CGPA :</Label>
-            <Value>{profiledata.cgpa?profiledata.cgpa:10}</Value>
+            <Value>{profiledata.cgpa ? profiledata.cgpa : 10}</Value>
           </Grid>
+          <div style={{ marginBottom: '20px' }}></div>
         </LeftContainer>
         <RightContainer>
-          <ProfileImage src={profiledata.profilePic?profiledata.profilePic:''} />
+          <ProfileImage src={profiledata.profilePic ? profiledata.profilePic : ''} />
           <Button onClick={handleResumeClick}>View Resume</Button>
           <Button onClick={handleButtonClick}>Edit Profile</Button>
-          {isPopupOpen  && <EditProfile onClose={handlePopupClose} />}
+          {isPopupOpen && <EditProfile onClose={handlePopupClose} />}
         </RightContainer>
       </ProfileContainer>
     </MainContainer>

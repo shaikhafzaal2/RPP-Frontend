@@ -9,14 +9,14 @@ import { Profile } from 'types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFile } from '@fortawesome/free-solid-svg-icons';
 
-
 const PopupContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   position: fixed;
-  height: 80%;
+  overflow-y: scroll;
+  height: 90%;
   width: 80%;
   top: 50%;
   left: 50%;
@@ -25,6 +25,11 @@ const PopupContainer = styled.div`
   padding: 20px;
   border-radius: 5px;
   box-shadow: 2px 2px 16px 6px rgba(0, 0, 0, 0.12);
+  @media (max-width: 768px) {
+    overflow-y: scroll;
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 const MainContainer = styled.div`
@@ -32,6 +37,10 @@ const MainContainer = styled.div`
   flex-direction: row;
   align-items: center;
   margin-bottom: 25px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const LeftContainer = styled.div`
@@ -42,6 +51,9 @@ const LeftContainer = styled.div`
   align-items: flex-end;
   padding: 0px;
   margin-right: 50px;
+  @media (max-width: 768px) {
+    align-items: center;
+  }
 `;
 
 const RightContainer = styled.div`
@@ -53,6 +65,26 @@ const RightContainer = styled.div`
   gap: 20px;
   padding: 0px;
   margin-left: 75px;
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+const BufferContainer = styled.div`
+  display: none;
+  flex: 0.4;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 0px;
+  margin-left: 75px;
+  margin-top: 75px;
+  @media (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 0px;
+  }
 `;
 
 const Grid = styled.div`
@@ -76,6 +108,11 @@ const ProfileImage = styled.img`
   border: 2px solid #c73e27;
   border-radius: 50%;
   object-fit: cover;
+  @media (max-width: 768px) {
+    width: 10rem;
+    height: 10rem;
+    margin-left: 10px;
+  }
 `;
 const Label = styled.span`
   font-size: 20px;
@@ -85,6 +122,9 @@ const Label = styled.span`
   justify-content: flex-end;
   align-items: center;
   gap: 10px;
+  @media (max-width: 768px) {
+    font-size: 1.3rem;
+  }
 `;
 
 const Button = styled.button`
@@ -99,6 +139,11 @@ const Button = styled.button`
   border-radius: 5px;
   font-size: 15px;
   cursor: pointer;
+  @media (max-width: 768px) {
+    width: 10rem;
+    height: 4rem;
+    font-size: 1.2rem;
+  }
 `;
 
 const Select = styled.select`
@@ -110,10 +155,14 @@ const Select = styled.select`
   border: 1px solid #c73e27;
   border-radius: 6px;
   box-shadow: 0px 3.36px 11.76px rgba(0, 0, 0, 0.1);
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 5rem;
+  }
 `;
 
 const Option = styled.option`
-  color: black;  
+  color: black;
   background: white;
   display: flex;
   flex-direction: column;
@@ -133,6 +182,11 @@ const Input = styled.input`
   border: 1px solid #c73e27;
   border-radius: 6px;
   box-shadow: 0px 3.36px 11.76px rgba(0, 0, 0, 0.1);
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 4rem;
+    font-size: 1.5rem;
+  }
 `;
 
 const RadioContainer = styled.label`
@@ -162,44 +216,56 @@ const RadioInput = styled.input`
   }
 `;
 
-const RadioLabel = styled.span``;
+const RadioLabel = styled.span`
+  @media (max-width: 768px) {
+    font-size: 1.4rem;
+  }
+`;
 
 type PopupProps = {
   onClose: () => void;
 };
 
 export const EditProfile = ({ onClose }: PopupProps) => {
-
   const dispatch = useDispatch();
-  const [startYears, setStartYears] = useState<number []| null>(null);
-  const [endYears, setEndYears] = useState<number []| null>(null);
+  const [startYears, setStartYears] = useState<number[] | null>(null);
+  const [endYears, setEndYears] = useState<number[] | null>(null);
   const currentYear = new Date().getFullYear();
   const startYearsArray = Array.from({ length: 10 }, (_, i) => currentYear - i);
   const endYearsArray = Array.from({ length: 10 }, (_, i) => currentYear + i);
   const filterdata = useAppSelector(selectFilter).infoFilters;
   const userdata = useAppSelector(selectUser).user;
   const profiledata = useAppSelector(selectProfile);
-  
-console.log()
+
+  console.log();
   const [profile, setProfile] = useState<Profile>({
     homeAccountId: userdata.homeAccountId,
-    name:  userdata.name,
-    profilePic:profiledata.profiles.profilePic?profiledata.profiles.profilePic:'',
-    email:  userdata.email,
-    degree:  profiledata.profiles.degree?profiledata.profiles.degree:filterdata.degrees[0]['name'],
-    faculty:  profiledata.profiles.faculty?profiledata.profiles.faculty:filterdata.faculties[0]['name'],
-    phoneNumber: profiledata.profiles.phoneNumber?profiledata.profiles.phoneNumber:userdata.phoneNumber,
-    stream: profiledata.profiles.stream?profiledata.profiles.stream:filterdata.departments[0]['name'],
-    cgpa: profiledata.profiles.cgpa?profiledata.profiles.cgpa:0,
-    resume: profiledata.profiles.resume?profiledata.profiles.resume:'',
-    startYear: profiledata.profiles.startYear?profiledata.profiles.startYear:currentYear,
-    endYear: profiledata.profiles.endYear?profiledata.profiles.endYear:currentYear,
-    programme:profiledata.profiles.programme?profiledata.profiles.programme:filterdata.degrees[0]['name'],
+    name: userdata.name,
+    profilePic: profiledata.profiles.profilePic ? profiledata.profiles.profilePic : '',
+    email: userdata.email,
+    degree: profiledata.profiles.degree
+      ? profiledata.profiles.degree
+      : filterdata.degrees[0]['name'],
+    faculty: profiledata.profiles.faculty
+      ? profiledata.profiles.faculty
+      : filterdata.faculties[0]['name'],
+    phoneNumber: profiledata.profiles.phoneNumber
+      ? profiledata.profiles.phoneNumber
+      : userdata.phoneNumber,
+    stream: profiledata.profiles.stream
+      ? profiledata.profiles.stream
+      : filterdata.departments[0]['name'],
+    cgpa: profiledata.profiles.cgpa ? profiledata.profiles.cgpa : 0,
+    resume: profiledata.profiles.resume ? profiledata.profiles.resume : '',
+    startYear: profiledata.profiles.startYear ? profiledata.profiles.startYear : currentYear,
+    endYear: profiledata.profiles.endYear ? profiledata.profiles.endYear : currentYear,
+    programme: profiledata.profiles.programme
+      ? profiledata.profiles.programme
+      : filterdata.degrees[0]['name'],
   });
 
   const [image, setImage] = useState<File | null>(null);
   const [pdf, setPdf] = useState<File | null>(null);
-
 
   useEffect(() => {
     setStartYears(startYearsArray);
@@ -217,40 +283,36 @@ console.log()
     };
   }, [image]);
 
-  console.log("The years are"+startYears);
-  console.log("The years are"+endYears);
+  console.log('The years are' + startYears);
+  console.log('The years are' + endYears);
 
-    const imageInputRef = useRef<HTMLInputElement>(null);
-    const pdfInputRef = useRef<HTMLInputElement>(null);
-  
-    const handleImageButtonClick = () => {
-      if (imageInputRef.current) {
-        imageInputRef.current.click();
-      }
-    };
-  
-    const handlePdfButtonClick = () => {
-      if (pdfInputRef.current) {
-        pdfInputRef.current.click();
-      }
-    };
+  const imageInputRef = useRef<HTMLInputElement>(null);
+  const pdfInputRef = useRef<HTMLInputElement>(null);
 
-    const handleInputChange = (event: any) => {
-      const { name, value } = event.target;
-      setProfile((prevState: any) => ({
-        ...prevState,
-        [name]: value,
-      }));
-    };
+  const handleImageButtonClick = () => {
+    if (imageInputRef.current) {
+      imageInputRef.current.click();
+    }
+  };
 
-    
+  const handlePdfButtonClick = () => {
+    if (pdfInputRef.current) {
+      pdfInputRef.current.click();
+    }
+  };
 
-    const handleSubmit = () => {
-      // event.preventDefault();
-      dispatch(uploadProfileRequest({ profile, image, pdf }));
-    };
-  
-  
+  const handleInputChange = (event: any) => {
+    const { name, value } = event.target;
+    setProfile((prevState: any) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = () => {
+    // event.preventDefault();
+    dispatch(uploadProfileRequest({ profile, image, pdf }));
+  };
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
@@ -267,109 +329,197 @@ console.log()
   return (
     <PopupContainer>
       <MainContainer>
+        <BufferContainer>
+          {image ? (
+            <ProfileImage src={URL.createObjectURL(image)} />
+          ) : (
+            <ProfileImage src={profiledata.profiles.profilePic} />
+          )}
+          <Button onClick={handleImageButtonClick}>Update Image</Button>
+          <input
+            type="file"
+            accept="image/*"
+            ref={imageInputRef}
+            style={{ display: 'none' }}
+            onChange={handleImageChange}
+          />
+          <Button onClick={handlePdfButtonClick}>Upload Resume</Button>
+          <input
+            type="file"
+            accept="application/pdf"
+            ref={pdfInputRef}
+            style={{ display: 'none' }}
+            onChange={handlePdfChange}
+          />
+
+          {pdf && (
+            <div>
+              <FontAwesomeIcon icon={faFile} /> {pdf.name}
+            </div>
+          )}
+        </BufferContainer>
         <LeftContainer>
           <Grid>
             <Label>Graduation :</Label>
             <div style={{ display: 'flex', flexDirection: 'row' }}>
               <RadioContainer>
-                <RadioInput defaultChecked={profile.programme=='UG'? true:false} required={true}  type="radio" name='programme' value={'UG'} onChange={handleInputChange}/>
+                <RadioInput
+                  defaultChecked={profile.programme == 'UG' ? true : false}
+                  required={true}
+                  type="radio"
+                  name="programme"
+                  value={'UG'}
+                  onChange={handleInputChange}
+                />
                 <RadioLabel>UG</RadioLabel>
-              {/* </RadioContainer>
+                {/* </RadioContainer>
               <RadioContainer> */}
-                <RadioInput defaultChecked={profile.programme=='PG'? true:false}  type="radio" name='programme' value={'PG'} onChange={handleInputChange}/>
+                <RadioInput
+                  defaultChecked={profile.programme == 'PG' ? true : false}
+                  type="radio"
+                  name="programme"
+                  value={'PG'}
+                  onChange={handleInputChange}
+                />
                 <RadioLabel>PG</RadioLabel>
               </RadioContainer>
             </div>
 
             <Label>Start Year : </Label>
             <div>
-              <Select name='startYear' required={true} value={profile.startYear} onChange={(e)=>handleInputChange(e)}>
-
-              {startYears?.map(year => (         
-                  <Option key={year} value={year}>{year} </Option>
-              ))}       
-              
+              <Select
+                name="startYear"
+                required={true}
+                value={profile.startYear}
+                onChange={e => handleInputChange(e)}
+              >
+                {startYears?.map(year => (
+                  <Option key={year} value={year}>
+                    {year}{' '}
+                  </Option>
+                ))}
               </Select>
             </div>
             <Label>End Year : </Label>
             <div>
-              <Select name='endYear' required={true} value={profile.endYear}  onChange={(e)=>handleInputChange(e)}>
-              {endYears?.map(year => (         
-                  <Option key={year} value={year.toString()}>{year}</Option>
-              ))}     
-         
+              <Select
+                name="endYear"
+                required={true}
+                value={profile.endYear}
+                onChange={e => handleInputChange(e)}
+              >
+                {endYears?.map(year => (
+                  <Option key={year} value={year.toString()}>
+                    {year}
+                  </Option>
+                ))}
               </Select>
             </div>
             <Label>Faculty :</Label>
             <div>
-              <Select name='faculty' required={true} defaultValue={profile.faculty} onChange={(e)=>handleInputChange(e)}>
-              {filterdata.faculties?.map(faculty => (  
-                 
-                 <Option key={faculty['keyword']} value={faculty['name']}>{faculty['keyword']}</Option>
-              ))}     
-              
+              <Select
+                name="faculty"
+                required={true}
+                defaultValue={profile.faculty}
+                onChange={e => handleInputChange(e)}
+              >
+                {filterdata.faculties?.map(faculty => (
+                  <Option key={faculty['keyword']} value={faculty['name']}>
+                    {faculty['keyword']}
+                  </Option>
+                ))}
               </Select>
             </div>
             <Label>Degree :</Label>
             <div>
-              <Select name='degree' required={true} defaultValue={profile.degree} onChange={(e)=>handleInputChange(e)}>
-
-              {filterdata.degrees?.map(deg => (  
-                 
-                 <Option key={deg['name']} value={deg['name']}>{deg['name']}</Option>
-              ))}     
-     
+              <Select
+                name="degree"
+                required={true}
+                defaultValue={profile.degree}
+                onChange={e => handleInputChange(e)}
+              >
+                {filterdata.degrees?.map(deg => (
+                  <Option key={deg['name']} value={deg['name']}>
+                    {deg['name']}
+                  </Option>
+                ))}
               </Select>
             </div>
             <Label>Stream :</Label>
             <div>
-              <Select name='stream' required={true} defaultValue={profile.stream} onChange={(e)=>handleInputChange(e)}>
-
-              {filterdata.departments?.map(deg => (  
-                 
-                 <Option key={deg['name']} value={deg['name']}>{deg['name']}</Option>
-              ))}     
-     
+              <Select
+                name="stream"
+                required={true}
+                defaultValue={profile.stream}
+                onChange={e => handleInputChange(e)}
+              >
+                {filterdata.departments?.map(deg => (
+                  <Option key={deg['name']} value={deg['name']}>
+                    {deg['name']}
+                  </Option>
+                ))}
               </Select>
             </div>
-            
+
             <Label>CGPA :</Label>
             <div>
-              <Input type='tel' maxLength={4}  name='cgpa' required={true} defaultValue={profile.cgpa} onChange={handleInputChange} placeholder="Enter your CGPA" />
+              <Input
+                type="tel"
+                maxLength={4}
+                name="cgpa"
+                required={true}
+                defaultValue={profile.cgpa}
+                onChange={handleInputChange}
+                placeholder="Enter your CGPA"
+              />
             </div>
             <Label>Phone Number :</Label>
-            <Input type="tel" required maxLength={10} defaultValue={profile.phoneNumber} name='phoneNumber' onChange={handleInputChange} placeholder="Enter your phone number" />
+            <Input
+              type="tel"
+              required
+              maxLength={10}
+              defaultValue={profile.phoneNumber}
+              name="phoneNumber"
+              onChange={handleInputChange}
+              placeholder="Enter your phone number"
+            />
           </Grid>
         </LeftContainer>
         <RightContainer>
-          {image?<ProfileImage src={URL.createObjectURL(image)}  />:<ProfileImage src={profiledata.profiles.profilePic}/>}
-          <Button onClick={handleImageButtonClick} >Update Image</Button>
+          {image ? (
+            <ProfileImage src={URL.createObjectURL(image)} />
+          ) : (
+            <ProfileImage src={profiledata.profiles.profilePic} />
+          )}
+          <Button onClick={handleImageButtonClick}>Update Image</Button>
           <input
-       type="file"
-       accept="image/*"
-       ref={imageInputRef}
-       style={{ display: 'none' }}
-       onChange={handleImageChange}
-      />
+            type="file"
+            accept="image/*"
+            ref={imageInputRef}
+            style={{ display: 'none' }}
+            onChange={handleImageChange}
+          />
           <Button onClick={handlePdfButtonClick}>Upload Resume</Button>
           <input
-          type="file"
-          accept="application/pdf"
-          ref={pdfInputRef}
-          style={{ display: 'none' }}
-          onChange={handlePdfChange}
-      />
+            type="file"
+            accept="application/pdf"
+            ref={pdfInputRef}
+            style={{ display: 'none' }}
+            onChange={handlePdfChange}
+          />
 
-{pdf&& (
-  <div>
-    <FontAwesomeIcon icon={faFile} /> {pdf.name}
-  </div>
-)}
+          {pdf && (
+            <div>
+              <FontAwesomeIcon icon={faFile} /> {pdf.name}
+            </div>
+          )}
         </RightContainer>
       </MainContainer>
       <ButtonContainer>
         <Button onClick={onClose}>Close</Button>
-        <Button type='submit' onClick={()=>handleSubmit()}>{profiledata.loading?"Loading...":"Save"}</Button>
+        <Button type="submit" onClick={() => handleSubmit()}>
+          {profiledata.loading ? 'Loading...' : 'Save'}
+        </Button>
       </ButtonContainer>
     </PopupContainer>
   );

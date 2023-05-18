@@ -16,7 +16,7 @@ import PublicRoute from 'components/PublicRoute';
 import SystemAlerts from 'containers/SystemAlerts';
 import Login from 'routes/Login';
 import NotFound from 'routes/NotFound';
-import Dashboard from 'routes/Private';
+import Dashboard from 'routes/Dashboard';
 import { UserState } from 'types';
 import ProfileScreen from './routes/Profile';
 import { Description } from 'routes/Description';
