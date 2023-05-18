@@ -1,20 +1,21 @@
 {
   "files": {
-    "main.js": "/RPP-Frontend/static/js/main.d585ccf.js",
-    "static/js/791.d585ccf.chunk.js": "/RPP-Frontend/static/js/791.d585ccf.chunk.js",
+    "main.js": "/RPP-Frontend/static/js/main.48ffe85.js",
+    "static/js/791.48ffe85.chunk.js": "/RPP-Frontend/static/js/791.48ffe85.chunk.js",
     "service-worker.js": "/RPP-Frontend/service-worker.js",
     "index.html": "/RPP-Frontend/index.html",
     "static/MsrLogoW.png": "/RPP-Frontend/static/MsrLogoW.png",
+    "static/setting.png": "/RPP-Frontend/static/setting.png",
     "static/companyLogo.png": "/RPP-Frontend/static/companyLogo.png",
     "static/profile.png": "/RPP-Frontend/static/profile.png",
     "static/filterIcon.png": "/RPP-Frontend/static/filterIcon.png",
     "static/locationIcon.png": "/RPP-Frontend/static/locationIcon.png",
     "static/readmore.png": "/RPP-Frontend/static/readmore.png",
-    "static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.d585ccf.bin": "/RPP-Frontend/static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.d585ccf.bin",
-    "main.d585ccf.js.map": "/RPP-Frontend/static/js/main.d585ccf.js.map",
-    "791.d585ccf.chunk.js.map": "/RPP-Frontend/static/js/791.d585ccf.chunk.js.map"
+    "static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.48ffe85.bin": "/RPP-Frontend/static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.48ffe85.bin",
+    "main.48ffe85.js.map": "/RPP-Frontend/static/js/main.48ffe85.js.map",
+    "791.48ffe85.chunk.js.map": "/RPP-Frontend/static/js/791.48ffe85.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.d585ccf.js"
+    "static/js/main.48ffe85.js"
   ]
 }
