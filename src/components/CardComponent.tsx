@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
 const CardContainer = styled.div`
   display: flex;
   flex-direction: row;
-  height: 20rem;
+  height: 21rem;
   width: 80%;
   margin-top: 0px;
   margin-bottom: 20px;
