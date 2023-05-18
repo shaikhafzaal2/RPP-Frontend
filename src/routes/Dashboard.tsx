@@ -73,7 +73,7 @@ const Dashboard = () => {
     dispatch(getProfileRequest(userAccount.homeAccountId));
   }, [currFilters]);
 
-  const [filterCollapsed, setFilterCollapsed] = useState(false);
+  const [filterCollapsed, setFilterCollapsed] = useState(true);
 
   const handleToggleFilter = () => {
     setFilterCollapsed(!filterCollapsed);
