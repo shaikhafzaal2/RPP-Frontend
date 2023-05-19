@@ -98,6 +98,7 @@ const Label = styled.span`
   color: #c73e27;
   align-items: center;
   font-weight: 600;
+  margin-bottom: 10px;
   @media (max-width: 768px) {
     font-size: 1.5rem;
     margin-bottom: 5px;
