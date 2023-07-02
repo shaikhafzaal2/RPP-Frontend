@@ -21,6 +21,7 @@ const FiletrContainer = styled.div`
   box-shadow: 0px 3.36px 5.04px 2.52px rgba(0, 0, 0, 0.25);
   @media (max-width: 768px) {
     width: 250px;
+    height: 425px;
   }
 `;
 

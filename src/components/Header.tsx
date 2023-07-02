@@ -84,23 +84,27 @@ const Logout = styled.button`
     }
   }
 `;
-// const Offer = styled.a`
-//   text-decoration: none;
-//   color: #433270;
-//   padding: 30px;
-//   font-family: 'Noto Sans', sans-serif;
-//   font-style: normal;
-//   font-weight: 600;
-//   font-size: 1.42rem;
-//   @media (max-width: 768px) {
-//     padding-right: 10px;
-//     font-size: 1.2rem;
-//   }
+const Offer = styled.a`
+  text-decoration: none;
+  color: #433270;
+  padding: 30px;
+  font-family: 'Noto Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.42rem;
+  @media (max-width: 768px) {
+    padding-right: 10px;
+    font-size: 1.2rem;
+  }
+  @media (max-width: 768px) {
+    //Hidden myOffers
+    display: none;
+  }
 
-//   &:hover {
-//     color: #555555;
-//   }
-// `;
+  &:hover {
+    color: #555555;
+  }
+`;
 const UserName = styled.span`
   font-family: 'Noto Sans', sans-serif;
   font-style: normal;
@@ -149,9 +153,9 @@ export default function Header() {
         </Link>
 
         <LinksContainer>
-          {/* <Link to="/myoffers">
+          <Link to="/myoffers">
             <Offer>MY OFFERS</Offer>
-          </Link> */}
+          </Link>
 
           <UserName>{userAccount.user.name}</UserName>
           <Link to="/profile">
