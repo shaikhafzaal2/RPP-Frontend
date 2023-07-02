@@ -93,6 +93,7 @@ const Offer = styled.a`
   font-weight: 600;
   font-size: 1.42rem;
   @media (max-width: 768px) {
+    //Hidden myOffers
     display: none;
   }
 
