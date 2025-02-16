@@ -24,8 +24,9 @@ jobs:
       run: npm ci --legacy-peer-deps
 
     - name: Build project
-      run: npm run build --if-present
-
+      run: |
+        REACT_APP_ENV=vercel npm run build
+        
     - name: Deploy to Vercel
       uses: amondnet/vercel-action@v25
       with:
