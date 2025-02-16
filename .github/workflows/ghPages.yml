@@ -50,10 +50,17 @@ jobs:
 
     - name: Deploy
       run: |
-        git config --global user.name $user_name
-        git config --global user.email $user_email
-        git remote set-url origin https://${github_token}@github.com/${repository}
-        npm run deploy
+        git config --global user.name "${{ env.user_name }}"
+        git config --global user.email "${{ env.user_email }}"
+        git remote set-url origin https://${{ env.github_token }}@github.com/${{ env.repository }}
+        
+        # Pull remote changes first to avoid conflicts
+        git fetch origin gh-pages
+        git checkout gh-pages || git checkout -b gh-pages
+        git pull origin gh-pages --rebase || echo "No remote changes to rebase."
+        
+        git checkout main
+        npm run deploy -- --force
       env:
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
