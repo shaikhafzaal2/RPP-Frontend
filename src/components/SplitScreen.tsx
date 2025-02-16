@@ -83,7 +83,7 @@ const SplitScreen = () => {
   return (
     <Container>
       <Left>
-      <Image src="https://cdn.msruas.ac.in/ruas/imager/logos/identity/114151/university-main-logo_96575fd44b35071619e2d5f4abc0b108.png" alt="Image" />
+      <Image src="https://github.com/shaikhafzaal2/data/blob/main/university-main-logo_96575fd44b35071619e2d5f4abc0b108%20(1).png?raw=true" alt="Image" />
         <Heading>Welcome to </Heading>
         <Heading>PLACEMENT PORTAL</Heading>
       </Left>
