@@ -31,7 +31,7 @@ const Left = styled.div`
 `;
 
 const Image = styled.img`
-  width: 60%;
+  width: 80%;
   height: auto;
   padding: 3%;
   margin-bottom: 40px;
