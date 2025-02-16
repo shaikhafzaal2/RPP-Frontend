@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/static/js/main.53c4eef.js",
-    "static/js/791.53c4eef.chunk.js": "/static/js/791.53c4eef.chunk.js",
+    "main.js": "/static/js/main.422986a.js",
+    "static/js/791.422986a.chunk.js": "/static/js/791.422986a.chunk.js",
     "service-worker.js": "/service-worker.js",
     "index.html": "/index.html",
     "static/MsrLogoW.png": "/static/MsrLogoW.png",
@@ -11,11 +11,11 @@
     "static/filterIcon.png": "/static/filterIcon.png",
     "static/locationIcon.png": "/static/locationIcon.png",
     "static/readmore.png": "/static/readmore.png",
-    "static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.53c4eef.bin": "/static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.53c4eef.bin",
-    "main.53c4eef.js.map": "/static/js/main.53c4eef.js.map",
-    "791.53c4eef.chunk.js.map": "/static/js/791.53c4eef.chunk.js.map"
+    "static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.422986a.bin": "/static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.422986a.bin",
+    "main.422986a.js.map": "/static/js/main.422986a.js.map",
+    "791.422986a.chunk.js.map": "/static/js/791.422986a.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.53c4eef.js"
+    "static/js/main.422986a.js"
   ]
 }
