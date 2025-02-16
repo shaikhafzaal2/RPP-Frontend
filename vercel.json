@@ -17,8 +17,5 @@
       "src": "/(.*)",
       "dest": "/index.html"
     }
-  ],
-  "static": {
-    "public": "public"
-  }
+  ]
 }
