@@ -3,17 +3,15 @@ name: Vercel Deployment
 on:
   push:
     branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      deployments: write
 
     environment:
       name: vercel-production
-      url: ${{ steps.vercel.outputs.url }}
 
     steps:
     - name: Checkout repository
@@ -31,9 +29,8 @@ jobs:
     - name: Build project
       run: |
         REACT_APP_ENV=vercel npm run build
-
+        
     - name: Deploy to Vercel
-      id: vercel
       uses: amondnet/vercel-action@v25
       with:
         vercel-token: ${{ secrets.VERCEL_TOKEN }}
@@ -41,12 +38,9 @@ jobs:
         vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
         github-token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Output Vercel URL
-      run: echo "🚀 Deployed at ${{ steps.vercel.outputs.url }}"
-
     - name: Post-deployment success message
       if: success()
-      run: echo "✅ Successfully deployed to Vercel!"
+      run: echo "🚀 Successfully deployed to Vercel!"
 
     - name: Handle deployment failure
       if: failure()
