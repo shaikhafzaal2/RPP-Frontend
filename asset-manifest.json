@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/static/js/main.ac404d2.js",
-    "static/js/791.ac404d2.chunk.js": "/static/js/791.ac404d2.chunk.js",
+    "main.js": "/static/js/main.45057da.js",
+    "static/js/791.45057da.chunk.js": "/static/js/791.45057da.chunk.js",
     "service-worker.js": "/service-worker.js",
     "index.html": "/index.html",
     "static/MsrLogoW.png": "/static/MsrLogoW.png",
@@ -11,11 +11,11 @@
     "static/filterIcon.png": "/static/filterIcon.png",
     "static/locationIcon.png": "/static/locationIcon.png",
     "static/readmore.png": "/static/readmore.png",
-    "static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.ac404d2.bin": "/static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.ac404d2.bin",
-    "main.ac404d2.js.map": "/static/js/main.ac404d2.js.map",
-    "791.ac404d2.chunk.js.map": "/static/js/791.ac404d2.chunk.js.map"
+    "static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.45057da.bin": "/static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.45057da.bin",
+    "main.45057da.js.map": "/static/js/main.45057da.js.map",
+    "791.45057da.chunk.js.map": "/static/js/791.45057da.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.ac404d2.js"
+    "static/js/main.45057da.js"
   ]
 }
