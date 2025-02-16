@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.js": "/RPP-Frontend/static/js/main.2017903.js",
-    "static/js/791.2017903.chunk.js": "/RPP-Frontend/static/js/791.2017903.chunk.js",
-    "service-worker.js": "/RPP-Frontend/service-worker.js",
-    "index.html": "/RPP-Frontend/index.html",
-    "static/MsrLogoW.png": "/RPP-Frontend/static/MsrLogoW.png",
-    "static/setting.png": "/RPP-Frontend/static/setting.png",
-    "static/companyLogo.png": "/RPP-Frontend/static/companyLogo.png",
-    "static/profile.png": "/RPP-Frontend/static/profile.png",
-    "static/filterIcon.png": "/RPP-Frontend/static/filterIcon.png",
-    "static/locationIcon.png": "/RPP-Frontend/static/locationIcon.png",
-    "static/readmore.png": "/RPP-Frontend/static/readmore.png",
-    "static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.2017903.bin": "/RPP-Frontend/static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.2017903.bin",
-    "main.2017903.js.map": "/RPP-Frontend/static/js/main.2017903.js.map",
-    "791.2017903.chunk.js.map": "/RPP-Frontend/static/js/791.2017903.chunk.js.map"
+    "main.js": "/static/js/main.dd93acc.js",
+    "static/js/791.dd93acc.chunk.js": "/static/js/791.dd93acc.chunk.js",
+    "service-worker.js": "/service-worker.js",
+    "index.html": "/index.html",
+    "static/MsrLogoW.png": "/static/MsrLogoW.png",
+    "static/setting.png": "/static/setting.png",
+    "static/companyLogo.png": "/static/companyLogo.png",
+    "static/profile.png": "/static/profile.png",
+    "static/filterIcon.png": "/static/filterIcon.png",
+    "static/locationIcon.png": "/static/locationIcon.png",
+    "static/readmore.png": "/static/readmore.png",
+    "static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.dd93acc.bin": "/static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.dd93acc.bin",
+    "main.dd93acc.js.map": "/static/js/main.dd93acc.js.map",
+    "791.dd93acc.chunk.js.map": "/static/js/791.dd93acc.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.2017903.js"
+    "static/js/main.dd93acc.js"
   ]
 }
