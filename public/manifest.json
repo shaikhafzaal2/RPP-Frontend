@@ -1,0 +1,8 @@
+{
+  "name": "Ramaiah Placement Portal",
+  "short_name": "RPP",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000"
+}
