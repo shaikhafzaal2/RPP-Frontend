@@ -9,13 +9,6 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      deployments: write
-
-    environment:
-      name: vercel-production  # Customizable environment name
-      url: ${{ steps.vercel.outputs.url }}
 
     steps:
     - name: Checkout repository
@@ -35,16 +28,12 @@ jobs:
         REACT_APP_ENV=vercel npm run build
         
     - name: Deploy to Vercel
-      id: vercel
       uses: amondnet/vercel-action@v25
       with:
         vercel-token: ${{ secrets.VERCEL_TOKEN }}
         vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
         vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
         github-token: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Output Vercel URL
-      run: echo "Deployed at ${{ steps.vercel.outputs.url }}"
 
     - name: Post-deployment success message
       if: success()
