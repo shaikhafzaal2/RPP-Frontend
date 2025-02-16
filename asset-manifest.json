@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/static/js/main.c551cbb.js",
-    "static/js/791.c551cbb.chunk.js": "/static/js/791.c551cbb.chunk.js",
+    "main.js": "/static/js/main.cc27f45.js",
+    "static/js/791.cc27f45.chunk.js": "/static/js/791.cc27f45.chunk.js",
     "service-worker.js": "/service-worker.js",
     "index.html": "/index.html",
     "static/MsrLogoW.png": "/static/MsrLogoW.png",
@@ -11,11 +11,11 @@
     "static/filterIcon.png": "/static/filterIcon.png",
     "static/locationIcon.png": "/static/locationIcon.png",
     "static/readmore.png": "/static/readmore.png",
-    "static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.c551cbb.bin": "/static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.c551cbb.bin",
-    "main.c551cbb.js.map": "/static/js/main.c551cbb.js.map",
-    "791.c551cbb.chunk.js.map": "/static/js/791.c551cbb.chunk.js.map"
+    "static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.cc27f45.bin": "/static/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;.cc27f45.bin",
+    "main.cc27f45.js.map": "/static/js/main.cc27f45.js.map",
+    "791.cc27f45.chunk.js.map": "/static/js/791.cc27f45.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.c551cbb.js"
+    "static/js/main.cc27f45.js"
   ]
 }
