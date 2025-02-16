@@ -1,6 +1,6 @@
 {
   "name": "ramaiah-placement-portal",
-  "homepage":  "${REACT_APP_ENV}" === "vercel" ? "/" :  "https://shaikhafzaa2.github.io/RPP-Frontend/",
+  "homepage": "/",
   "description": "Placement portal for students",
   "version": "2022.3.0",
   "author": "Group 48 <shaikhafzaal2@gmail.com>",
