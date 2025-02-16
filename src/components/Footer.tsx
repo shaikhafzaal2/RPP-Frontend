@@ -64,7 +64,7 @@ const Footer = () => {
   return (
     <FooterContainer>
       <LogoContainer>
-        <Logo src="https://cdn.msruas.ac.in/ruas/imager/logos/identity/114150/university-site-logo_eb6a0f6b016d9a54184863465c76165f.png" alt="Logo" />
+        <Logo src="https://www.msruas.ac.in/assets/frontend/images/ramaiah-university-of-applied-science-logo.webp" alt="Logo" />
         <SocialIcons>
           <SocialIcon href="https://facebook.com">
             <i className="fab fa-facebook"></i>
