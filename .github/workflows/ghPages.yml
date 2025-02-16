@@ -60,7 +60,7 @@ jobs:
         git pull origin gh-pages --rebase || echo "No remote changes to rebase."
         
         git checkout main
-        npm run deploy -- --force
+        npm run deploy
       env:
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
