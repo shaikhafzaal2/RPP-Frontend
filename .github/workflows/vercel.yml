@@ -3,8 +3,6 @@ name: Vercel Deployment
 on:
   push:
     branches: ["main"]
-  pull_request:
-    branches: ["main"]
 
 jobs:
   build-and-deploy:
@@ -12,7 +10,6 @@ jobs:
     permissions:
       contents: read
       deployments: write
-      pull-requests: write  # Required to comment on PRs
 
     environment:
       name: vercel-production
@@ -45,20 +42,11 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Output Vercel URL
-      run: echo "Deployed at ${{ steps.vercel.outputs.url }}"
-
-    - name: Comment on PR with Deployment URL
-      if: github.event_name == 'pull_request'
-      uses: thollander/actions-comment-pull-request@v2
-      with:
-        message: |
-          🚀 Successfully deployed to Vercel!  
-          🌐 URL: ${{ steps.vercel.outputs.url }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: echo "🚀 Deployed at ${{ steps.vercel.outputs.url }}"
 
     - name: Post-deployment success message
       if: success()
-      run: echo "🚀 Successfully deployed to Vercel!"
+      run: echo "✅ Successfully deployed to Vercel!"
 
     - name: Handle deployment failure
       if: failure()
