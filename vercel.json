@@ -1,13 +1,24 @@
 {
-  "github": {
-    "enabled": true,
-    "autoDeploy": false,
-    "autoJobCancelation": true
-  },
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    }
+  ],
   "routes": [
+    {
+      "src": "/manifest.json",
+      "dest": "/manifest.json"
+    },
     {
       "src": "/(.*)",
       "dest": "/index.html"
     }
-  ]
+  ],
+  "static": {
+    "public": "public"
+  }
 }
